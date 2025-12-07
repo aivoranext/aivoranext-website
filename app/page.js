@@ -31,7 +31,10 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
+import Image from "next/image";
 import { useState } from "react";
+
+const HERO_LOGO_SRC = "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1765091977/Aivoranext2_uk7ol7.png";
 
 export default function Home() {
   const navItems = [
@@ -404,16 +407,9 @@ export default function Home() {
       <footer className="border-t border-white/5 bg-[#020202] pt-20 pb-10">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-5 gap-12 mb-16">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-6">
-              <svg className="w-6 h-6 text-blue-600" viewBox="0 0 100 100" fill="currentColor">
-                <rect x="0" y="0" width="50" height="50" />
-                <rect x="50" y="50" width="50" height="50" />
-                <rect x="75" y="0" width="25" height="25" />
-              </svg>
-              <span className="text-lg font-medium tracking-tight text-white">
-                Aivora<span className="text-gray-500 font-light">next</span>
-              </span>
-            </div>
+            <a href="#hero" className="inline-flex items-center gap-3 mb-6">
+              <Image src={HERO_LOGO_SRC} alt="Aivoranext" width={160} height={40} className="h-10 w-auto" />
+            </a>
             <p className="text-sm text-gray-500 font-light max-w-xs leading-relaxed">
               AI-first, human-centric consultancy blending agentic AI, design, and strategy for sustainable growth.
             </p>
