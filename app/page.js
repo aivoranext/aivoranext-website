@@ -49,7 +49,7 @@ export default function Home() {
   return (
     <main className="relative min-h-screen">
       <div className="fixed top-0 left-0 w-full h-[800px] spotlight pointer-events-none z-0" />
-      <div className="fixed inset-0 bg-grid pointer-events-none z-0" />
+      <div className="fixed inset-0 pointer-events-none z-0" />
 
       {/* Resizable Navbar */}
       <div className="pt-6">
@@ -58,7 +58,11 @@ export default function Home() {
             <NavbarLogo />
             <NavItems items={navItems} onItemClick={() => setIsMobileMenuOpen(false)} />
             <div className="flex items-center gap-3 ml-6 lg:ml-10">
-              <NavbarButton variant="primary" href="#contact">
+              <NavbarButton
+                variant="secondary"
+                className="border border-white/30 text-white bg-white/10 hover:bg-white/20 hover:border-white/40 shadow-[0_0_24px_rgba(255,255,255,0.08)]"
+                href="#services"
+              >
                 Inquiry Now
               </NavbarButton>
             </div>
@@ -82,7 +86,7 @@ export default function Home() {
               ))}
               <div className="flex w-full flex-col gap-4">
                 <NavbarButton onClick={() => setIsMobileMenuOpen(false)} variant="primary" className="w-full" href="#contact">
-                  Inquiry Now
+                  Explore Solutions
                 </NavbarButton>
               </div>
             </MobileNavMenu>
@@ -114,160 +118,212 @@ export default function Home() {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
               <span className="relative flex items-center justify-center gap-2">
-                Build with Aivora <ArrowRight className="w-4 h-4" />
+                Let’s Talk <ArrowRight className="w-4 h-4" />
               </span>
             </a>
             <a
               href="#services"
               className="w-full sm:w-auto px-8 py-4 text-base font-medium text-gray-300 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:text-white transition-all duration-200 backdrop-blur-sm"
             >
-              View Our Work
+              Explore Solutions
             </a>
           </div>
         </div>
       </section>
 
-      {/* Problem / Solution */}
+      {/* Featured Service Snippets */}
       <section id="problem" className="py-20 border-t border-white/5 bg-[#030304]/80 backdrop-blur-xl relative z-10">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-start">
-          <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-blue-400 mb-3">The 2-Second Hook</p>
-            <h2 className="text-4xl md:text-5xl font-normal text-white mb-6">The Future Belongs to the Intelligent.</h2>
-            <p className="text-lg text-gray-400 leading-relaxed">
-              Technology is reshaping industries faster than ever. But raw computing power isn't enough. To lead in the digital era, you need solutions that align deeply with human needs.
+        <div className="max-w-7xl mx-auto px-6 space-y-10">
+          <div className="flex flex-col gap-3">
+            <p className="text-sm uppercase tracking-[0.2em] text-blue-400">Building the Smarter Enterprise</p>
+            <h2 className="text-4xl md:text-5xl font-normal text-white">Core AI Offerings</h2>
+            <p className="text-lg text-gray-400 leading-relaxed max-w-3xl">
+              Intelligent automation, custom AI solutions, and AI SaaS engineering tailored to your unique challenges.
             </p>
           </div>
-          <div className="card-gradient border border-white/5 rounded-3xl p-8 flex flex-col gap-4">
-            <h3 className="text-xl font-medium text-white">The Aivoranext Difference</h3>
-            <p className="text-gray-400 font-light leading-relaxed">
-              We don't just write code. We craft intelligent ecosystems where strategy, design, and AI converge to unlock value at every touchpoint.
-            </p>
-            <ul className="space-y-3 text-gray-300">
-              <li className="flex items-start gap-3">
-                <Check className="w-5 h-5 text-blue-400 mt-0.5" />
-                <span>Agentic AI grounded in human-centric research.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Check className="w-5 h-5 text-blue-400 mt-0.5" />
-                <span>Sustainable growth through workflow redesign and adoption.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Check className="w-5 h-5 text-blue-400 mt-0.5" />
-                <span>Design systems that make advanced intelligence feel trustworthy.</span>
-              </li>
-            </ul>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <ServicePillar
+              title="Intelligent Automation"
+              subtitle="Autonomous AI agents"
+              items={[
+                "Streamline operations with agents that reason, execute, and adapt over time.",
+                "Orchestrate multi-step workflows with auditability and guardrails.",
+                "Reduce manual load while increasing reliability and throughput.",
+              ]}
+              icon={<Bot className="w-6 h-6 text-blue-400" />}
+            />
+            <ServicePillar
+              title="Custom AI Solutions"
+              subtitle="Domain-specific intelligence"
+              items={[
+                "Build copilots and RAG knowledge systems tuned to your industry.",
+                "Deploy decision engines that honor your policies and data controls.",
+                "Deliver insights that drive faster, better decisions across teams.",
+              ]}
+              icon={<Brain className="w-6 h-6 text-blue-400" />}
+            />
+            <ServicePillar
+              title="AI SaaS Engineering"
+              subtitle="Next-gen product builds"
+              items={[
+                "Design and build SaaS products with integrated AI capabilities.",
+                "Craft seamless digital experiences that users trust and adopt.",
+                "Ship scalable, secure platforms ready for continuous innovation.",
+              ]}
+              icon={<LineChart className="w-6 h-6 text-blue-400" />}
+            />
           </div>
         </div>
       </section>
 
-      {/* 3 Pillars */}
+      {/* What Sets Us Apart */}
       <section id="pillars" className="py-20 relative z-10">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div>
-              <h2 className="text-4xl md:text-5xl font-normal tracking-tight text-white mb-3">The Three Pillars</h2>
-              <p className="text-lg text-gray-400 font-light max-w-2xl">
-                Prove we understand both the tech and the user: AI-first, human-centric, designed for sustainable growth.
-              </p>
+              <h2 className="text-4xl md:text-5xl font-normal tracking-tight text-white mb-3">What Sets Us Apart</h2>
+              <p className="text-lg text-gray-400 font-light max-w-2xl">The holistic perspective that blends strategy, design, and engineering.</p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <PillarCard
               icon={<Compass className="w-6 h-6" />}
-              title="AI Strategy & Automation"
-              text="Moving beyond hype to implemented ROI."
+              title="01. Beyond Automation"
+              text="More than just code. We align AI deeply to your business vision so it delivers meaningful outcomes, not just quick wins."
             />
             <PillarCard
               icon={<Palette className="w-6 h-6" />}
-              title="Experience Design (UX/UI)"
-              text="Making complex intelligence feel simple."
+              title="02. Design-Led Intelligence"
+              text="Human-centered AI. We apply modern design thinking so your tools are intuitive, engaging, and embraced by teams."
+            />
+            <PillarCard
+              icon={<Gauge className="w-6 h-6" />}
+              title="03. Actionable Innovation"
+              text="From exploration to scale. We turn possibility into production with reliable, secure architectures ready for growth."
             />
             <PillarCard
               icon={<Building2 className="w-6 h-6" />}
-              title="Brand & Digital Innovation"
-              text="Building identities ready for the algorithmic age."
+              title="04. The Holistic Partnership"
+              text="Strategy + engineering + support. We stay with you from discovery and prototyping through implementation and optimization."
             />
           </div>
         </div>
       </section>
 
-      {/* Trust Bar */}
-      <section id="trust" className="py-16 border-t border-white/5 bg-[#030304]/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
-            <h3 className="text-2xl md:text-3xl font-medium text-white">Powering the Next Generation of Industry Leaders</h3>
-            <p className="text-gray-500 font-light">FinTech · SaaS · Healthcare · Retail</p>
+      {/* Trust / Tech Bar */}
+      {/* <section id="trust" className="py-16">
+        <div className="max-w-7xl mx-auto px-6 space-y-8">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <h3 className="text-2xl md:text-3xl font-medium text-white">Engineered for the future, built on modern standards.</h3>
+            <p className="text-gray-500 font-light">OpenAI • Python • LangChain • AWS • React • PyTorch</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-gray-400">
-            {["FinTech", "SaaS", "Healthcare", "Retail"].map((item) => (
-              <div key={item} className="rounded-2xl border border-white/5 bg-white/5 py-6">
-                <span className="text-sm font-medium text-white">{item}</span>
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-4 text-center text-gray-200">
+            {["OpenAI", "Python", "LangChain", "AWS", "React", "PyTorch"].map((item) => (
+              <div key={item} className="py-2 px-3 text-sm font-medium text-white/80">
+                <span>{item}</span>
               </div>
             ))}
           </div>
         </div>
-      </section>
-
+      </section> */}
       {/* Services Detailed */}
       <section id="services" className="py-24 relative z-10">
         <div className="max-w-7xl mx-auto px-6 space-y-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <h2 className="text-4xl md:text-5xl font-normal tracking-tight text-white mb-4">Holistic Solutions for an AI-First World</h2>
-              <p className="text-lg text-gray-400 font-light max-w-3xl">
-                We recognize that successful AI adoption requires more than technical expertise—it demands a deep appreciation for user experience and thoughtful change management.
-              </p>
+              <h2 className="text-4xl md:text-5xl font-normal tracking-tight text-white mb-4">Services</h2>
+              <p className="text-lg text-gray-400 font-light max-w-3xl">Aligning technology with business vision.</p>
             </div>
             <a href="#contact" className="text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2 text-sm font-medium">
               Consult with Our Strategists <ArrowRight className="w-4 h-4" />
             </a>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <ServicePillar
-              title="Pillar 1: AI & Operations Engineering"
-              subtitle="For businesses needing speed and efficiency."
+              title="AI Strategy & Consulting"
+              subtitle="Aligning technology with business vision."
               items={[
-                "Strategic AI Roadmapping: Auditing your data infrastructure and identifying high-impact AI opportunities.",
-                "Workflow Automation: Deploying AI agents to handle repetitive tasks, freeing your team for creative work.",
-                "Predictive Analytics: Turning historical data into future foresight for smarter decision-making.",
+                "AI Readiness Assessment: Evaluate your data, workflows, and infrastructure for AI adoption.",
+                "Strategic Roadmapping: Plan your transition into an AI-first organization with clear milestones.",
+                "Change Management & Adoption: Prepare your teams for new tools, processes, and workflows.",
               ]}
               icon={<Bot className="w-6 h-6 text-blue-400" />}
             />
             <ServicePillar
-              title="Pillar 2: Human-Centric Design (UX/UI)"
-              subtitle="For businesses needing adoption and engagement."
+              title="Intelligent Automation"
+              subtitle="Optimizing operations with AI-powered workflows."
               items={[
-                "AI Interface Design: Dashboards and conversational UI that make AI accessible to non-technical staff.",
-                "User Research & Prototyping: Validating ideas with real users before writing a single line of code.",
-                'Digital Product Design: End-to-end design of apps and platforms that feel seamless and "unforgettable."',
+                "Agentic Workflows: AI agents capable of reasoning, decision-making, and multi-step task execution.",
+                "Process Optimization: Identify inefficiencies and streamline operations using intelligent automation.",
+                "Document Intelligence: Automate data extraction, classification, and analysis using advanced models.",
               ]}
-              icon={<Palette className="w-6 h-6 text-blue-400" />}
+              icon={<Workflow className="w-6 h-6 text-blue-400" />}
             />
             <ServicePillar
-              title="Pillar 3: Brand & Growth Strategy"
-              subtitle="For businesses needing market differentiation."
+              title="Custom AI & RAG Solutions"
+              subtitle="Unlock data-driven decision-making."
               items={[
-                "Digital Transformation: Guiding your organization through the cultural shifts of becoming AI-first.",
-                "Tech-Forward Branding: Visual identities and messaging that position you as a modern innovation leader.",
-                "Go-to-Market Strategy: Launching your new digital products with impact.",
+                "Retrieval-Augmented Generation (RAG): Enable your team to query enterprise data securely and accurately.",
+                "Domain-Specific Copilots: AI assistants trained on your industry knowledge and business rules.",
+                "Predictive Analytics & ML Models: Forecast trends, risks, and opportunities using your internal datasets.",
               ]}
               icon={<Globe2 className="w-6 h-6 text-blue-400" />}
+            />
+            <ServicePillar
+              title="AI Product Engineering (SaaS)"
+              subtitle="Creating seamless, intelligent digital experiences."
+              items={[
+                "End-to-End AI Product Development: Python backends + modern React frontends + integrated LLM capabilities.",
+                "SaaS Architecture Development: Scalable, multi-tenant platforms engineered for long-term growth.",
+                "UX/UI Design for AI Products: Interfaces crafted for trust, clarity, and user adoption.",
+              ]}
+              icon={<Palette className="w-6 h-6 text-blue-400" />}
             />
           </div>
         </div>
       </section>
 
-      {/* Approach */}
+      {/* Industries */}
+      <section id="industries" className="py-20 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 space-y-10">
+          <div className="flex flex-col gap-3">
+            <p className="text-sm uppercase tracking-[0.2em] text-blue-400">Industries</p>
+            <h2 className="text-3xl md:text-4xl font-normal text-white">Where we drive impact</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <PillarCard
+              icon={<LineChart className="w-6 h-6" />}
+              title="Healthcare"
+              text="Improve patient outcomes, reduce manual workload, and enhance decision support with intelligent systems."
+            />
+            <PillarCard
+              icon={<Gauge className="w-6 h-6" />}
+              title="FinTech"
+              text="Deploy AI for risk assessment, fraud detection, automated compliance, and customer insights."
+            />
+            <PillarCard
+              icon={<Compass className="w-6 h-6" />}
+              title="Logistics & Supply Chain"
+              text="Optimize routing, scheduling, fleet planning, and operational workflows."
+            />
+            <PillarCard
+              icon={<Globe2 className="w-6 h-6" />}
+              title="SaaS & Technology"
+              text="Accelerate product roadmaps with integrated AI features and copilots."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* How We Work */}
       <section id="approach" className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-blue-900/5 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-[#030304] to-[#030304]" />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="mb-14">
-            <h2 className="text-3xl md:text-4xl font-normal text-white mb-3">From Ambition to Action.</h2>
-            <p className="text-gray-400 font-light max-w-2xl">
-              Build trust with a disciplined, safe process that keeps humans at the center.
-            </p>
+            <h2 className="text-3xl md:text-4xl font-normal text-white mb-3">How We Work</h2>
+            <p className="text-gray-400 font-light max-w-2xl">Your holistic AI journey — structured for success.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -285,40 +341,58 @@ export default function Home() {
 
       {/* About */}
       <section id="about" className="py-24 border-t border-white/5 bg-[#030304]/80 backdrop-blur-xl">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10">
-          <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-blue-400 mb-3">About Us</p>
-            <h2 className="text-3xl md:text-4xl font-normal text-white mb-4">Architects of the Next Era.</h2>
-            <p className="text-gray-400 font-light leading-relaxed mb-4">
-              Aivoranext was founded on a simple belief: AI is a necessity, not an option. But in the race to automate, the human element is often lost. We exist to bridge that gap. We are a team of AI engineers, creative designers, and business strategists working as one.
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10">
+          <div className="space-y-4">
+            <p className="text-sm uppercase tracking-[0.2em] text-blue-400">About Us</p>
+            <h2 className="text-3xl md:text-4xl font-normal text-white">Innovation Meets Empathy</h2>
+            <p className="text-gray-400 font-light leading-relaxed">
+              We are a next-generation AI and design consultancy helping ambitious businesses transform into intelligent, future-ready organizations.
             </p>
-            <p className="text-gray-400 font-light leading-relaxed mb-4">
-              Our Mission: To make the power of AI accessible, actionable, and truly impactful for companies ready to lead.
+            <div className="space-y-3">
+              <p className="text-sm text-blue-300 uppercase tracking-[0.15em]">Our Mission</p>
+              <p className="text-white font-medium">
+                “To make the power of AI accessible, actionable, and truly impactful for companies ready to lead in the digital era.”
+              </p>
+            </div>
+            <p className="text-gray-400 font-light leading-relaxed">
+              Technology is reshaping every industry. We believe AI is the catalyst for sustainable growth. But raw technology alone is not
+              enough — true transformation happens when AI is aligned with people, processes, and purpose.
             </p>
             <p className="text-gray-400 font-light leading-relaxed">
-              Why "Aivoranext"? Because we are always looking at what's next—ensuring your business isn't just keeping up, but setting the pace.
+              At Aivoranext, we bridge the gap between complex AI engineering and human-centered design.
             </p>
           </div>
-          <div className="card-gradient border border-white/5 rounded-3xl p-8 flex flex-col gap-4">
+          <div className="flex flex-col gap-6">
             <div className="flex items-center gap-3">
               <Brain className="w-10 h-10 text-blue-400" />
               <div>
-                <p className="text-sm text-blue-300">AI-First</p>
-                <p className="text-white font-medium">Human-Centric Systems</p>
+                <p className="text-sm text-blue-300">Our Philosophy</p>
+                <p className="text-white font-medium">The Holistic Perspective</p>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <Stat label="Agentic AI" value="Workflow Redesign" />
-              <Stat label="Safety" value="Human-in-the-loop" />
-              <Stat label="Design" value="Trust & Adoption" />
-              <Stat label="Growth" value="Sustainable ROI" />
+            <div className="space-y-4">
+              <div>
+                <p className="text-white font-semibold">We Listen</p>
+                <p className="text-gray-400 text-sm">We begin by deeply understanding your goals, challenges, and workflow realities.</p>
+              </div>
+              <div>
+                <p className="text-white font-semibold">We Design</p>
+                <p className="text-gray-400 text-sm">We blend strategy with creative design thinking to shape intelligent experiences people love using.</p>
+              </div>
+              <div>
+                <p className="text-white font-semibold">We Build</p>
+                <p className="text-gray-400 text-sm">We deliver robust, scalable AI solutions engineered for real business impact.</p>
+              </div>
             </div>
+            <p className="text-gray-400 font-light leading-relaxed">
+              A collective of AI engineers, creative designers, and business strategists working together to guide you from idea to scale.
+            </p>
           </div>
         </div>
       </section>
 
       {/* Journal */}
-      <section id="journal" className="py-24 border-t border-white/5">
+      <section id="journal" className="py-24">
         <div className="max-w-7xl mx-auto px-6 space-y-12">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
@@ -355,50 +429,51 @@ export default function Home() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-32 relative overflow-hidden border-t border-white/5">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030304] to-blue-950/20 pointer-events-none" />
+      <section id="contact" className="py-32 relative overflow-hidden">
         <div className="max-w-3xl mx-auto px-6 relative z-10 text-center">
-          <h2 className="text-4xl md:text-5xl font-medium text-white mb-4 tracking-tight">Ready to Scale Your Vision?</h2>
-          <p className="text-xl text-gray-400 mb-12 font-light">Let's build your AI-first future together.</p>
+          <h2 className="text-4xl md:text-5xl font-medium text-white mb-4 tracking-tight">Partner With Aivoranext</h2>
+          <p className="text-xl text-gray-400 mb-12 font-light">
+            Whether you're exploring AI for the first time or scaling a large initiative, we are your trusted transformation partner.
+          </p>
 
           <form className="max-w-xl mx-auto space-y-4 text-left">
             <div className="grid md:grid-cols-2 gap-4">
               <input
                 type="text"
-                placeholder="Name & Company"
+                placeholder="Name"
                 className="w-full bg-white/5 border border-white/10 text-white rounded-lg px-4 py-3 outline-none focus:border-blue-500 focus:bg-white/10 transition-all placeholder:text-gray-600 font-light"
               />
-              <select className="w-full bg-white/5 border border-white/10 text-gray-400 rounded-lg px-4 py-3 outline-none focus:border-blue-500 focus:bg-white/10 transition-all font-light appearance-none">
-                <option>I am interested in: Strategy</option>
-                <option>I am interested in: Design</option>
-                <option>I am interested in: Full Transformation</option>
-              </select>
-            </div>
-            <div className="grid md:grid-cols-2 gap-4">
-              <select className="w-full bg-white/5 border border-white/10 text-gray-400 rounded-lg px-4 py-3 outline-none focus:border-blue-500 focus:bg-white/10 transition-all font-light appearance-none">
-                <option>Budget Range (optional)</option>
-                <option>$25k - $50k</option>
-                <option>$50k - $100k</option>
-                <option>$100k+</option>
-              </select>
               <input
                 type="email"
-                placeholder="Work Email"
+                placeholder="Email"
                 className="w-full bg-white/5 border border-white/10 text-white rounded-lg px-4 py-3 outline-none focus:border-blue-500 focus:bg-white/10 transition-all placeholder:text-gray-600 font-light"
               />
+            </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              <input
+                type="text"
+                placeholder="Company"
+                className="w-full bg-white/5 border border-white/10 text-white rounded-lg px-4 py-3 outline-none focus:border-blue-500 focus:bg-white/10 transition-all placeholder:text-gray-600 font-light"
+              />
+              <select className="w-full bg-white/5 border border-white/10 text-gray-400 rounded-lg px-4 py-3 outline-none focus:border-blue-500 focus:bg-white/10 transition-all font-light appearance-none">
+                <option>Service Interest</option>
+                <option>Strategy</option>
+                <option>AI Automation</option>
+                <option>Custom AI</option>
+                <option>SaaS Build</option>
+              </select>
             </div>
             <textarea
               rows={4}
-              placeholder='Tell us about your biggest challenge...'
+              placeholder="Message / Business Challenge"
               className="w-full bg-white/5 border border-white/10 text-white rounded-lg px-4 py-3 outline-none focus:border-blue-500 focus:bg-white/10 transition-all placeholder:text-gray-600 font-light"
             />
             <button
               type="button"
               className="w-full py-3.5 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-500 transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)]"
             >
-              Submit & Schedule
+              Schedule a 30-Minute Consultation
             </button>
-            <p className="text-center text-xs text-gray-600 mt-4">Ahmedabad, India | Global Reach</p>
           </form>
         </div>
       </section>
@@ -535,23 +610,23 @@ function Stat({ label, value }) {
 const approachSteps = [
   {
     number: "01",
-    title: "Discovery & Alignment",
-    description: 'We start by understanding your vision. We analyze your data, your users, and your bottlenecks to find the "Why."',
+    title: "Discovery & Strategy",
+    description: "We uncover opportunities, analyze workflows, and align AI with your business objectives.",
   },
   {
     number: "02",
-    title: "Strategy & Design",
-    description: "We visualize the solution. Designers prototype the experience while engineers architect data models. You see the future before we build it.",
+    title: "Design & Prototyping",
+    description: "Rapid prototyping plus design thinking ensures solutions are user-friendly and effective.",
   },
   {
     number: "03",
-    title: "Intelligent Development",
-    description: "AI engineers build robust, secure, and scalable systems. We integrate seamless automation that fits your existing stack.",
+    title: "Engineering & Implementation",
+    description: "We build secure, scalable, production-quality AI systems using modern architectures.",
   },
   {
     number: "04",
-    title: "Enablement & Scale",
-    description: "Technology fails without adoption. We train your team, manage change, and support ongoing growth.",
+    title: "Scale & Support",
+    description: "We provide continuous monitoring, optimization, and support to help you grow.",
   },
 ];
 
@@ -612,4 +687,5 @@ const insights = [
     overlay: "bg-sky-900/10",
   },
 ];
+
 
