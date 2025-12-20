@@ -4,9 +4,6 @@
 
 :root {
   --bg-color: #030304;
-  --card-bg: rgba(255, 255, 255, 0.02);
-  --card-border: rgba(255, 255, 255, 0.06);
-  --accent-blue: #2563eb;
 }
 
 body {
@@ -17,10 +14,14 @@ body {
 
 /* Custom Utilities */
 .glass-nav {
-  background: rgba(3, 3, 4, 0.6);
+  background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--card-border);
+}
+
+.dark .glass-nav {
+  background: rgba(3, 3, 4, 0.6);
 }
 
 .text-glow {
@@ -52,11 +53,12 @@ body {
   0% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-10px);
   }
+
   100% {
     transform: translateY(0px);
   }
 }
-

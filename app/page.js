@@ -1,5 +1,7 @@
 "use client";
 
+
+
 import {
   ArrowRight,
   ArrowUpRight,
@@ -38,11 +40,11 @@ const HERO_LOGO_SRC = "https://res.cloudinary.com/dn0wyo8zm/image/upload/v176509
 
 export default function Home() {
   const navItems = [
-    { name: "Home", link: "#hero" },
-    { name: "Services", link: "#services" },
-    { name: "Technologies", link: "#approach" },
-    { name: "Work", link: "#case-studies" },
-    { name: "Blog", link: "#journal" },
+    { name: "Services", link: "#services", hasDropdown: true },
+    { name: "Solutions", link: "#solutions", hasDropdown: true },
+    { name: "Hire Us", link: "#contact", hasDropdown: true },
+    { name: "Work", link: "#work" },
+    { name: "About", link: "#about", hasDropdown: true },
   ];
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -52,12 +54,13 @@ export default function Home() {
       <div className="fixed inset-0 pointer-events-none z-0" />
 
       {/* Resizable Navbar */}
-      <div className="pt-6">
-        <Navbar className="top-10">
+      <div className="pt-0">
+        <Navbar className="top-4 md:top-6 transition-all duration-300 data-[visible=false]:top-0">
           <NavBody>
             <NavbarLogo />
             <NavItems items={navItems} onItemClick={() => setIsMobileMenuOpen(false)} />
             <div className="flex items-center gap-3 ml-6 lg:ml-10">
+
               <NavbarButton
                 variant="secondary"
                 className="border border-white/30 text-white bg-white/10 hover:bg-white/20 hover:border-white/40 shadow-[0_0_24px_rgba(255,255,255,0.08)]"

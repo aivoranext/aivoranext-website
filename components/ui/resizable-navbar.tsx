@@ -1,10 +1,10 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { IconMenu2, IconX } from "@tabler/icons-react";
+import { IconMenu2, IconX, IconChevronDown, IconChevronRight, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
 import Image from "next/image";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 interface NavbarProps {
   children: React.ReactNode;
@@ -17,8 +17,9 @@ interface NavBodyProps {
   visible?: boolean;
 }
 
+
 interface NavItemsProps {
-  items: { name: string; link: string }[];
+  items: { name: string; link: string; hasDropdown?: boolean }[];
   className?: string;
   onItemClick?: () => void;
 }
@@ -43,22 +44,27 @@ interface MobileNavMenuProps {
 
 export const Navbar = ({ children, className }: NavbarProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
+  const { scrollY } = useScroll();
   const [visible, setVisible] = useState<boolean>(false);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 100) {
-      setVisible(true);
-    } else {
-      setVisible(false);
-    }
-  });
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setVisible(true);
+      } else {
+        setVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <motion.div ref={ref} className={cn("fixed inset-x-0 top-6 z-40 w-full", className)}>
+    <motion.div
+      ref={ref}
+      className={cn("fixed inset-x-0 z-40 w-full transition-all duration-500", visible ? "top-6" : "top-0", className)}
+    >
       {React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) return child;
         if (typeof child.type === "string") return child; // avoid passing 'visible' to DOM nodes
@@ -76,20 +82,16 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         boxShadow: visible
           ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
           : "none",
-        width: visible ? "70%" : "100%",
-        y: visible ? 20 : 0,
+        y: 0,
       }}
       transition={{
-        type: "spring",
-        stiffness: 200,
-        damping: 50,
-      }}
-      style={{
-        minWidth: "800px",
+        duration: 0.3,
       }}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-6 py-3 lg:flex dark:bg-transparent",
-        visible && "bg-white/80 dark:bg-neutral-950/80",
+        "relative z-[60] mx-auto hidden w-full flex-row items-center justify-between self-start transition-all duration-500 ease-in-out lg:flex",
+        visible
+          ? "max-w-7xl rounded-full bg-[#030304]/80 px-6 py-2.5 backdrop-blur-md border border-white/5"
+          : "max-w-full rounded-none bg-transparent px-5 py-3 border-transparent",
         className
       )}
     >
@@ -102,30 +104,168 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
   );
 };
 
-export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
-  const [hovered, setHovered] = useState<number | null>(null);
+
+
+const MegaMenu = ({ active, onClose }: { active: string | null; onClose: () => void }) => {
+  const [activeCategory, setActiveCategory] = useState("AI Systems & Automation");
+
+  if (!active) return null;
+
+  const categories = {
+    "AI Systems & Automation": [
+      "AI Strategy & System Design",
+      "AI Agents for Workflows",
+      "Conversational & Voice AI",
+      "Knowledge Systems (RAG)",
+      "AI Automation Pipelines",
+      "AI Governance & Monitoring",
+    ],
+    "AI-First Engineering": [
+      "Custom AI Software Development",
+      "AI-Native System Architecture",
+      "SaaS & Platform Engineering",
+      "API & Data Infrastructure",
+      "Cloud, Security & DevOps",
+    ],
+  };
 
   return (
     <motion.div
-      onMouseLeave={() => setHovered(null)}
-      className={cn(
-        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-4 lg:space-x-6 px-6 lg:px-12 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex",
-        className
-      )}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 10 }}
+      transition={{ duration: 0.2 }}
+      className="absolute top-full left-0 w-full pt-4"
+      onMouseLeave={onClose}
     >
-      {items.map((item, idx) => (
-        <a
-          onMouseEnter={() => setHovered(idx)}
-          onClick={onItemClick}
-          className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
-          key={`link-${idx}`}
-          href={item.link}
-        >
-          {hovered === idx && <motion.div layoutId="hovered" className="absolute inset-0 h-full w-full rounded-full bg-gray-100 dark:bg-neutral-800" />}
-          <span className="relative z-20">{item.name}</span>
-        </a>
-      ))}
+      <div className="mx-auto max-w-7xl rounded-3xl bg-[#09090b] border border-white/10 p-8 shadow-2xl relative overflow-hidden">
+        {/* Glow effect */}
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 opacity-50" />
+
+        <div className="grid grid-cols-12 gap-8">
+          {/* Left Column - Categories */}
+          <div className="col-span-3 space-y-2 border-r border-white/5 pr-8">
+            {Object.keys(categories).map((category) => (
+              <div
+                key={category}
+                onMouseEnter={() => setActiveCategory(category)}
+                className={cn(
+                  "group flex items-center justify-between p-3 rounded-xl cursor-pointer transition-colors",
+                  activeCategory === category ? "bg-white/10 text-white" : "hover:bg-white/5 text-gray-400"
+                )}
+              >
+                <span className={cn("text-lg font-medium transition-colors", activeCategory === category ? "text-blue-400" : "group-hover:text-blue-400")}>
+                  {category}
+                </span>
+                <IconChevronRight
+                  className={cn(
+                    "w-4 h-4 transition-all",
+                    activeCategory === category ? "text-blue-400 opacity-100" : "text-gray-600 group-hover:text-blue-400 opacity-0 group-hover:opacity-100"
+                  )}
+                />
+              </div>
+            ))}
+
+            <button className="mt-8 flex items-center gap-2 text-xs font-semibold tracking-wider text-white border border-white/20 rounded-full px-6 py-3 hover:bg-white/10 transition-colors uppercase">
+              Free Consultation <IconArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Middle Column - Sub Links */}
+          <div className="col-span-5 content-start pt-2">
+            <h3 className="text-white font-medium mb-4 text-sm uppercase tracking-wider opacity-50">{activeCategory}</h3>
+            <div className="grid grid-cols-1 gap-y-3">
+              {categories[activeCategory as keyof typeof categories].map((item) => (
+                <a key={item} href="#" className="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  {item}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Column - Featured */}
+          <div className="col-span-4 flex flex-col gap-4">
+            <div className="p-6 rounded-2xl bg-neutral-900/50 border border-white/5 relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <h4 className="text-white font-semibold mb-2 relative z-10">AI Architecture</h4>
+              <p className="text-xs text-gray-400 leading-relaxed relative z-10">
+                We combine deep AI expertise with production‑grade system architecture to deliver intelligent solutions that scale in the real world.
+              </p>
+            </div>
+            <div className="p-6 rounded-2xl bg-neutral-900/50 border border-white/5 relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <h4 className="text-white font-semibold mb-2 relative z-10">Why Aivoranext?</h4>
+              <p className="text-xs text-gray-400 leading-relaxed relative z-10">
+                Business Impact, Not Model Obsession. We measure success in outcomes — reducing costs, increasing speed, and unlocking revenue.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 pt-6 border-t border-white/5 text-center">
+          <p className="text-gray-400 text-sm">
+            Ready to transform? <a href="#contact" className="text-white font-semibold hover:text-blue-400 transition-colors ml-1">TALK TO AN ARCHITECT</a>
+          </p>
+        </div>
+      </div>
     </motion.div>
+  );
+};
+
+export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
+  const [hovered, setHovered] = useState<number | null>(null);
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+
+  const handleMouseEnter = (idx: number, item: any) => {
+    setHovered(idx);
+    if (item.hasDropdown) {
+      setActiveMenu(item.name);
+    } else {
+      setActiveMenu(null);
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center" onMouseLeave={() => { setHovered(null); setActiveMenu(null); }}>
+      <motion.div
+        className={cn(
+          "hidden flex-row items-center justify-center space-x-1 lg:space-x-2 text-sm font-medium text-zinc-600 transition duration-200 lg:flex",
+          className
+        )}
+      >
+        {items.map((item, idx) => (
+          <React.Fragment key={`link-${idx}`}>
+            {idx > 0 && <span className="text-white/20 px-2 font-light">/</span>}
+            <a
+              onMouseEnter={() => handleMouseEnter(idx, item)}
+              onClick={onItemClick}
+              className={cn(
+                "relative px-3 py-2 text-neutral-400 hover:text-white transition-colors flex items-center gap-1 cursor-pointer",
+                activeMenu === item.name && "text-white"
+              )}
+              href={item.link}
+            >
+              <span className="relative z-20 flex items-center gap-1">
+                {item.name}
+                {item.hasDropdown && <IconChevronDown className={cn("w-4 h-4 text-neutral-500 transition-transform duration-200", activeMenu === item.name && "rotate-180 text-white")} stroke={1.5} />}
+              </span>
+              {activeMenu === item.name && (
+                <motion.div layoutId="active-nav" className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-500" />
+              )}
+            </a>
+          </React.Fragment>
+        ))}
+      </motion.div>
+
+      <AnimatePresence>
+        {activeMenu && (
+          <div className="absolute top-[calc(100%+10px)] left-0 w-full z-50 px-4">
+            <MegaMenu active={activeMenu} onClose={() => setActiveMenu(null)} />
+          </div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 };
 
@@ -221,15 +361,16 @@ export const NavbarButton = ({
   className?: string;
   variant?: "primary" | "secondary" | "dark" | "gradient";
 } & (React.ComponentPropsWithoutRef<"a"> | React.ComponentPropsWithoutRef<"button">)) => {
+  // Updated base styles to match "INQUIRY NOW" design: pill shape (rounded-full), uppercase, bold
   const baseStyles =
-    "px-6 py-2.5 rounded-lg text-sm font-semibold relative cursor-pointer transition duration-200 inline-block text-center";
+    "px-8 py-3 rounded-full text-sm font-bold tracking-wider uppercase relative cursor-pointer transition duration-200 inline-block text-center";
 
   const variantStyles = {
     primary:
-      "border border-[#1e2f58] bg-[#0b1326] text-white shadow-[0_0_0_1px_rgba(46,80,143,0.6),0_10px_30px_rgba(8,15,35,0.35)] hover:-translate-y-0.5",
+      "bg-blue-600 text-white hover:bg-blue-700 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] border border-transparent",
     secondary: "bg-transparent shadow-none text-white",
-    dark: "bg-black text-white shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
-    gradient: "bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
+    dark: "bg-black text-white shadow-none",
+    gradient: "bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-none",
   };
 
   return (
