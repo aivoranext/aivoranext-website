@@ -2,6 +2,8 @@
 
 import { cn } from "@/lib/utils";
 import { IconMenu2, IconX, IconChevronDown, IconChevronRight, IconArrowRight } from "@tabler/icons-react";
+import Link from "next/link";
+import { siteConfig, navigation } from "@/lib/content";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
 import Image from "next/image";
 import React, { useRef, useState, useEffect } from "react";
@@ -107,27 +109,11 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
 
 
 const MegaMenu = ({ active, onClose }: { active: string | null; onClose: () => void }) => {
-  const [activeCategory, setActiveCategory] = useState("AI Systems & Automation");
+  const [activeCategory, setActiveCategory] = useState("Artificial Intelligence");
 
   if (!active) return null;
 
-  const categories = {
-    "AI Systems & Automation": [
-      "AI Strategy & System Design",
-      "AI Agents for Workflows",
-      "Conversational & Voice AI",
-      "Knowledge Systems (RAG)",
-      "AI Automation Pipelines",
-      "AI Governance & Monitoring",
-    ],
-    "AI-First Engineering": [
-      "Custom AI Software Development",
-      "AI-Native System Architecture",
-      "SaaS & Platform Engineering",
-      "API & Data Infrastructure",
-      "Cloud, Security & DevOps",
-    ],
-  };
+  const categories = navigation.megaMenuCategories;
 
   return (
     <motion.div
@@ -136,15 +122,19 @@ const MegaMenu = ({ active, onClose }: { active: string | null; onClose: () => v
       exit={{ opacity: 0, y: 10 }}
       transition={{ duration: 0.2 }}
       className="absolute top-full left-0 w-full pt-4"
-      onMouseLeave={onClose}
     >
       <div className="mx-auto max-w-7xl rounded-3xl bg-[#09090b] border border-white/10 p-8 shadow-2xl relative overflow-hidden">
         {/* Glow effect */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 opacity-50" />
 
+        {/* Close Button */}
+        <button onClick={onClose} className="absolute top-4 right-4 p-2 text-gray-400 hover:text-white transition-colors z-20">
+          <IconX className="w-5 h-5" />
+        </button>
+
         <div className="grid grid-cols-12 gap-8">
           {/* Left Column - Categories */}
-          <div className="col-span-3 space-y-2 border-r border-white/5 pr-8">
+          <div className="col-span-3 space-y-2 border-r border-white/5 pr-8 max-h-[400px] overflow-y-auto">
             {Object.keys(categories).map((category) => (
               <div
                 key={category}
@@ -154,7 +144,7 @@ const MegaMenu = ({ active, onClose }: { active: string | null; onClose: () => v
                   activeCategory === category ? "bg-white/10 text-white" : "hover:bg-white/5 text-gray-400"
                 )}
               >
-                <span className={cn("text-lg font-medium transition-colors", activeCategory === category ? "text-blue-400" : "group-hover:text-blue-400")}>
+                <span className={cn("text-xs font-medium transition-colors", activeCategory === category ? "text-blue-400" : "group-hover:text-blue-400")}>
                   {category}
                 </span>
                 <IconChevronRight
@@ -214,20 +204,25 @@ const MegaMenu = ({ active, onClose }: { active: string | null; onClose: () => v
 };
 
 export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
-  const [hovered, setHovered] = useState<number | null>(null);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
-  const handleMouseEnter = (idx: number, item: any) => {
-    setHovered(idx);
+  const handleItemClick = (e: React.MouseEvent, item: any) => {
+    // Always prevent default to handle logic manually
     if (item.hasDropdown) {
-      setActiveMenu(item.name);
+      e.preventDefault();
+      if (activeMenu === item.name) {
+        setActiveMenu(null);
+      } else {
+        setActiveMenu(item.name);
+      }
     } else {
       setActiveMenu(null);
+      if (onItemClick) onItemClick();
     }
   };
 
   return (
-    <div className="flex flex-col items-center" onMouseLeave={() => { setHovered(null); setActiveMenu(null); }}>
+    <div className="flex flex-col items-center">
       <motion.div
         className={cn(
           "hidden flex-row items-center justify-center space-x-1 lg:space-x-2 text-sm font-medium text-zinc-600 transition duration-200 lg:flex",
@@ -238,8 +233,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
           <React.Fragment key={`link-${idx}`}>
             {idx > 0 && <span className="text-white/20 px-2 font-light">/</span>}
             <a
-              onMouseEnter={() => handleMouseEnter(idx, item)}
-              onClick={onItemClick}
+              onClick={(e) => handleItemClick(e, item)}
               className={cn(
                 "relative px-3 py-2 text-neutral-400 hover:text-white transition-colors flex items-center gap-1 cursor-pointer",
                 activeMenu === item.name && "text-white"
@@ -261,7 +255,11 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
       <AnimatePresence>
         {activeMenu && (
           <div className="absolute top-[calc(100%+10px)] left-0 w-full z-50 px-4">
-            <MegaMenu active={activeMenu} onClose={() => setActiveMenu(null)} />
+            {/* Invisible backdrop to close menu when clicking outside */}
+            <div className="fixed inset-0 z-0 h-screen w-screen cursor-default" onClick={() => setActiveMenu(null)} />
+            <div className="relative z-10 w-full" onClick={(e) => e.stopPropagation()}>
+              <MegaMenu active={activeMenu} onClose={() => setActiveMenu(null)} />
+            </div>
           </div>
         )}
       </AnimatePresence>
@@ -330,8 +328,8 @@ export const MobileNavToggle = ({ isOpen, onClick }: { isOpen: boolean; onClick:
 };
 
 export const NavbarLogo = ({ visible }: { visible?: boolean }) => {
-  const primarySrc = "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1765091977/Aivoranext2_uk7ol7.png";
-  const compactSrc = "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1765092013/Aivoranext_icon_rjohn1.png";
+  const primarySrc = siteConfig.heroLogo;
+  const compactSrc = siteConfig.compactLogo;
   const useCompact = !!visible;
   return (
     <a href="#hero" className="relative z-20 mr-4 flex items-center space-x-3 px-3 py-2 text-sm font-normal text-black dark:text-white">
@@ -363,11 +361,11 @@ export const NavbarButton = ({
 } & (React.ComponentPropsWithoutRef<"a"> | React.ComponentPropsWithoutRef<"button">)) => {
   // Updated base styles to match "INQUIRY NOW" design: pill shape (rounded-full), uppercase, bold
   const baseStyles =
-    "px-8 py-3 rounded-full text-sm font-bold tracking-wider uppercase relative cursor-pointer transition duration-200 inline-block text-center";
+    "px-8 py-3 rounded-full text-sm font-bold tracking-wider uppercase relative cursor-pointer transition duration-300 inline-block text-center";
 
   const variantStyles = {
     primary:
-      "bg-blue-600 text-white hover:bg-blue-700 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] border border-transparent",
+      "bg-[#2563eb] hover:bg-[#1d4ed8] text-white shadow-[0_0_20px_rgba(37,99,235,0.5)] hover:shadow-[0_0_25px_rgba(37,99,235,0.65)] hover:-translate-y-0.5 border border-transparent",
     secondary: "bg-transparent shadow-none text-white",
     dark: "bg-black text-white shadow-none",
     gradient: "bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-none",
