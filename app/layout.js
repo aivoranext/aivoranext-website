@@ -1,5 +1,7 @@
 import "./globals.css";
+import "lenis/dist/lenis.css";
 import { DM_Sans } from "next/font/google";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata = {
   title: {
@@ -75,9 +77,9 @@ const dmSans = DM_Sans({
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <body className={`${dmSans.variable} font-sans antialiased bg-black text-white`}>
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );
