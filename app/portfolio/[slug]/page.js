@@ -260,9 +260,9 @@ export default function CaseStudyPage() {
       </section>
 
       {/* Results */}
-      <section className="relative py-20 px-6 section-gradient">
+      <section className="relative py-16 px-6 section-gradient">
         <div className="max-w-7xl mx-auto">
-          <AnimatedSection className="text-center mb-16">
+          <AnimatedSection className="text-center mb-10">
             <span className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4 block">
               The Results
             </span>
@@ -305,7 +305,7 @@ export default function CaseStudyPage() {
 
       {/* Testimonial */}
       {project.testimonial && (
-        <section className="relative py-20 px-6">
+        <section className="relative py-12 px-6">
           <div className="max-w-4xl mx-auto">
             <AnimatedSection>
               <div className="relative glass-card rounded-3xl p-10 md:p-16 border border-white/5">
@@ -333,9 +333,9 @@ export default function CaseStudyPage() {
       )}
 
       {/* Technologies Used */}
-      <section className="relative py-16 px-6">
+      <section className="relative py-10 px-6">
         <div className="max-w-7xl mx-auto">
-          <AnimatedSection className="text-center mb-10">
+          <AnimatedSection className="text-center mb-6">
             <span className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4 block">
               Tech Stack
             </span>
@@ -366,7 +366,7 @@ export default function CaseStudyPage() {
       </section>
 
       {/* Navigation to other case studies */}
-      <section className="relative py-16 px-6 border-t border-white/5">
+      <section className="relative py-10 px-6 border-t border-white/5">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-6">
             {/* Previous */}
@@ -407,7 +407,7 @@ export default function CaseStudyPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-32 px-6">
+      <section className="relative py-20 px-6">
         <AnimatedSection className="max-w-4xl mx-auto text-center relative z-10">
           <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-6">
             {ctaSection.caption}
