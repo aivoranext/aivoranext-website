@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight,
+  ChevronDown,
   Menu,
   X,
   Phone,
@@ -107,15 +108,40 @@ export default function AboutPage() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
+                className="relative group"
               >
-                <Link
-                  href={item.link}
-                  className={`text-sm font-medium nav-link transition-colors ${
-                    item.name === "About" ? "text-[#0065F8]" : "text-gray-400 hover:text-white"
-                  }`}
-                >
-                  {item.name}
-                </Link>
+                {item.dropdown ? (
+                  <div className="relative">
+                    <button className={`text-sm font-medium nav-link flex items-center gap-1 transition-colors ${
+                      item.name === "Services" ? "text-gray-400 hover:text-white" : "text-gray-400 hover:text-white"
+                    }`}>
+                      {item.name}
+                      <ChevronDown className="w-4 h-4" />
+                    </button>
+                    <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                      <div className="bg-[#0a0a0a] border border-white/10 rounded-xl p-2 min-w-[200px] shadow-xl">
+                        {item.dropdown.map((subItem) => (
+                          <Link
+                            key={subItem.name}
+                            href={subItem.link}
+                            className="block px-4 py-2.5 text-sm text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    href={item.link}
+                    className={`text-sm font-medium nav-link transition-colors ${
+                      item.name === "About" ? "text-[#0065F8]" : "text-gray-400 hover:text-white"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                )}
               </motion.div>
             ))}
           </div>
@@ -146,9 +172,9 @@ export default function AboutPage() {
         {/* Mobile Menu */}
         <motion.div
           initial={false}
-          animate={{ 
+          animate={{
             height: mobileMenuOpen ? "auto" : 0,
-            opacity: mobileMenuOpen ? 1 : 0 
+            opacity: mobileMenuOpen ? 1 : 0
           }}
           transition={{ duration: 0.3 }}
           className="md:hidden overflow-hidden bg-black/95 backdrop-blur-xl border-t border-white/10"
@@ -161,15 +187,33 @@ export default function AboutPage() {
                 animate={{ opacity: mobileMenuOpen ? 1 : 0, x: mobileMenuOpen ? 0 : -20 }}
                 transition={{ delay: 0.1 * index }}
               >
-                <Link
-                  href={item.link}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`block text-lg font-medium transition-colors ${
-                    item.name === "About" ? "text-[#0065F8]" : "text-white hover:text-[#0065F8]"
-                  }`}
-                >
-                  {item.name}
-                </Link>
+                {item.dropdown ? (
+                  <div className="space-y-3">
+                    <span className="block text-white text-lg font-medium">{item.name}</span>
+                    <div className="pl-4 space-y-2 border-l border-white/10">
+                      {item.dropdown.map((subItem) => (
+                        <Link
+                          key={subItem.name}
+                          href={subItem.link}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block text-gray-400 hover:text-[#0065F8] transition-colors"
+                        >
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    href={item.link}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`block text-lg font-medium transition-colors ${
+                      item.name === "About" ? "text-[#0065F8]" : "text-white hover:text-[#0065F8]"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                )}
               </motion.div>
             ))}
             <Link
