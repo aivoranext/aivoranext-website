@@ -178,7 +178,7 @@ export default function ServicesPage() {
                 {item.dropdown ? (
                   <div className="relative">
                     <button className={`text-sm font-medium nav-link transition-colors flex items-center gap-1 ${
-                      item.name === "Services" ? "text-[#00D9FF]" : "text-gray-400 hover:text-white"
+                      item.name === "Services" ? "text-[#0065F8]" : "text-gray-400 hover:text-white"
                     }`}>
                       {item.name}
                       <ChevronDown className="w-4 h-4" />
@@ -201,7 +201,7 @@ export default function ServicesPage() {
                   <Link
                     href={item.link}
                     className={`text-sm font-medium nav-link transition-colors ${
-                      item.name === "Services" ? "text-[#00D9FF]" : "text-gray-400 hover:text-white"
+                      item.name === "Services" ? "text-[#0065F8]" : "text-gray-400 hover:text-white"
                     }`}
                   >
                     {item.name}
@@ -219,7 +219,7 @@ export default function ServicesPage() {
           >
             <Link
               href="/contact"
-              className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-[#00D9FF] hover:bg-[#4DE8FF] text-white text-sm font-semibold rounded-lg transition-all hover:shadow-[0_0_30px_rgba(0,217,255,0.4)]"
+              className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-[#0065F8] hover:bg-[#3B8BFF] text-white text-sm font-semibold rounded-lg transition-all hover:shadow-[0_0_30px_rgba(0,101,248,0.4)]"
             >
               Get In Touch
             </Link>
@@ -255,7 +255,7 @@ export default function ServicesPage() {
                 {item.dropdown ? (
                   <div className="space-y-4">
                     <span className={`block text-lg font-medium ${
-                      item.name === "Services" ? "text-[#00D9FF]" : "text-white"
+                      item.name === "Services" ? "text-[#0065F8]" : "text-white"
                     }`}>
                       {item.name}
                     </span>
@@ -265,7 +265,7 @@ export default function ServicesPage() {
                           key={subItem.name}
                           href={subItem.link}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="block text-gray-400 text-base hover:text-[#00D9FF] transition-colors"
+                          className="block text-gray-400 text-base hover:text-[#0065F8] transition-colors"
                         >
                           {subItem.name}
                         </Link>
@@ -277,7 +277,7 @@ export default function ServicesPage() {
                     href={item.link}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`block text-lg font-medium transition-colors ${
-                      item.name === "Services" ? "text-[#00D9FF]" : "text-white hover:text-[#00D9FF]"
+                      item.name === "Services" ? "text-[#0065F8]" : "text-white hover:text-[#0065F8]"
                     }`}
                   >
                     {item.name}
@@ -288,7 +288,7 @@ export default function ServicesPage() {
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D9FF] text-white text-sm font-semibold rounded-lg"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#0065F8] text-white text-sm font-semibold rounded-lg"
             >
               Get In Touch
             </Link>
@@ -312,7 +312,7 @@ export default function ServicesPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="badge-pill flex items-center gap-2 pl-1.5 pr-4 py-1.5 rounded-full mb-10"
           >
-            <span className="bg-[#00D9FF] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+            <span className="bg-[#0065F8] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
               Services
             </span>
             <span className="text-white/80 text-sm font-medium">What We Offer</span>
@@ -397,11 +397,11 @@ export default function ServicesPage() {
                 <div className="relative z-10">
                   {/* Icon */}
                   <div className="icon-container w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
-                    <service.icon className="w-7 h-7 text-[#00D9FF]" />
+                    <service.icon className="w-7 h-7 text-[#0065F8]" />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl md:text-3xl font-medium text-white mb-4 group-hover:text-[#4DE8FF] transition-colors">
+                  <h3 className="text-2xl md:text-3xl font-medium text-white mb-4 group-hover:text-[#3B8BFF] transition-colors">
                     {service.title}
                   </h3>
 
@@ -414,7 +414,7 @@ export default function ServicesPage() {
                   <div className="grid grid-cols-2 gap-3 mb-8">
                     {service.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center gap-2">
-                        <Check className="w-4 h-4 text-[#00D9FF] shrink-0" />
+                        <Check className="w-4 h-4 text-[#0065F8] shrink-0" />
                         <span className="text-gray-300 text-sm">{feature}</span>
                       </div>
                     ))}
@@ -424,7 +424,7 @@ export default function ServicesPage() {
                   <motion.div whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
                     <Link
                       href={service.link}
-                      className="inline-flex items-center gap-2 text-[#00D9FF] font-medium hover:text-[#4DE8FF] transition-colors"
+                      className="inline-flex items-center gap-2 text-[#0065F8] font-medium hover:text-[#3B8BFF] transition-colors"
                     >
                       Learn More <ArrowRight className="w-4 h-4" />
                     </Link>
@@ -439,7 +439,7 @@ export default function ServicesPage() {
       {/* CTA Section */}
       <section className="relative py-32 px-6">
         <AnimatedSection className="max-w-4xl mx-auto text-center relative z-10">
-          <p className="text-[#00D9FF] text-sm uppercase tracking-[0.2em] mb-6">
+          <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-6">
             Get Started
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 leading-tight">

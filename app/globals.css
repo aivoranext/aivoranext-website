@@ -4,10 +4,9 @@
 
 :root {
   --bg-color: #050505;
-  --accent-primary: #00D9FF;
-  --accent-primary-light: #4DE8FF;
-  --accent-primary-dark: #00B8D9;
-  --accent-secondary: #00FFB2;
+  --accent-blue: #0065F8;
+  --accent-blue-light: #3B8BFF;
+  --accent-blue-dark: #0050C8;
 }
 
 * {
@@ -47,10 +46,10 @@ body {
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
+    box-shadow: 0 0 20px rgba(0, 101, 248, 0.4);
   }
   50% {
-    box-shadow: 0 0 40px rgba(0, 217, 255, 0.6);
+    box-shadow: 0 0 40px rgba(0, 101, 248, 0.6);
   }
 }
 
@@ -134,25 +133,16 @@ body {
 
 .glass-card:hover {
   background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(0, 217, 255, 0.3);
+  border-color: rgba(0, 101, 248, 0.3);
 }
 
 /* Gradient backgrounds */
-.gradient-cyan {
-  background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(0, 184, 217, 0.1) 50%, transparent 100%);
-}
-
-.gradient-cyan-glow {
-  background: radial-gradient(ellipse at center bottom, rgba(0, 217, 255, 0.4) 0%, rgba(0, 217, 255, 0.1) 40%, transparent 70%);
-}
-
-/* Legacy support */
 .gradient-blue {
-  background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(0, 184, 217, 0.1) 50%, transparent 100%);
+  background: linear-gradient(135deg, rgba(0, 101, 248, 0.15) 0%, rgba(0, 80, 200, 0.1) 50%, transparent 100%);
 }
 
 .gradient-blue-glow {
-  background: radial-gradient(ellipse at center bottom, rgba(0, 217, 255, 0.4) 0%, rgba(0, 217, 255, 0.1) 40%, transparent 70%);
+  background: radial-gradient(ellipse at center bottom, rgba(0, 101, 248, 0.4) 0%, rgba(0, 101, 248, 0.1) 40%, transparent 70%);
 }
 
 /* Planet/Arc Glow Effect */
@@ -177,9 +167,9 @@ body {
   width: 100%;
   height: 500px;
   background: radial-gradient(ellipse 50% 40% at 50% 100%,
-    rgba(0, 217, 255, 0.6) 0%,
-    rgba(0, 217, 255, 0.3) 30%,
-    rgba(0, 217, 255, 0.1) 50%,
+    rgba(0, 101, 248, 0.6) 0%,
+    rgba(0, 101, 248, 0.3) 30%,
+    rgba(0, 101, 248, 0.1) 50%,
     transparent 70%
   );
   filter: blur(2px);
@@ -194,8 +184,8 @@ body {
   width: 80%;
   height: 400px;
   background: radial-gradient(ellipse 60% 50% at 50% 100%,
-    rgba(77, 232, 255, 0.5) 0%,
-    rgba(0, 217, 255, 0.2) 40%,
+    rgba(59, 139, 255, 0.5) 0%,
+    rgba(0, 101, 248, 0.2) 40%,
     transparent 70%
   );
   filter: blur(40px);
@@ -203,26 +193,26 @@ body {
 
 /* Button styles */
 .btn-primary {
-  background: var(--accent-primary);
-  border: 1px solid rgba(0, 217, 255, 0.5);
+  background: var(--accent-blue);
+  border: 1px solid rgba(0, 101, 248, 0.5);
   transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 40px rgba(0, 217, 255, 0.4);
-  background: var(--accent-primary-light);
+  box-shadow: 0 10px 40px rgba(0, 101, 248, 0.4);
+  background: var(--accent-blue-light);
 }
 
 .btn-secondary {
   background: transparent;
-  border: 1px solid rgba(0, 217, 255, 0.4);
+  border: 1px solid rgba(0, 101, 248, 0.4);
   transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
-  background: rgba(0, 217, 255, 0.1);
-  border-color: rgba(0, 217, 255, 0.6);
+  background: rgba(0, 101, 248, 0.1);
+  border-color: rgba(0, 101, 248, 0.6);
 }
 
 .btn-ghost {
@@ -247,24 +237,17 @@ body {
 
 /* Section divider gradient */
 .section-gradient {
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 217, 255, 0.03) 50%, transparent 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 101, 248, 0.03) 50%, transparent 100%);
 }
 
 /* Spotlight effect */
 .spotlight {
-  background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 217, 255, 0.15) 0%, transparent 50%);
+  background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 101, 248, 0.15) 0%, transparent 50%);
 }
 
 /* Text gradient */
 .text-gradient-blue {
-  background: linear-gradient(135deg, #4DE8FF 0%, #00D9FF 50%, #00B8D9 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.text-gradient-cyan {
-  background: linear-gradient(135deg, #4DE8FF 0%, #00D9FF 50%, #00B8D9 100%);
+  background: linear-gradient(135deg, #3B8BFF 0%, #0065F8 50%, #0050C8 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -272,14 +255,14 @@ body {
 
 /* Purple gradient for legacy pages (will be updated) */
 .text-gradient-purple {
-  background: linear-gradient(135deg, #4DE8FF 0%, #00D9FF 50%, #00B8D9 100%);
+  background: linear-gradient(135deg, #3B8BFF 0%, #0065F8 50%, #0050C8 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .gradient-purple-glow {
-  background: radial-gradient(ellipse at center bottom, rgba(0, 217, 255, 0.4) 0%, rgba(0, 217, 255, 0.1) 40%, transparent 70%);
+  background: radial-gradient(ellipse at center bottom, rgba(0, 101, 248, 0.4) 0%, rgba(0, 101, 248, 0.1) 40%, transparent 70%);
 }
 
 .text-gradient-white {
@@ -291,7 +274,7 @@ body {
 
 /* Glow text */
 .text-glow {
-  text-shadow: 0 0 40px rgba(0, 217, 255, 0.3);
+  text-shadow: 0 0 40px rgba(0, 101, 248, 0.3);
 }
 
 /* Card gradient border */
@@ -316,8 +299,8 @@ body {
 
 /* Badge pill */
 .badge-pill {
-  background: rgba(0, 217, 255, 0.15);
-  border: 1px solid rgba(0, 217, 255, 0.25);
+  background: rgba(0, 101, 248, 0.15);
+  border: 1px solid rgba(0, 101, 248, 0.25);
   backdrop-filter: blur(10px);
 }
 
@@ -336,7 +319,7 @@ body {
   background: linear-gradient(180deg, var(--bg-color) 0%, #0a0a0a 100%);
 }
 
-/* Image container with cyan glow */
+/* Image container with blue glow */
 .image-glow {
   position: relative;
 }
@@ -348,15 +331,15 @@ body {
   left: 10%;
   right: 10%;
   height: 50%;
-  background: radial-gradient(ellipse at center, rgba(0, 217, 255, 0.4) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(0, 101, 248, 0.4) 0%, transparent 70%);
   filter: blur(40px);
   pointer-events: none;
 }
 
 /* Feature card icon container */
 .icon-container {
-  background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(0, 184, 217, 0.05) 100%);
-  border: 1px solid rgba(0, 217, 255, 0.2);
+  background: linear-gradient(135deg, rgba(0, 101, 248, 0.15) 0%, rgba(0, 80, 200, 0.05) 100%);
+  border: 1px solid rgba(0, 101, 248, 0.2);
 }
 
 /* Scroll indicator */
@@ -386,7 +369,7 @@ body {
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--accent-primary);
+  background: var(--accent-blue);
   transition: width 0.3s ease;
 }
 
@@ -420,25 +403,25 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 217, 255, 0.3);
+  background: rgba(0, 101, 248, 0.3);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 217, 255, 0.5);
+  background: rgba(0, 101, 248, 0.5);
 }
 
 /* Selection color */
 ::selection {
-  background: rgba(0, 217, 255, 0.3);
+  background: rgba(0, 101, 248, 0.3);
   color: #fff;
 }
 
 /* Focus styles */
 input:focus, textarea:focus, select:focus {
   outline: none;
-  border-color: var(--accent-primary) !important;
-  box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
+  border-color: var(--accent-blue) !important;
+  box-shadow: 0 0 0 3px rgba(0, 101, 248, 0.1);
 }
 
 /* Scroll-driven text reveal animation */
@@ -496,8 +479,8 @@ input:focus, textarea:focus, select:focus {
   position: absolute;
   width: 200px;
   height: 200px;
-  background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(0, 217, 255, 0.05) 100%);
-  border: 1px solid rgba(0, 217, 255, 0.3);
+  background: linear-gradient(135deg, rgba(0, 101, 248, 0.1) 0%, rgba(0, 101, 248, 0.05) 100%);
+  border: 1px solid rgba(0, 101, 248, 0.3);
   backdrop-filter: blur(10px);
 }
 
@@ -512,10 +495,10 @@ input:focus, textarea:focus, select:focus {
 .floating-orb {
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.4), rgba(0, 217, 255, 0.1));
+  background: radial-gradient(circle at 30% 30%, rgba(0, 101, 248, 0.4), rgba(0, 101, 248, 0.1));
   box-shadow:
-    0 0 60px rgba(0, 217, 255, 0.3),
-    inset 0 0 60px rgba(0, 217, 255, 0.1);
+    0 0 60px rgba(0, 101, 248, 0.3),
+    inset 0 0 60px rgba(0, 101, 248, 0.1);
   animation: float 6s ease-in-out infinite;
 }
 

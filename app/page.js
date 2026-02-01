@@ -143,13 +143,13 @@ function AnimatedSection({ children, className, delay = 0 }) {
 }
 
 function StatIcon({ name }) {
-  if (name === "Star") return <Star className="w-7 h-7 text-[#00D9FF]" />;
-  if (name === "Flame") return <Flame className="w-7 h-7 text-[#00D9FF]" />;
-  if (name === "BadgeCheck") return <BadgeCheck className="w-7 h-7 text-[#00D9FF]" />;
-  if (name === "Phone") return <Phone className="w-7 h-7 text-[#00D9FF]" />;
-  if (name === "Clock") return <Clock className="w-7 h-7 text-[#00D9FF]" />;
-  if (name === "TrendingDown") return <TrendingDown className="w-7 h-7 text-[#00D9FF]" />;
-  return <Sparkles className="w-7 h-7 text-[#00D9FF]" />;
+  if (name === "Star") return <Star className="w-7 h-7 text-[#0065F8]" />;
+  if (name === "Flame") return <Flame className="w-7 h-7 text-[#0065F8]" />;
+  if (name === "BadgeCheck") return <BadgeCheck className="w-7 h-7 text-[#0065F8]" />;
+  if (name === "Phone") return <Phone className="w-7 h-7 text-[#0065F8]" />;
+  if (name === "Clock") return <Clock className="w-7 h-7 text-[#0065F8]" />;
+  if (name === "TrendingDown") return <TrendingDown className="w-7 h-7 text-[#0065F8]" />;
+  return <Sparkles className="w-7 h-7 text-[#0065F8]" />;
 }
 
 // 3D Floating Element Component
@@ -173,7 +173,7 @@ function Floating3DElement() {
 
         {/* Glowing ring */}
         <motion.div
-          className="absolute inset-0 rounded-full border-2 border-[#00D9FF]/20"
+          className="absolute inset-0 rounded-full border-2 border-[#0065F8]/20"
           animate={{
             scale: [1, 1.1, 1],
             opacity: [0.3, 0.6, 0.3]
@@ -183,7 +183,7 @@ function Floating3DElement() {
 
         {/* Inner glowing ring */}
         <motion.div
-          className="absolute inset-8 rounded-full border border-[#00D9FF]/30"
+          className="absolute inset-8 rounded-full border border-[#0065F8]/30"
           animate={{
             scale: [1.1, 1, 1.1],
             opacity: [0.5, 0.2, 0.5]
@@ -193,7 +193,7 @@ function Floating3DElement() {
 
         {/* Center glow */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-4 h-4 rounded-full bg-[#00D9FF] blur-sm animate-pulse-glow" />
+          <div className="w-4 h-4 rounded-full bg-[#0065F8] blur-sm animate-pulse-glow" />
         </div>
       </motion.div>
     </div>
@@ -305,7 +305,7 @@ export default function Home() {
                   <Link
                     href={item.link}
                     className={`text-sm font-medium nav-link transition-colors ${
-                      item.name === "Home" ? "text-[#00D9FF]" : "text-gray-400 hover:text-white"
+                      item.name === "Home" ? "text-[#0065F8]" : "text-gray-400 hover:text-white"
                     }`}
                   >
                     {item.name}
@@ -330,7 +330,7 @@ export default function Home() {
           >
             <Link
               href="/contact"
-              className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-[#00D9FF] hover:bg-[#4DE8FF] text-white text-sm font-semibold rounded-lg transition-all hover:shadow-[0_0_30px_rgba(0,217,255,0.4)]"
+              className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-[#0065F8] hover:bg-[#3B8BFF] text-white text-sm font-semibold rounded-lg transition-all hover:shadow-[0_0_30px_rgba(0,101,248,0.4)]"
             >
               Get In Touch
             </Link>
@@ -374,7 +374,7 @@ export default function Home() {
                           key={subItem.name}
                           href={subItem.link}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="block text-gray-400 text-base hover:text-[#00D9FF] transition-colors"
+                          className="block text-gray-400 text-base hover:text-[#0065F8] transition-colors"
                         >
                           {subItem.name}
                         </Link>
@@ -385,7 +385,7 @@ export default function Home() {
                   <Link
                     href={item.link}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block text-white text-lg font-medium hover:text-[#00D9FF] transition-colors"
+                    className="block text-white text-lg font-medium hover:text-[#0065F8] transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -393,7 +393,7 @@ export default function Home() {
                   <a
                     href={item.link}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block text-white text-lg font-medium hover:text-[#00D9FF] transition-colors"
+                    className="block text-white text-lg font-medium hover:text-[#0065F8] transition-colors"
                   >
                     {item.name}
                   </a>
@@ -403,7 +403,7 @@ export default function Home() {
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D9FF] text-white text-sm font-semibold rounded-lg"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#0065F8] text-white text-sm font-semibold rounded-lg"
             >
               Get In Touch
             </Link>
@@ -431,7 +431,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="badge-pill flex items-center gap-2 pl-1.5 pr-4 py-1.5 rounded-full mb-10"
           >
-            <span className="bg-[#00D9FF] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+            <span className="bg-[#0065F8] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
               {heroContent.year}
             </span>
             <span className="text-white/80 text-sm font-medium">{heroContent.badge}</span>
@@ -513,8 +513,8 @@ export default function Home() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="inline-flex items-center gap-2 badge-pill px-4 py-2 rounded-full mb-8"
           >
-            <span className="w-7 h-7 rounded-full bg-[#00D9FF]/20 border border-[#00D9FF]/30 flex items-center justify-center">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#00D9FF]" />
+            <span className="w-7 h-7 rounded-full bg-[#0065F8]/20 border border-[#0065F8]/30 flex items-center justify-center">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#0065F8]" />
             </span>
             <span className="text-white/90 text-sm font-medium">{belowHeroStatement.badge}</span>
           </motion.div>
@@ -539,7 +539,7 @@ export default function Home() {
             >
               <Link
                 href={belowHeroStatement.cta.href}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-[#00D9FF] text-white font-medium shadow-[0_0_30px_rgba(0,217,255,0.45)] hover:shadow-[0_0_40px_rgba(0,217,255,0.6)] hover:bg-[#4DE8FF] transition-all"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-[#0065F8] text-white font-medium shadow-[0_0_30px_rgba(0,101,248,0.45)] hover:shadow-[0_0_40px_rgba(0,101,248,0.6)] hover:bg-[#3B8BFF] transition-all"
               >
                 {belowHeroStatement.cta.label}
               </Link>
@@ -549,9 +549,9 @@ export default function Home() {
 
         {/* Subtle floating particles */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-2 h-2 rounded-full bg-[#00D9FF]/20 animate-float" />
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 rounded-full bg-[#0065F8]/20 animate-float" />
           <div className="absolute top-1/3 right-1/3 w-1.5 h-1.5 rounded-full bg-white/10 animate-float" style={{ animationDelay: '1s' }} />
-          <div className="absolute bottom-1/4 right-1/4 w-2.5 h-2.5 rounded-full bg-[#00D9FF]/15 animate-float" style={{ animationDelay: '2s' }} />
+          <div className="absolute bottom-1/4 right-1/4 w-2.5 h-2.5 rounded-full bg-[#0065F8]/15 animate-float" style={{ animationDelay: '2s' }} />
         </div>
 
       </section>
@@ -563,7 +563,7 @@ export default function Home() {
           <div className="relative mb-24">
             <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 mb-8">
               <AnimatedSection className="max-w-2xl">
-                <p className="text-[#00D9FF] text-sm uppercase tracking-[0.2em] mb-4">{aboutSection.caption}</p>
+                <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">{aboutSection.caption}</p>
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white leading-tight">
                   {aboutSection.title1}<br />
                   <span className="text-gradient-blue">{aboutSection.title2}</span>
@@ -602,7 +602,7 @@ export default function Home() {
           {/* About Content */}
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <AnimatedSection>
-              <p className="text-[#00D9FF] text-sm uppercase tracking-[0.2em] mb-4">{aboutSection.caption}</p>
+              <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">{aboutSection.caption}</p>
               <h3 className="text-3xl md:text-4xl font-light text-white mb-6">
                 {aboutSection.title1} <span className="text-gradient-blue">{aboutSection.title2}</span>
               </h3>
@@ -638,7 +638,7 @@ export default function Home() {
               >
                 {/* Tag */}
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="text-[#00D9FF] text-sm font-semibold uppercase tracking-wider">
+                  <span className="text-[#0065F8] text-sm font-semibold uppercase tracking-wider">
                     {card.tag}
                   </span>
           </div>
@@ -690,7 +690,7 @@ export default function Home() {
             {/* Left - Content */}
             <AnimatedSection className="space-y-8">
               <div>
-                <p className="text-[#00D9FF] text-sm uppercase tracking-[0.2em] mb-4">
+                <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
                   {servicesSection.caption}
                 </p>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight mb-2">
@@ -716,12 +716,12 @@ export default function Home() {
                     viewport={{ once: true }}
                   >
                     <div className="icon-container w-12 h-12 rounded-xl flex items-center justify-center shrink-0">
-                      {service.icon === "Lightbulb" && <Lightbulb className="w-5 h-5 text-[#00D9FF]" />}
-                      {service.icon === "Target" && <Target className="w-5 h-5 text-[#00D9FF]" />}
-                      {service.icon === "Phone" && <Phone className="w-5 h-5 text-[#00D9FF]" />}
-                      {service.icon === "Workflow" && <Workflow className="w-5 h-5 text-[#00D9FF]" />}
-                      {service.icon === "Code" && <Code className="w-5 h-5 text-[#00D9FF]" />}
-                      {service.icon === "Users" && <Users className="w-5 h-5 text-[#00D9FF]" />}
+                      {service.icon === "Lightbulb" && <Lightbulb className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Target" && <Target className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Phone" && <Phone className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Workflow" && <Workflow className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Code" && <Code className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Users" && <Users className="w-5 h-5 text-[#0065F8]" />}
                     </div>
                     <div>
                       <h4 className="text-white font-medium mb-2">{service.title}</h4>
@@ -769,7 +769,7 @@ export default function Home() {
                   {[1, 2, 3, 4].map((i) => (
                     <div
                       key={i}
-                      className="w-8 h-8 rounded-full bg-gradient-to-br from-[#4DE8FF] to-[#00D9FF] border-2 border-black flex items-center justify-center"
+                      className="w-8 h-8 rounded-full bg-gradient-to-br from-[#3B8BFF] to-[#0065F8] border-2 border-black flex items-center justify-center"
                     >
                       <Star className="w-3 h-3 text-white fill-current" />
             </div>
@@ -788,7 +788,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Left - Header */}
             <AnimatedSection className="md:sticky md:top-32 h-fit">
-              <p className="text-[#00D9FF] text-sm uppercase tracking-[0.2em] mb-4">
+              <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
                 {faqSection.caption}
               </p>
               <h2 className="text-4xl md:text-5xl font-light text-white mb-2">
@@ -820,14 +820,14 @@ export default function Home() {
                     onClick={() => toggleFaq(index)}
                     className="w-full flex items-center justify-between text-left group"
                   >
-                    <span className="text-white font-medium text-lg group-hover:text-[#00D9FF] transition-colors">
+                    <span className="text-white font-medium text-lg group-hover:text-[#0065F8] transition-colors">
                       {item.question}
                     </span>
                     <motion.div
                       animate={{ rotate: openFaq === index ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <ChevronDown className={`w-5 h-5 text-gray-500 ${openFaq === index ? "text-[#00D9FF]" : ""}`} />
+                      <ChevronDown className={`w-5 h-5 text-gray-500 ${openFaq === index ? "text-[#0065F8]" : ""}`} />
                     </motion.div>
                   </button>
                   <motion.div
@@ -851,7 +851,7 @@ export default function Home() {
       {/* CTA Section */}
       <section id="contact" className="relative py-32 px-6">
         <AnimatedSection className="max-w-4xl mx-auto text-center relative z-10">
-          <p className="text-[#00D9FF] text-sm uppercase tracking-[0.2em] mb-6">
+          <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-6">
             {ctaSection.caption}
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 leading-tight">
@@ -968,13 +968,13 @@ export default function Home() {
                   <input
                     type="email"
                     placeholder="Your email"
-                    className="w-full bg-white/5 border border-white/10 text-white rounded-lg px-5 py-3 text-sm outline-none focus:border-[#00D9FF] transition-colors placeholder:text-gray-600"
+                    className="w-full bg-white/5 border border-white/10 text-white rounded-lg px-5 py-3 text-sm outline-none focus:border-[#0065F8] transition-colors placeholder:text-gray-600"
                   />
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="w-full py-3 bg-[#00D9FF] hover:bg-[#4DE8FF] text-white text-sm font-semibold rounded-lg transition-colors"
+                    className="w-full py-3 bg-[#0065F8] hover:bg-[#3B8BFF] text-white text-sm font-semibold rounded-lg transition-colors"
                   >
                     Subscribe
                   </motion.button>
