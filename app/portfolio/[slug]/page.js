@@ -286,14 +286,14 @@ export default function CaseStudyPage() {
                 className="relative group"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#0065F8]/20 to-transparent rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative glass-card rounded-2xl p-8 text-center border border-white/5 group-hover:border-[#0065F8]/30 transition-colors duration-300">
-                  <div className="text-4xl md:text-5xl font-bold text-gradient-blue mb-2">
+                <div className="relative glass-card rounded-2xl p-6 text-center border border-white/5 group-hover:border-[#0065F8]/30 transition-colors duration-300 h-full flex flex-col justify-center min-h-[160px]">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient-blue mb-2 whitespace-nowrap">
                     {result.value}
                   </div>
-                  <div className="text-white font-medium mb-1">
+                  <div className="text-white font-medium text-sm mb-1">
                     {result.metric}
                   </div>
-                  <div className="text-gray-500 text-sm">
+                  <div className="text-gray-500 text-xs">
                     {result.improvement}
                   </div>
                 </div>
