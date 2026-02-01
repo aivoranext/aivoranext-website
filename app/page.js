@@ -15,6 +15,12 @@ import {
   Star,
   Menu,
   X,
+  Phone,
+  Clock,
+  TrendingDown,
+  Workflow,
+  Code,
+  Users,
 } from "lucide-react";
 import {
   siteConfig,
@@ -140,6 +146,9 @@ function StatIcon({ name }) {
   if (name === "Star") return <Star className="w-7 h-7 text-[#0065F8]" />;
   if (name === "Flame") return <Flame className="w-7 h-7 text-[#0065F8]" />;
   if (name === "BadgeCheck") return <BadgeCheck className="w-7 h-7 text-[#0065F8]" />;
+  if (name === "Phone") return <Phone className="w-7 h-7 text-[#0065F8]" />;
+  if (name === "Clock") return <Clock className="w-7 h-7 text-[#0065F8]" />;
+  if (name === "TrendingDown") return <TrendingDown className="w-7 h-7 text-[#0065F8]" />;
   return <Sparkles className="w-7 h-7 text-[#0065F8]" />;
 }
 
@@ -619,6 +628,10 @@ export default function Home() {
                     <div className="icon-container w-12 h-12 rounded-xl flex items-center justify-center shrink-0">
                       {service.icon === "Lightbulb" && <Lightbulb className="w-5 h-5 text-[#0065F8]" />}
                       {service.icon === "Target" && <Target className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Phone" && <Phone className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Workflow" && <Workflow className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Code" && <Code className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Users" && <Users className="w-5 h-5 text-[#0065F8]" />}
                     </div>
                     <div>
                       <h4 className="text-white font-medium mb-2">{service.title}</h4>
