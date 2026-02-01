@@ -153,10 +153,10 @@ export default function ContactPage() {
       {/* Main Content - Form and Contact Info */}
       <section className="relative py-16 px-6 z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-5 gap-12">
+          <div className="grid lg:grid-cols-5 gap-12 items-stretch">
             {/* Left Side - Contact Info */}
-            <div className="lg:col-span-2 space-y-8">
-              <AnimatedSection>
+            <div className="lg:col-span-2 flex flex-col">
+              <AnimatedSection className="mb-6">
                 <h2 className="text-2xl md:text-3xl font-medium text-white mb-4">
                   Let&apos;s build something <span className="text-gradient-blue">amazing</span> together
                 </h2>
@@ -167,8 +167,8 @@ export default function ContactPage() {
               </AnimatedSection>
 
               {/* Benefits */}
-              <AnimatedSection delay={0.1}>
-                <div className="space-y-4">
+              <AnimatedSection delay={0.1} className="mb-6">
+                <div className="space-y-3">
                   {benefits.map((benefit, index) => (
                     <motion.div
                       key={index}
@@ -186,7 +186,7 @@ export default function ContactPage() {
               </AnimatedSection>
 
               {/* Contact Cards */}
-              <AnimatedSection delay={0.2} className="space-y-4 pt-4">
+              <AnimatedSection delay={0.2} className="flex-1 flex flex-col justify-end space-y-3">
                 {/* Email */}
                 <motion.a
                   href={`mailto:${contactPageContent.info.email}`}
@@ -245,17 +245,17 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-gray-500 text-sm">Working hours</p>
-                    <p className="text-white font-medium">Mon - Sat, 10:00 AM - 7:00 PM IST</p>
+                    <p className="text-white font-medium">Mon - Fri, 10AM - 7PM IST</p>
                   </div>
                 </motion.div>
               </AnimatedSection>
             </div>
 
             {/* Right Side - Form */}
-            <div className="lg:col-span-3">
-              <AnimatedSection>
+            <div className="lg:col-span-3 flex flex-col">
+              <AnimatedSection className="flex-1 flex flex-col">
                 <motion.div
-                  className="glass-card rounded-3xl p-8 md:p-10 border border-white/10"
+                  className="glass-card rounded-3xl p-8 md:p-10 border border-white/10 flex-1 flex flex-col"
                   whileHover={{ boxShadow: "0 0 60px rgba(0, 101, 248, 0.1)" }}
                 >
                   {isSubmitted ? (
