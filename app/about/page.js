@@ -8,8 +8,10 @@ import {
   ArrowRight,
   Menu,
   X,
-  Lightbulb,
-  Target,
+  Phone,
+  Workflow,
+  Code,
+  Users,
   Star,
 } from "lucide-react";
 import {
@@ -335,13 +337,13 @@ export default function AboutPage() {
                   Our Services
                 </p>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight mb-2">
-                  Elevate Brands with
+                  AI Solutions That
                 </h2>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-gradient-purple leading-tight mb-2">
-                  Empowering Brands
+                  Drive Real
                 </h2>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight">
-                  Innovation Tech!
+                  Business Results
                 </h2>
               </div>
 
@@ -357,11 +359,10 @@ export default function AboutPage() {
                     viewport={{ once: true }}
                   >
                     <div className="icon-container w-12 h-12 rounded-xl flex items-center justify-center shrink-0">
-                      {index === 0 ? (
-                        <Lightbulb className="w-5 h-5 text-violet-400" />
-                      ) : (
-                        <Target className="w-5 h-5 text-violet-400" />
-                      )}
+                      {index === 0 && <Phone className="w-5 h-5 text-violet-400" />}
+                      {index === 1 && <Workflow className="w-5 h-5 text-violet-400" />}
+                      {index === 2 && <Code className="w-5 h-5 text-violet-400" />}
+                      {index === 3 && <Users className="w-5 h-5 text-violet-400" />}
                     </div>
                     <div>
                       <h4 className="text-white font-medium mb-2">{service.title}</h4>
@@ -428,8 +429,8 @@ export default function AboutPage() {
                     ))}
                   </div>
                   <div>
-                    <div className="text-white font-semibold">900+ People Rated</div>
-                    <div className="text-gray-500 text-sm">Trusted by thousands</div>
+                    <div className="text-white font-semibold">50+ Businesses Automated</div>
+                    <div className="text-gray-500 text-sm">Trusted by growing companies</div>
                   </div>
                 </div>
               </motion.div>
