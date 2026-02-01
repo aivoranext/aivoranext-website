@@ -64,8 +64,11 @@ export default function ContactPage() {
     firstName: "",
     lastName: "",
     email: "",
-    country: "",
-    companyType: "",
+    phone: "",
+    company: "",
+    serviceInterest: "",
+    callVolume: "",
+    timeline: "",
     message: "",
   });
   
@@ -282,7 +285,7 @@ export default function ContactPage() {
             >
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name Fields */}
-                <motion.div 
+                <motion.div
                   className="grid md:grid-cols-2 gap-6"
                   variants={staggerContainer}
                   initial="hidden"
@@ -290,115 +293,175 @@ export default function ContactPage() {
                   viewport={{ once: true }}
                 >
                   <motion.div variants={fadeInUp}>
-                    <label className="block text-gray-400 text-sm mb-2">First Name</label>
+                    <label className="block text-gray-400 text-sm mb-2">{contactPageContent.form.fields.firstName.label}</label>
                     <input
                       type="text"
                       name="firstName"
                       value={formData.firstName}
                       onChange={handleChange}
-                      placeholder="John"
+                      placeholder={contactPageContent.form.fields.firstName.placeholder}
                       className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 placeholder:text-gray-600"
                     />
                   </motion.div>
                   <motion.div variants={fadeInUp}>
-                    <label className="block text-gray-400 text-sm mb-2">Last Name</label>
+                    <label className="block text-gray-400 text-sm mb-2">{contactPageContent.form.fields.lastName.label}</label>
                     <input
                       type="text"
                       name="lastName"
                       value={formData.lastName}
                       onChange={handleChange}
-                      placeholder="Doe"
+                      placeholder={contactPageContent.form.fields.lastName.placeholder}
                       className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 placeholder:text-gray-600"
                     />
                   </motion.div>
                 </motion.div>
 
-                {/* Email */}
+                {/* Email & Phone */}
+                <motion.div
+                  className="grid md:grid-cols-2 gap-6"
+                  variants={staggerContainer}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                >
+                  <motion.div variants={fadeInUp}>
+                    <label className="block text-gray-400 text-sm mb-2">{contactPageContent.form.fields.email.label}</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder={contactPageContent.form.fields.email.placeholder}
+                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 placeholder:text-gray-600"
+                    />
+                  </motion.div>
+                  <motion.div variants={fadeInUp}>
+                    <label className="block text-gray-400 text-sm mb-2">{contactPageContent.form.fields.phone.label}</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder={contactPageContent.form.fields.phone.placeholder}
+                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 placeholder:text-gray-600"
+                    />
+                  </motion.div>
+                </motion.div>
+
+                {/* Company Name */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <label className="block text-gray-400 text-sm mb-2">Email</label>
+                  <label className="block text-gray-400 text-sm mb-2">{contactPageContent.form.fields.company.label}</label>
                   <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
+                    type="text"
+                    name="company"
+                    value={formData.company}
                     onChange={handleChange}
-                    placeholder="john@example.com"
+                    placeholder={contactPageContent.form.fields.company.placeholder}
                     className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 placeholder:text-gray-600"
                   />
                 </motion.div>
 
-                {/* Country & Company Type */}
-                <motion.div 
-                  className="grid md:grid-cols-2 gap-6"
-                  variants={staggerContainer}
-                  initial="hidden"
-                  whileInView="visible"
+                {/* Service Interest */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 }}
                   viewport={{ once: true }}
                 >
-                  <motion.div variants={fadeInUp}>
-                    <label className="block text-gray-400 text-sm mb-2">Country</label>
-                    <select
-                      name="country"
-                      value={formData.country}
-                      onChange={handleChange}
-                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 appearance-none cursor-pointer"
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                        backgroundPosition: 'right 0.5rem center',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundSize: '1.5em 1.5em',
-                      }}
-                    >
-                      <option value="" className="bg-black">Select Country</option>
-                      <option value="us" className="bg-black">United States</option>
-                      <option value="uk" className="bg-black">United Kingdom</option>
-                      <option value="ca" className="bg-black">Canada</option>
-                      <option value="au" className="bg-black">Australia</option>
-                      <option value="in" className="bg-black">India</option>
-                      <option value="other" className="bg-black">Other</option>
-                    </select>
-                  </motion.div>
-                  <motion.div variants={fadeInUp}>
-                    <label className="block text-gray-400 text-sm mb-2">Company Type</label>
-                    <select
-                      name="companyType"
-                      value={formData.companyType}
-                      onChange={handleChange}
-                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 appearance-none cursor-pointer"
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                        backgroundPosition: 'right 0.5rem center',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundSize: '1.5em 1.5em',
-                      }}
-                    >
-                      <option value="" className="bg-black">Select Type</option>
-                      <option value="startup" className="bg-black">Startup</option>
-                      <option value="small" className="bg-black">Small Business</option>
-                      <option value="enterprise" className="bg-black">Enterprise</option>
-                      <option value="agency" className="bg-black">Agency</option>
-                      <option value="individual" className="bg-black">Individual</option>
-                    </select>
-                  </motion.div>
+                  <label className="block text-gray-400 text-sm mb-2">{contactPageContent.form.fields.serviceInterest.label}</label>
+                  <select
+                    name="serviceInterest"
+                    value={formData.serviceInterest}
+                    onChange={handleChange}
+                    className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 appearance-none cursor-pointer"
+                    style={{
+                      backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                      backgroundPosition: 'right 0.5rem center',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundSize: '1.5em 1.5em',
+                    }}
+                  >
+                    <option value="" className="bg-black">{contactPageContent.form.fields.serviceInterest.placeholder}</option>
+                    {contactPageContent.form.fields.serviceInterest.options.map((option) => (
+                      <option key={option} value={option} className="bg-black">{option}</option>
+                    ))}
+                  </select>
                 </motion.div>
 
-                {/* Message */}
+                {/* Call Volume - Conditional (shown when Voice AI is selected) */}
+                {formData.serviceInterest === "Voice AI Agents" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20, height: 0 }}
+                    animate={{ opacity: 1, y: 0, height: "auto" }}
+                    exit={{ opacity: 0, y: -20, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <label className="block text-gray-400 text-sm mb-2">{contactPageContent.form.fields.callVolume.label}</label>
+                    <select
+                      name="callVolume"
+                      value={formData.callVolume}
+                      onChange={handleChange}
+                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 appearance-none cursor-pointer"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                        backgroundPosition: 'right 0.5rem center',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: '1.5em 1.5em',
+                      }}
+                    >
+                      <option value="" className="bg-black">{contactPageContent.form.fields.callVolume.placeholder}</option>
+                      {contactPageContent.form.fields.callVolume.options.map((option) => (
+                        <option key={option} value={option} className="bg-black">{option}</option>
+                      ))}
+                    </select>
+                  </motion.div>
+                )}
+
+                {/* Timeline */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
                   viewport={{ once: true }}
                 >
-                  <label className="block text-gray-400 text-sm mb-2">Your Message</label>
+                  <label className="block text-gray-400 text-sm mb-2">{contactPageContent.form.fields.timeline.label}</label>
+                  <select
+                    name="timeline"
+                    value={formData.timeline}
+                    onChange={handleChange}
+                    className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 appearance-none cursor-pointer"
+                    style={{
+                      backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                      backgroundPosition: 'right 0.5rem center',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundSize: '1.5em 1.5em',
+                    }}
+                  >
+                    <option value="" className="bg-black">{contactPageContent.form.fields.timeline.placeholder}</option>
+                    {contactPageContent.form.fields.timeline.options.map((option) => (
+                      <option key={option} value={option} className="bg-black">{option}</option>
+                    ))}
+                  </select>
+                </motion.div>
+
+                {/* Message */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.25 }}
+                  viewport={{ once: true }}
+                >
+                  <label className="block text-gray-400 text-sm mb-2">{contactPageContent.form.fields.message.label}</label>
                   <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Tell us about your project..."
+                    placeholder={contactPageContent.form.fields.message.placeholder}
                     rows={5}
                     className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 placeholder:text-gray-600 resize-none"
                   />
@@ -417,7 +480,7 @@ export default function ContactPage() {
                     type="submit"
                     className="w-full py-4 bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold rounded-xl transition-all flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(124,58,237,0.4)]"
                   >
-                    Send Message <ArrowRight className="w-4 h-4" />
+                    {contactPageContent.form.submitButton} <ArrowRight className="w-4 h-4" />
                   </motion.button>
                 </motion.div>
               </form>
@@ -437,12 +500,12 @@ export default function ContactPage() {
             className="grid md:grid-cols-3 gap-6"
           >
             {/* Email Card */}
-            <motion.div 
+            <motion.div
               variants={fadeInUp}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
               className="glass-card rounded-2xl p-8 text-center"
             >
-              <motion.div 
+              <motion.div
                 className="w-14 h-14 rounded-xl bg-violet-600/20 flex items-center justify-center mx-auto mb-6"
                 whileHover={{ rotate: 5, scale: 1.1 }}
               >
@@ -450,21 +513,21 @@ export default function ContactPage() {
               </motion.div>
               <h3 className="text-white font-medium text-lg mb-2">Email Us</h3>
               <p className="text-gray-500 text-sm mb-4">Send us an email anytime</p>
-              <a 
-                href="mailto:hello@aivoranext.com" 
+              <a
+                href={`mailto:${contactPageContent.info.email}`}
                 className="text-violet-400 hover:text-violet-300 transition-colors"
               >
-                hello@aivoranext.com
+                {contactPageContent.info.email}
               </a>
             </motion.div>
 
             {/* Phone Card */}
-            <motion.div 
+            <motion.div
               variants={fadeInUp}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
               className="glass-card rounded-2xl p-8 text-center"
             >
-              <motion.div 
+              <motion.div
                 className="w-14 h-14 rounded-xl bg-violet-600/20 flex items-center justify-center mx-auto mb-6"
                 whileHover={{ rotate: 5, scale: 1.1 }}
               >
@@ -472,21 +535,21 @@ export default function ContactPage() {
               </motion.div>
               <h3 className="text-white font-medium text-lg mb-2">Call Us</h3>
               <p className="text-gray-500 text-sm mb-4">Mon-Fri from 9am to 6pm</p>
-              <a 
-                href="tel:+1234567890" 
+              <a
+                href={`tel:${contactPageContent.info.phone.replace(/\s/g, '')}`}
                 className="text-violet-400 hover:text-violet-300 transition-colors"
               >
-                +1 (234) 567-890
+                {contactPageContent.info.phone}
               </a>
             </motion.div>
 
             {/* Address Card */}
-            <motion.div 
+            <motion.div
               variants={fadeInUp}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
               className="glass-card rounded-2xl p-8 text-center"
             >
-              <motion.div 
+              <motion.div
                 className="w-14 h-14 rounded-xl bg-violet-600/20 flex items-center justify-center mx-auto mb-6"
                 whileHover={{ rotate: 5, scale: 1.1 }}
               >
@@ -495,8 +558,7 @@ export default function ContactPage() {
               <h3 className="text-white font-medium text-lg mb-2">Visit Us</h3>
               <p className="text-gray-500 text-sm mb-4">Our office location</p>
               <span className="text-violet-400">
-                123 Innovation Street<br />
-                Tech City, TC 12345
+                {contactPageContent.info.address}
               </span>
             </motion.div>
           </motion.div>
