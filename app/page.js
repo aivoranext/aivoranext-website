@@ -33,6 +33,7 @@ import {
   footerLinks,
 } from "@/lib/content";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 // Single word that animates based on scroll progress
 function ScrollWord({ word, index, totalWords, scrollYProgress }) {
@@ -688,130 +689,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="footer-gradient border-t border-white/5 pt-20 pb-10 px-6">
-        <div className="max-w-7xl mx-auto">
-          {/* Top Section */}
-          <div className="flex flex-col md:flex-row justify-between gap-12 mb-16">
-            {/* Brand */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="max-w-xs"
-            >
-              <Link href="/" className="flex items-center mb-6">
-                <Image
-                  src={siteConfig.logo}
-                  alt={siteConfig.name}
-                  width={200}
-                  height={26}
-                  className="h-7 w-auto"
-                />
-              </Link>
-              <p className="text-gray-500 text-sm leading-relaxed">
-              {siteConfig.footerDesc}
-            </p>
-            </motion.div>
-
-            {/* Links Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-12">
-              {/* Pages */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-                <h4 className="text-white font-medium text-sm mb-6 uppercase tracking-wider">Pages</h4>
-                <ul className="space-y-4">
-                  {footerLinks.templatePages.map((link) => (
-                <li key={link.name}>
-                      {isInternalRoute(link.link) ? (
-                        <Link
-                          href={link.link}
-                          className="text-gray-500 hover:text-white text-sm transition-colors"
-                        >
-                          {link.name}
-                        </Link>
-                      ) : (
-                        <a
-                          href={link.link}
-                          className="text-gray-500 hover:text-white text-sm transition-colors"
-                        >
-                    {link.name}
-                  </a>
-                      )}
-                </li>
-              ))}
-            </ul>
-              </motion.div>
-
-              {/* Social */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <h4 className="text-white font-medium text-sm mb-6 uppercase tracking-wider">Social</h4>
-                <ul className="space-y-4">
-                  {footerLinks.social.map((link) => (
-                <li key={link.name}>
-                      <a
-                        href={link.link}
-                        className="text-gray-500 hover:text-white text-sm transition-colors"
-                      >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-              </motion.div>
-
-              {/* Subscribe */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                viewport={{ once: true }}
-              >
-                <h4 className="text-white font-medium text-sm mb-6 uppercase tracking-wider">Subscribe</h4>
-                <form className="space-y-3">
-                  <input
-                    type="email"
-                    placeholder="Your email"
-                    className="w-full bg-white/5 border border-white/10 text-white rounded-lg px-5 py-3 text-sm outline-none focus:border-[#0065F8] transition-colors placeholder:text-gray-600"
-                  />
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="submit"
-                    className="w-full py-3 bg-[#0065F8] hover:bg-[#3B8BFF] text-white text-sm font-semibold rounded-lg transition-colors"
-                  >
-                    Subscribe
-                  </motion.button>
-                </form>
-              </motion.div>
-          </div>
-        </div>
-
-          {/* Bottom Section */}
-          <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-600 text-sm">{siteConfig.copyright}</p>
-            <div className="flex gap-6">
-            {footerLinks.legal.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.link}
-                  className="text-gray-600 hover:text-gray-400 text-sm transition-colors"
-                >
-                {link.name}
-              </a>
-            ))}
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

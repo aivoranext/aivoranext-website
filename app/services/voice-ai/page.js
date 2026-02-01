@@ -33,6 +33,7 @@ import {
   siteConfig,
 } from "@/lib/content";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 // Animation variants
 const fadeInUp = {
@@ -480,19 +481,31 @@ export default function VoiceAIPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {/* Telephony */}
             <AnimatedSection delay={0.1}>
-              <div className="glass-card rounded-2xl p-6">
-                <h3 className="text-lg font-medium text-white mb-6 flex items-center gap-2">
-                  <Phone className="w-5 h-5 text-[#0065F8]" />
-                  Telephony
-                </h3>
+              <div className="glass-card rounded-2xl p-8">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-10 h-10 rounded-xl bg-[#0065F8]/20 flex items-center justify-center">
+                    <Phone className="w-5 h-5 text-[#0065F8]" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white">Telephony</h3>
+                </div>
                 <div className="space-y-4">
                   {integrationPartners.telephony.map((partner, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
-                      <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
-                        <Phone className="w-5 h-5 text-[#0065F8]" />
+                    <motion.div
+                      key={index}
+                      className="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/10 transition-all cursor-pointer group"
+                      whileHover={{ x: 4 }}
+                    >
+                      <div className="w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center bg-white/10 group-hover:bg-white/15 transition-colors">
+                        <Image
+                          src={partner.logo}
+                          alt={partner.name}
+                          width={40}
+                          height={40}
+                          className="object-contain"
+                        />
                       </div>
-                      <span className="text-gray-300 font-medium">{partner.name}</span>
-                    </div>
+                      <span className="text-white font-medium text-lg">{partner.name}</span>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -500,19 +513,31 @@ export default function VoiceAIPage() {
 
             {/* CRM */}
             <AnimatedSection delay={0.2}>
-              <div className="glass-card rounded-2xl p-6">
-                <h3 className="text-lg font-medium text-white mb-6 flex items-center gap-2">
-                  <Database className="w-5 h-5 text-[#0065F8]" />
-                  CRM Systems
-                </h3>
+              <div className="glass-card rounded-2xl p-8">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-10 h-10 rounded-xl bg-[#0065F8]/20 flex items-center justify-center">
+                    <Database className="w-5 h-5 text-[#0065F8]" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white">CRM Systems</h3>
+                </div>
                 <div className="space-y-4">
                   {integrationPartners.crm.map((partner, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
-                      <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
-                        <Database className="w-5 h-5 text-[#0065F8]" />
+                    <motion.div
+                      key={index}
+                      className="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/10 transition-all cursor-pointer group"
+                      whileHover={{ x: 4 }}
+                    >
+                      <div className="w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center bg-white/10 group-hover:bg-white/15 transition-colors">
+                        <Image
+                          src={partner.logo}
+                          alt={partner.name}
+                          width={40}
+                          height={40}
+                          className="object-contain"
+                        />
                       </div>
-                      <span className="text-gray-300 font-medium">{partner.name}</span>
-                    </div>
+                      <span className="text-white font-medium text-lg">{partner.name}</span>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -520,19 +545,31 @@ export default function VoiceAIPage() {
 
             {/* Other Integrations */}
             <AnimatedSection delay={0.3}>
-              <div className="glass-card rounded-2xl p-6">
-                <h3 className="text-lg font-medium text-white mb-6 flex items-center gap-2">
-                  <Link2 className="w-5 h-5 text-[#0065F8]" />
-                  Other Tools
-                </h3>
+              <div className="glass-card rounded-2xl p-8">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-10 h-10 rounded-xl bg-[#0065F8]/20 flex items-center justify-center">
+                    <Link2 className="w-5 h-5 text-[#0065F8]" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white">Other Tools</h3>
+                </div>
                 <div className="space-y-4">
                   {integrationPartners.other.map((partner, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
-                      <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
-                        <Link2 className="w-5 h-5 text-[#0065F8]" />
+                    <motion.div
+                      key={index}
+                      className="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/10 transition-all cursor-pointer group"
+                      whileHover={{ x: 4 }}
+                    >
+                      <div className="w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center bg-white/10 group-hover:bg-white/15 transition-colors">
+                        <Image
+                          src={partner.logo}
+                          alt={partner.name}
+                          width={40}
+                          height={40}
+                          className="object-contain"
+                        />
                       </div>
-                      <span className="text-gray-300 font-medium">{partner.name}</span>
-                    </div>
+                      <span className="text-white font-medium text-lg">{partner.name}</span>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -576,26 +613,7 @@ export default function VoiceAIPage() {
         />
       </section>
 
-      {/* Simple Footer */}
-      <footer className="footer-gradient border-t border-white/5 py-12 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            {/* Logo */}
-            <Link href="/" className="flex items-center">
-              <Image
-                src={siteConfig.logo}
-                alt={siteConfig.name}
-                width={160}
-                height={22}
-                className="h-6 w-auto"
-              />
-            </Link>
-
-            {/* Copyright */}
-            <p className="text-gray-600 text-sm">{siteConfig.copyright}</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import {
   ArrowRight,
   Phone,
@@ -11,6 +11,12 @@ import {
   Code,
   Users,
   Star,
+  Target,
+  Zap,
+  Shield,
+  Heart,
+  Lightbulb,
+  TrendingUp,
 } from "lucide-react";
 import {
   siteConfig,
@@ -19,12 +25,13 @@ import {
   footerLinks,
 } from "@/lib/content";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 // Animation variants
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
   }
@@ -45,7 +52,7 @@ const staggerContainer = {
 function AnimatedSection({ children, className, delay = 0 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
+
   return (
     <motion.div
       ref={ref}
@@ -59,16 +66,39 @@ function AnimatedSection({ children, className, delay = 0 }) {
   );
 }
 
+// Values data
+const values = [
+  {
+    icon: Target,
+    title: "Results-Driven",
+    description: "We focus on measurable ROI, not just impressive demos. Every solution is designed to deliver real business impact."
+  },
+  {
+    icon: Zap,
+    title: "Speed to Value",
+    description: "Deploy AI solutions in weeks, not months. Our battle-tested frameworks accelerate your path to automation."
+  },
+  {
+    icon: Shield,
+    title: "Enterprise Ready",
+    description: "Built for scale with security-first architecture. SOC2 compliant processes and enterprise-grade infrastructure."
+  },
+  {
+    icon: Heart,
+    title: "Partner Mindset",
+    description: "We're invested in your success. Long-term partnerships over one-off projects, with ongoing optimization."
+  },
+];
+
+// Team expertise
+const expertise = [
+  { label: "AI/ML Engineers", value: "15+" },
+  { label: "Voice AI Projects", value: "100+" },
+  { label: "Years Combined Experience", value: "50+" },
+  { label: "Client Satisfaction", value: "98%" },
+];
+
 export default function AboutPage() {
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const heroY = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
-
   return (
     <main className="relative min-h-screen bg-[#050505] overflow-hidden">
       {/* Spotlight Effect */}
@@ -78,95 +108,77 @@ export default function AboutPage() {
       <Navbar currentPage="About" />
 
       {/* Hero Section */}
-      <section 
-        ref={heroRef}
-        className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-6"
-      >
-        <motion.div
-          style={{ opacity: heroOpacity, y: heroY }}
-          className="flex flex-col items-center"
-        >
+      <section className="relative pt-40 pb-20 px-6">
+        <div className="max-w-7xl mx-auto text-center">
           {/* Badge */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="badge-pill flex items-center gap-3 px-5 py-3 rounded-full mb-12 animate-float"
+            className="mb-8"
           >
-            <span className="bg-[#0065F8] text-white text-xs font-bold px-3 py-1 rounded-full">
-              {aboutPageContent.hero.year}
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0065F8]/10 border border-[#0065F8]/20">
+              <span className="w-2 h-2 rounded-full bg-[#0065F8] animate-pulse" />
+              <span className="text-[#3B8BFF] text-sm font-medium">{aboutPageContent.hero.badge}</span>
             </span>
-            <span className="text-white text-sm font-medium">{aboutPageContent.hero.badge}</span>
           </motion.div>
 
-          {/* Main Headline with Reflection */}
-          <div className="text-center relative max-w-5xl mx-auto">
-            <motion.h1 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl md:text-7xl lg:text-8xl font-light text-white tracking-tight leading-[1.1] mb-4"
-            >
-              {aboutPageContent.hero.titleLine1}
-            </motion.h1>
-            <motion.h2 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl md:text-7xl lg:text-8xl font-light text-gradient-blue tracking-tight leading-[1.1] mb-4"
-            >
-              <em>{aboutPageContent.hero.titleLine2}</em>
-            </motion.h2>
-            <motion.h2 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight leading-[1.1] text-reflection"
-              data-text={aboutPageContent.hero.titleLine3}
-              style={{
-                background: 'linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%)',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                color: 'transparent',
-              }}
-            >
-              <em>{aboutPageContent.hero.titleLine3}</em>
-            </motion.h2>
-          </div>
-        </motion.div>
+          {/* Main Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium text-white tracking-tight leading-[1.1] mb-6"
+          >
+            {aboutPageContent.hero.titleLine1}{" "}
+            <span className="text-gradient-blue">{aboutPageContent.hero.titleLine2}</span>
+            <br />
+            {aboutPageContent.hero.titleLine3}
+          </motion.h1>
 
-        {/* Purple Glow under text */}
-        <motion.div 
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10"
+          >
+            We build AI solutions that work around the clock, so your business never sleeps.
+            From Voice AI to workflow automation, we deliver results that matter.
+          </motion.p>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+          >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-8 py-4 btn-primary text-white font-semibold rounded-xl shadow-lg shadow-[#0065F8]/30"
+              >
+                Get In Touch <ArrowRight className="w-5 h-5" />
+              </Link>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Blue Glow */}
+        <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.6, scale: 1 }}
+          animate={{ opacity: 0.4, scale: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="absolute bottom-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[200px] gradient-purple-glow blur-3xl pointer-events-none" 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#0065F8]/20 blur-[150px] rounded-full pointer-events-none"
         />
-
-        {/* CTA Button */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-          className="mt-16 relative z-10"
-        >
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 btn-primary text-white font-semibold rounded-xl"
-            >
-              View About Reboot <ArrowRight className="w-5 h-5" />
-            </Link>
-          </motion.div>
-        </motion.div>
       </section>
 
       {/* Image Section */}
       <section className="relative py-12 px-6">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection>
-            <motion.div 
-              className="relative rounded-3xl overflow-hidden image-glow"
+            <motion.div
+              className="relative rounded-3xl overflow-hidden border border-white/10"
               whileHover={{ scale: 1.01 }}
               transition={{ duration: 0.4 }}
             >
@@ -177,89 +189,147 @@ export default function AboutPage() {
                 height={600}
                 className="w-full h-[400px] md:h-[500px] object-cover"
               />
+              {/* Overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60" />
             </motion.div>
           </AnimatedSection>
         </div>
       </section>
 
       {/* About Content Section */}
-      <section className="relative py-24 px-6 section-gradient">
+      <section className="relative py-24 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
             {/* Left - Title */}
             <AnimatedSection>
-              <div className="badge-pill inline-flex items-center gap-3 px-5 py-3 rounded-full mb-8">
-                <div className="w-8 h-8 rounded-lg bg-[#0065F8]/20 flex items-center justify-center">
-                  <Star className="w-4 h-4 text-[#0065F8]" />
-                </div>
-                <span className="text-white text-sm font-medium">{aboutPageContent.aboutUs.caption}</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white leading-tight mb-6">
+              <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+                {aboutPageContent.aboutUs.caption}
+              </p>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white leading-tight mb-6">
                 {aboutPageContent.aboutUs.title}
               </h2>
-            </AnimatedSection>
-
-            {/* Right - Content */}
-            <AnimatedSection delay={0.2} className="space-y-6">
-              <p className="text-gray-400 text-lg leading-relaxed">
+              <p className="text-gray-400 text-lg leading-relaxed mb-6">
                 {aboutPageContent.aboutUs.description}
               </p>
-              <p className="text-gray-500 leading-relaxed">
+              <p className="text-gray-500 leading-relaxed mb-8">
                 {aboutPageContent.aboutUs.mission}
               </p>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
-                  href="/contact"
+                  href="/services"
                   className="inline-flex items-center gap-2 px-8 py-4 btn-primary text-white font-semibold rounded-xl"
                 >
-                  Book an Appointment <ArrowRight className="w-5 h-5" />
+                  Explore Our Services <ArrowRight className="w-5 h-5" />
                 </Link>
               </motion.div>
             </AnimatedSection>
+
+            {/* Right - Stats Grid */}
+            <AnimatedSection delay={0.2}>
+              <div className="grid grid-cols-2 gap-6">
+                {expertise.map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -5 }}
+                    className="glass-card rounded-2xl p-6 text-center border border-white/5 hover:border-[#0065F8]/30 transition-colors"
+                  >
+                    <div className="text-3xl md:text-4xl font-bold text-gradient-blue mb-2">
+                      {stat.value}
+                    </div>
+                    <div className="text-gray-400 text-sm">{stat.label}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </AnimatedSection>
           </div>
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section className="relative py-24 px-6 section-gradient">
+        <div className="max-w-7xl mx-auto">
+          <AnimatedSection className="text-center mb-16">
+            <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+              Our Values
+            </p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4">
+              What <span className="text-gradient-blue">Drives Us</span>
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              We believe in building AI solutions that create real value for businesses
+            </p>
+          </AnimatedSection>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {values.map((value, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                className="group"
+              >
+                <div className="glass-card rounded-2xl p-8 h-full border border-white/5 hover:border-[#0065F8]/30 transition-all duration-300">
+                  <div className="w-14 h-14 rounded-2xl bg-[#0065F8]/10 flex items-center justify-center mb-6 group-hover:bg-[#0065F8]/20 transition-colors">
+                    <value.icon className="w-7 h-7 text-[#0065F8]" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-3">{value.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{value.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
       {/* Services Section */}
       <section className="relative py-24 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Left - Content */}
             <AnimatedSection className="space-y-8">
               <div>
                 <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
-                  Our Services
+                  What We Do
                 </p>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight mb-2">
-                  AI Solutions That
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white leading-tight mb-4">
+                  AI Solutions That{" "}
+                  <span className="text-gradient-blue">Drive Results</span>
                 </h2>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-gradient-purple leading-tight mb-2">
-                  Drive Real
-                </h2>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight">
-                  Business Results
-                </h2>
+                <p className="text-gray-400 text-lg">
+                  From Voice AI agents to custom automation, we deliver AI that works.
+                </p>
               </div>
 
               {/* Service Cards */}
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {aboutPageContent.services.map((service, index) => (
-                  <motion.div 
-                    key={index} 
-                    className="flex gap-4"
+                  <motion.div
+                    key={index}
+                    className="flex gap-4 p-5 rounded-2xl bg-white/5 border border-white/5 hover:border-[#0065F8]/30 hover:bg-white/[0.07] transition-all cursor-pointer group"
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     viewport={{ once: true }}
+                    whileHover={{ x: 8 }}
                   >
-                    <div className="icon-container w-12 h-12 rounded-xl flex items-center justify-center shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-[#0065F8]/10 flex items-center justify-center shrink-0 group-hover:bg-[#0065F8]/20 transition-colors">
                       {index === 0 && <Phone className="w-5 h-5 text-[#0065F8]" />}
                       {index === 1 && <Workflow className="w-5 h-5 text-[#0065F8]" />}
                       {index === 2 && <Code className="w-5 h-5 text-[#0065F8]" />}
                       {index === 3 && <Users className="w-5 h-5 text-[#0065F8]" />}
                     </div>
                     <div>
-                      <h4 className="text-white font-medium mb-2">{service.title}</h4>
+                      <h4 className="text-white font-semibold mb-1 group-hover:text-[#3B8BFF] transition-colors">{service.title}</h4>
                       <p className="text-gray-500 text-sm leading-relaxed">{service.description}</p>
                     </div>
                   </motion.div>
@@ -271,63 +341,75 @@ export default function AboutPage() {
                   href="/contact"
                   className="inline-flex items-center gap-2 px-8 py-4 btn-primary text-white font-semibold rounded-xl"
                 >
-                  Book an Appointment <ArrowRight className="w-5 h-5" />
+                  Start Your Project <ArrowRight className="w-5 h-5" />
                 </Link>
               </motion.div>
             </AnimatedSection>
 
-            {/* Right - Stats */}
+            {/* Right - Trust Badge */}
             <AnimatedSection delay={0.3} className="space-y-8">
-              <motion.div 
-                variants={staggerContainer}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="grid grid-cols-3 gap-6"
-              >
-                {aboutPageContent.stats.map((stat, index) => (
-                  <motion.div 
-                    key={index} 
-                    variants={fadeInUp}
-                    whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                    className="glass-card rounded-2xl p-6 text-center"
-                  >
-                    <div className="text-3xl md:text-4xl font-bold text-gradient-purple mb-2">
-                      {stat.value}
-                    </div>
-                    <div className="text-gray-400 text-sm">{stat.label}</div>
-                  </motion.div>
-                ))}
-              </motion.div>
-
               {/* Rating Badge */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
                 viewport={{ once: true }}
-                className="glass-card rounded-2xl p-6"
+                className="glass-card rounded-2xl p-8 border border-white/5"
               >
-                <div className="flex items-center gap-4">
-                  <div className="flex -space-x-2">
-                    {[1, 2, 3, 4].map((i) => (
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="flex -space-x-3">
+                    {[1, 2, 3, 4, 5].map((i) => (
                       <motion.div
                         key={i}
                         initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
+                        whileInView={{ scale: 1 }}
                         transition={{ delay: 0.5 + i * 0.1 }}
-                        className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0065F8] to-[#3B8BFF] border-2 border-black flex items-center justify-center"
+                        viewport={{ once: true }}
+                        className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0065F8] to-[#3B8BFF] border-2 border-[#050505] flex items-center justify-center"
                       >
-                        <Star className="w-4 h-4 text-white fill-current" />
+                        <Star className="w-5 h-5 text-white fill-current" />
                       </motion.div>
                     ))}
                   </div>
-                  <div>
-                    <div className="text-white font-semibold">50+ Businesses Automated</div>
-                    <div className="text-gray-500 text-sm">Trusted by growing companies</div>
+                </div>
+                <div className="text-3xl font-bold text-white mb-2">50+ Businesses Automated</div>
+                <p className="text-gray-400 mb-6">Trusted by growing companies worldwide</p>
+                <div className="flex items-center gap-2">
+                  <div className="flex">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
+                    ))}
                   </div>
+                  <span className="text-white font-medium">5.0</span>
+                  <span className="text-gray-500">Average Rating</span>
                 </div>
               </motion.div>
+
+              {/* Quick Stats */}
+              <div className="grid grid-cols-2 gap-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  viewport={{ once: true }}
+                  className="glass-card rounded-2xl p-6 text-center border border-white/5"
+                >
+                  <Lightbulb className="w-8 h-8 text-[#0065F8] mx-auto mb-3" />
+                  <div className="text-2xl font-bold text-white mb-1">85%</div>
+                  <div className="text-gray-500 text-sm">Avg Cost Reduction</div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  viewport={{ once: true }}
+                  className="glass-card rounded-2xl p-6 text-center border border-white/5"
+                >
+                  <TrendingUp className="w-8 h-8 text-[#0065F8] mx-auto mb-3" />
+                  <div className="text-2xl font-bold text-white mb-1">24/7</div>
+                  <div className="text-gray-500 text-sm">AI Availability</div>
+                </motion.div>
+              </div>
             </AnimatedSection>
           </div>
         </div>
@@ -342,7 +424,7 @@ export default function AboutPage() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 leading-tight">
             {ctaSection.title1}
           </h2>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-gradient-purple mb-8 leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-gradient-blue mb-8 leading-tight">
             {ctaSection.title2}
           </h2>
           <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
@@ -351,7 +433,7 @@ export default function AboutPage() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-10 py-5 btn-primary text-white text-lg font-semibold rounded-xl"
+              className="inline-flex items-center gap-2 px-10 py-5 btn-primary text-white text-lg font-semibold rounded-xl shadow-lg shadow-[#0065F8]/30"
             >
               {ctaSection.buttonText} <ArrowRight className="w-5 h-5" />
             </Link>
@@ -359,130 +441,16 @@ export default function AboutPage() {
         </AnimatedSection>
 
         {/* Background Glow */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.4 }}
+          whileInView={{ opacity: 0.3 }}
           viewport={{ once: true }}
-          className="absolute inset-0 gradient-purple-glow pointer-events-none" 
+          className="absolute inset-0 gradient-blue-glow pointer-events-none"
         />
       </section>
 
       {/* Footer */}
-      <footer className="footer-gradient border-t border-white/5 pt-20 pb-10 px-6">
-        <div className="max-w-7xl mx-auto">
-          {/* Top Section */}
-          <div className="flex flex-col md:flex-row justify-between gap-12 mb-16">
-            {/* Brand */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="max-w-xs"
-            >
-              <Link href="/" className="flex items-center mb-6">
-                <Image
-                  src={siteConfig.logo}
-                  alt={siteConfig.name}
-                  width={200}
-                  height={26}
-                  className="h-7 w-auto"
-                />
-              </Link>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                {siteConfig.footerDesc}
-              </p>
-            </motion.div>
-
-            {/* Links Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-12">
-              {/* Pages */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-                <h4 className="text-white font-medium text-sm mb-6 uppercase tracking-wider">Pages</h4>
-                <ul className="space-y-4">
-                  {footerLinks.templatePages.map((link) => (
-                    <li key={link.name}>
-                      <Link
-                        href={link.link}
-                        className="text-gray-500 hover:text-white text-sm transition-colors"
-                      >
-                        {link.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-
-              {/* Social */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <h4 className="text-white font-medium text-sm mb-6 uppercase tracking-wider">Social</h4>
-                <ul className="space-y-4">
-                  {footerLinks.social.map((link) => (
-                    <li key={link.name}>
-                      <a
-                        href={link.link}
-                        className="text-gray-500 hover:text-white text-sm transition-colors"
-                      >
-                        {link.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-
-              {/* Subscribe */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                viewport={{ once: true }}
-              >
-                <h4 className="text-white font-medium text-sm mb-6 uppercase tracking-wider">Subscribe</h4>
-                <form className="space-y-3">
-                  <input
-                    type="email"
-                    placeholder="Your email"
-                    className="w-full bg-white/5 border border-white/10 text-white rounded-lg px-4 py-3 text-sm outline-none focus:border-[#0065F8] transition-colors placeholder:text-gray-600"
-                  />
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="submit"
-                    className="w-full py-3 bg-[#0065F8] hover:bg-[#3B8BFF] text-white text-sm font-semibold rounded-lg transition-colors"
-                  >
-                    Subscribe
-                  </motion.button>
-                </form>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Bottom Section */}
-          <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-600 text-sm">{siteConfig.copyright}</p>
-            <div className="flex gap-6">
-              {footerLinks.legal.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.link}
-                  className="text-gray-600 hover:text-gray-400 text-sm transition-colors"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

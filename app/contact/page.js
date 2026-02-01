@@ -1,27 +1,26 @@
 "use client";
 
 import { useState, useRef } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import {
   ArrowRight,
   Mail,
   Phone,
   MapPin,
+  Clock,
+  CheckCircle,
 } from "lucide-react";
 import {
-  siteConfig,
   contactPageContent,
-  footerLinks,
 } from "@/lib/content";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 // Animation variants
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
   }
@@ -42,7 +41,7 @@ const staggerContainer = {
 function AnimatedSection({ children, className, delay = 0 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
+
   return (
     <motion.div
       ref={ref}
@@ -56,6 +55,14 @@ function AnimatedSection({ children, className, delay = 0 }) {
   );
 }
 
+// Why choose us points
+const benefits = [
+  "Free 30-minute consultation call",
+  "Custom solution tailored to your needs",
+  "Response within 24 hours",
+  "No commitment required",
+];
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -65,18 +72,11 @@ export default function ContactPage() {
     company: "",
     serviceInterest: "",
     callVolume: "",
-    timeline: "",
     message: "",
   });
 
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const heroY = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -84,19 +84,16 @@ export default function ContactPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    setIsSubmitting(true);
+    // Simulate form submission
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+    }, 1500);
   };
 
   return (
     <main className="relative min-h-screen bg-[#050505] overflow-hidden">
-      {/* Side Blue Glows */}
-      <div className="fixed top-0 left-0 w-[400px] h-full opacity-30 pointer-events-none z-0">
-        <div className="absolute top-1/3 left-0 w-[300px] h-[400px] bg-[#0065F8]/50 blur-[150px] rounded-full" />
-      </div>
-      <div className="fixed top-0 right-0 w-[400px] h-full opacity-30 pointer-events-none z-0">
-        <div className="absolute top-1/2 right-0 w-[300px] h-[400px] bg-[#0065F8]/50 blur-[150px] rounded-full" />
-      </div>
-
       {/* Spotlight Effect */}
       <div className="fixed top-0 left-0 w-full h-[800px] spotlight pointer-events-none z-0" />
 
@@ -104,478 +101,370 @@ export default function ContactPage() {
       <Navbar currentPage="Contact" />
 
       {/* Hero Section */}
-      <section 
-        ref={heroRef}
-        className="relative min-h-[50vh] flex flex-col items-center justify-center pt-32 pb-12 px-6"
-      >
-        <motion.div
-          style={{ opacity: heroOpacity, y: heroY }}
-          className="flex flex-col items-center"
-        >
+      <section className="relative pt-40 pb-12 px-6">
+        <div className="max-w-7xl mx-auto text-center">
           {/* Badge */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="badge-pill flex items-center gap-3 px-5 py-3 rounded-full mb-12 animate-float"
+            className="mb-8"
           >
-            <span className="bg-[#0065F8] text-white text-xs font-bold px-3 py-1 rounded-full">
-              {contactPageContent.hero.year}
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0065F8]/10 border border-[#0065F8]/20">
+              <span className="w-2 h-2 rounded-full bg-[#0065F8] animate-pulse" />
+              <span className="text-[#3B8BFF] text-sm font-medium">{contactPageContent.hero.badge}</span>
             </span>
-            <span className="text-white text-sm font-medium">{contactPageContent.hero.badge}</span>
           </motion.div>
 
-          {/* Main Headline with Reflection */}
-          <div className="text-center relative max-w-5xl mx-auto">
-            <motion.h1 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="text-4xl md:text-6xl lg:text-7xl font-light text-white tracking-tight leading-[1.1] mb-4"
-            >
-              {contactPageContent.hero.titleLine1}
-            </motion.h1>
-            <motion.h2 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="text-4xl md:text-6xl lg:text-7xl font-light text-gradient-purple tracking-tight leading-[1.1] mb-4"
-            >
-              <em>{contactPageContent.hero.titleLine2}</em>
-            </motion.h2>
-            <motion.h2 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="text-4xl md:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1] text-reflection"
-              data-text={contactPageContent.hero.titleLine3}
-              style={{
-                background: 'linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%)',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                color: 'transparent',
-              }}
-            >
-              <em>{contactPageContent.hero.titleLine3}</em>
-            </motion.h2>
-          </div>
-        </motion.div>
+          {/* Main Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium text-white tracking-tight leading-[1.1] mb-6"
+          >
+            {contactPageContent.hero.titleLine1}{" "}
+            <span className="text-gradient-blue">{contactPageContent.hero.titleLine2}</span>
+            <br />
+            {contactPageContent.hero.titleLine3}
+          </motion.h1>
 
-        {/* Purple Glow under text */}
-        <motion.div 
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto"
+          >
+            Ready to transform your business with AI? Let&apos;s discuss your project
+            and explore how we can help you automate and scale.
+          </motion.p>
+        </div>
+
+        {/* Blue Glow */}
+        <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.6, scale: 1 }}
+          animate={{ opacity: 0.4, scale: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] gradient-purple-glow blur-3xl pointer-events-none" 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#0065F8]/20 blur-[150px] rounded-full pointer-events-none"
         />
       </section>
 
-      {/* Contact Form Section */}
+      {/* Main Content - Form and Contact Info */}
       <section className="relative py-16 px-6 z-10">
-        <div className="max-w-4xl mx-auto">
-          <AnimatedSection>
-            <motion.div 
-              className="glass-card rounded-3xl p-8 md:p-12"
-              whileHover={{ boxShadow: "0 0 60px rgba(0, 101, 248, 0.1)" }}
-            >
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name Fields */}
-                <motion.div
-                  className="grid md:grid-cols-2 gap-6"
-                  variants={staggerContainer}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                >
-                  <motion.div variants={fadeInUp}>
-                    <label className="block text-gray-400 text-sm mb-2">{contactPageContent.form.fields.firstName.label}</label>
-                    <input
-                      type="text"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      placeholder={contactPageContent.form.fields.firstName.placeholder}
-                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
-                    />
-                  </motion.div>
-                  <motion.div variants={fadeInUp}>
-                    <label className="block text-gray-400 text-sm mb-2">{contactPageContent.form.fields.lastName.label}</label>
-                    <input
-                      type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      placeholder={contactPageContent.form.fields.lastName.placeholder}
-                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
-                    />
-                  </motion.div>
-                </motion.div>
-
-                {/* Email & Phone */}
-                <motion.div
-                  className="grid md:grid-cols-2 gap-6"
-                  variants={staggerContainer}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                >
-                  <motion.div variants={fadeInUp}>
-                    <label className="block text-gray-400 text-sm mb-2">{contactPageContent.form.fields.email.label}</label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder={contactPageContent.form.fields.email.placeholder}
-                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
-                    />
-                  </motion.div>
-                  <motion.div variants={fadeInUp}>
-                    <label className="block text-gray-400 text-sm mb-2">{contactPageContent.form.fields.phone.label}</label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder={contactPageContent.form.fields.phone.placeholder}
-                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
-                    />
-                  </motion.div>
-                </motion.div>
-
-                {/* Company Name */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <label className="block text-gray-400 text-sm mb-2">{contactPageContent.form.fields.company.label}</label>
-                  <input
-                    type="text"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    placeholder={contactPageContent.form.fields.company.placeholder}
-                    className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
-                  />
-                </motion.div>
-
-                {/* Service Interest */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.15 }}
-                  viewport={{ once: true }}
-                >
-                  <label className="block text-gray-400 text-sm mb-2">{contactPageContent.form.fields.serviceInterest.label}</label>
-                  <select
-                    name="serviceInterest"
-                    value={formData.serviceInterest}
-                    onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 appearance-none cursor-pointer"
-                    style={{
-                      backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                      backgroundPosition: 'right 0.5rem center',
-                      backgroundRepeat: 'no-repeat',
-                      backgroundSize: '1.5em 1.5em',
-                    }}
-                  >
-                    <option value="" className="bg-black">{contactPageContent.form.fields.serviceInterest.placeholder}</option>
-                    {contactPageContent.form.fields.serviceInterest.options.map((option) => (
-                      <option key={option} value={option} className="bg-black">{option}</option>
-                    ))}
-                  </select>
-                </motion.div>
-
-                {/* Call Volume - Conditional (shown when Voice AI is selected) */}
-                {formData.serviceInterest === "Voice AI Agents" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20, height: 0 }}
-                    animate={{ opacity: 1, y: 0, height: "auto" }}
-                    exit={{ opacity: 0, y: -20, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <label className="block text-gray-400 text-sm mb-2">{contactPageContent.form.fields.callVolume.label}</label>
-                    <select
-                      name="callVolume"
-                      value={formData.callVolume}
-                      onChange={handleChange}
-                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 appearance-none cursor-pointer"
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                        backgroundPosition: 'right 0.5rem center',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundSize: '1.5em 1.5em',
-                      }}
-                    >
-                      <option value="" className="bg-black">{contactPageContent.form.fields.callVolume.placeholder}</option>
-                      {contactPageContent.form.fields.callVolume.options.map((option) => (
-                        <option key={option} value={option} className="bg-black">{option}</option>
-                      ))}
-                    </select>
-                  </motion.div>
-                )}
-
-                {/* Timeline */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  <label className="block text-gray-400 text-sm mb-2">{contactPageContent.form.fields.timeline.label}</label>
-                  <select
-                    name="timeline"
-                    value={formData.timeline}
-                    onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 appearance-none cursor-pointer"
-                    style={{
-                      backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                      backgroundPosition: 'right 0.5rem center',
-                      backgroundRepeat: 'no-repeat',
-                      backgroundSize: '1.5em 1.5em',
-                    }}
-                  >
-                    <option value="" className="bg-black">{contactPageContent.form.fields.timeline.placeholder}</option>
-                    {contactPageContent.form.fields.timeline.options.map((option) => (
-                      <option key={option} value={option} className="bg-black">{option}</option>
-                    ))}
-                  </select>
-                </motion.div>
-
-                {/* Message */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.25 }}
-                  viewport={{ once: true }}
-                >
-                  <label className="block text-gray-400 text-sm mb-2">{contactPageContent.form.fields.message.label}</label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder={contactPageContent.form.fields.message.placeholder}
-                    rows={5}
-                    className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600 resize-none"
-                  />
-                </motion.div>
-
-                {/* Submit Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  viewport={{ once: true }}
-                >
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="submit"
-                    className="w-full py-4 bg-[#0065F8] hover:bg-[#3B8BFF] text-white text-sm font-semibold rounded-xl transition-all flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(0,101,248,0.4)]"
-                  >
-                    {contactPageContent.form.submitButton} <ArrowRight className="w-4 h-4" />
-                  </motion.button>
-                </motion.div>
-              </form>
-            </motion.div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Contact Info Section */}
-      <section className="relative py-24 px-6 z-10">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-3 gap-6"
-          >
-            {/* Email Card */}
-            <motion.div
-              variants={fadeInUp}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="glass-card rounded-2xl p-8 text-center"
-            >
-              <motion.div
-                className="w-14 h-14 rounded-xl bg-[#0065F8]/20 flex items-center justify-center mx-auto mb-6"
-                whileHover={{ rotate: 5, scale: 1.1 }}
-              >
-                <Mail className="w-6 h-6 text-[#0065F8]" />
-              </motion.div>
-              <h3 className="text-white font-medium text-lg mb-2">Email Us</h3>
-              <p className="text-gray-500 text-sm mb-4">Send us an email anytime</p>
-              <a
-                href={`mailto:${contactPageContent.info.email}`}
-                className="text-[#0065F8] hover:text-[#3B8BFF] transition-colors"
-              >
-                {contactPageContent.info.email}
-              </a>
-            </motion.div>
+          <div className="grid lg:grid-cols-5 gap-12">
+            {/* Left Side - Contact Info */}
+            <div className="lg:col-span-2 space-y-8">
+              <AnimatedSection>
+                <h2 className="text-2xl md:text-3xl font-medium text-white mb-4">
+                  Let&apos;s build something <span className="text-gradient-blue">amazing</span> together
+                </h2>
+                <p className="text-gray-400 leading-relaxed">
+                  Whether you&apos;re looking to deploy Voice AI agents, automate workflows,
+                  or build custom AI solutions, we&apos;re here to help turn your vision into reality.
+                </p>
+              </AnimatedSection>
 
-            {/* Phone Card */}
-            <motion.div
-              variants={fadeInUp}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="glass-card rounded-2xl p-8 text-center"
-            >
-              <motion.div
-                className="w-14 h-14 rounded-xl bg-[#0065F8]/20 flex items-center justify-center mx-auto mb-6"
-                whileHover={{ rotate: 5, scale: 1.1 }}
-              >
-                <Phone className="w-6 h-6 text-[#0065F8]" />
-              </motion.div>
-              <h3 className="text-white font-medium text-lg mb-2">Call Us</h3>
-              <p className="text-gray-500 text-sm mb-4">Mon-Fri from 9am to 6pm</p>
-              <a
-                href={`tel:${contactPageContent.info.phone.replace(/\s/g, '')}`}
-                className="text-[#0065F8] hover:text-[#3B8BFF] transition-colors"
-              >
-                {contactPageContent.info.phone}
-              </a>
-            </motion.div>
+              {/* Benefits */}
+              <AnimatedSection delay={0.1}>
+                <div className="space-y-4">
+                  {benefits.map((benefit, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="flex items-center gap-3"
+                    >
+                      <CheckCircle className="w-5 h-5 text-[#0065F8] shrink-0" />
+                      <span className="text-gray-300">{benefit}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </AnimatedSection>
 
-            {/* Address Card */}
-            <motion.div
-              variants={fadeInUp}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="glass-card rounded-2xl p-8 text-center"
-            >
-              <motion.div
-                className="w-14 h-14 rounded-xl bg-[#0065F8]/20 flex items-center justify-center mx-auto mb-6"
-                whileHover={{ rotate: 5, scale: 1.1 }}
-              >
-                <MapPin className="w-6 h-6 text-[#0065F8]" />
-              </motion.div>
-              <h3 className="text-white font-medium text-lg mb-2">Visit Us</h3>
-              <p className="text-gray-500 text-sm mb-4">Our office location</p>
-              <span className="text-[#0065F8]">
-                {contactPageContent.info.address}
-              </span>
-            </motion.div>
-          </motion.div>
+              {/* Contact Cards */}
+              <AnimatedSection delay={0.2} className="space-y-4 pt-4">
+                {/* Email */}
+                <motion.a
+                  href={`mailto:${contactPageContent.info.email}`}
+                  className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-[#0065F8]/30 hover:bg-white/[0.07] transition-all group"
+                  whileHover={{ x: 8 }}
+                >
+                  <div className="w-12 h-12 rounded-xl bg-[#0065F8]/10 flex items-center justify-center group-hover:bg-[#0065F8]/20 transition-colors">
+                    <Mail className="w-5 h-5 text-[#0065F8]" />
+                  </div>
+                  <div>
+                    <p className="text-gray-500 text-sm">Email us at</p>
+                    <p className="text-white font-medium group-hover:text-[#3B8BFF] transition-colors">
+                      {contactPageContent.info.email}
+                    </p>
+                  </div>
+                </motion.a>
+
+                {/* Phone */}
+                <motion.a
+                  href={`tel:+917046928404`}
+                  className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-[#0065F8]/30 hover:bg-white/[0.07] transition-all group"
+                  whileHover={{ x: 8 }}
+                >
+                  <div className="w-12 h-12 rounded-xl bg-[#0065F8]/10 flex items-center justify-center group-hover:bg-[#0065F8]/20 transition-colors">
+                    <Phone className="w-5 h-5 text-[#0065F8]" />
+                  </div>
+                  <div>
+                    <p className="text-gray-500 text-sm">Call us at</p>
+                    <p className="text-white font-medium group-hover:text-[#3B8BFF] transition-colors">
+                      {contactPageContent.info.phone}
+                    </p>
+                  </div>
+                </motion.a>
+
+                {/* Location */}
+                <motion.div
+                  className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/5"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-[#0065F8]/10 flex items-center justify-center shrink-0">
+                    <MapPin className="w-5 h-5 text-[#0065F8]" />
+                  </div>
+                  <div>
+                    <p className="text-gray-500 text-sm">Our office</p>
+                    <p className="text-white font-medium leading-relaxed">
+                      {contactPageContent.info.address}
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Working Hours */}
+                <motion.div
+                  className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/5"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-[#0065F8]/10 flex items-center justify-center">
+                    <Clock className="w-5 h-5 text-[#0065F8]" />
+                  </div>
+                  <div>
+                    <p className="text-gray-500 text-sm">Working hours</p>
+                    <p className="text-white font-medium">Mon - Sat, 10:00 AM - 7:00 PM IST</p>
+                  </div>
+                </motion.div>
+              </AnimatedSection>
+            </div>
+
+            {/* Right Side - Form */}
+            <div className="lg:col-span-3">
+              <AnimatedSection>
+                <motion.div
+                  className="glass-card rounded-3xl p-8 md:p-10 border border-white/10"
+                  whileHover={{ boxShadow: "0 0 60px rgba(0, 101, 248, 0.1)" }}
+                >
+                  {isSubmitted ? (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="text-center py-16"
+                    >
+                      <div className="w-20 h-20 rounded-full bg-[#0065F8]/20 flex items-center justify-center mx-auto mb-6">
+                        <CheckCircle className="w-10 h-10 text-[#0065F8]" />
+                      </div>
+                      <h3 className="text-2xl font-semibold text-white mb-3">Thank you!</h3>
+                      <p className="text-gray-400 max-w-md mx-auto">
+                        Your message has been received. We&apos;ll get back to you within 24 hours.
+                      </p>
+                    </motion.div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      {/* Name Fields */}
+                      <div className="grid md:grid-cols-2 gap-5">
+                        <div>
+                          <label className="block text-gray-400 text-sm mb-2">
+                            {contactPageContent.form.fields.firstName.label}
+                          </label>
+                          <input
+                            type="text"
+                            name="firstName"
+                            value={formData.firstName}
+                            onChange={handleChange}
+                            required
+                            placeholder={contactPageContent.form.fields.firstName.placeholder}
+                            className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-gray-400 text-sm mb-2">
+                            {contactPageContent.form.fields.lastName.label}
+                          </label>
+                          <input
+                            type="text"
+                            name="lastName"
+                            value={formData.lastName}
+                            onChange={handleChange}
+                            required
+                            placeholder={contactPageContent.form.fields.lastName.placeholder}
+                            className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Email & Phone */}
+                      <div className="grid md:grid-cols-2 gap-5">
+                        <div>
+                          <label className="block text-gray-400 text-sm mb-2">
+                            {contactPageContent.form.fields.email.label}
+                          </label>
+                          <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            placeholder={contactPageContent.form.fields.email.placeholder}
+                            className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-gray-400 text-sm mb-2">
+                            {contactPageContent.form.fields.phone.label}
+                          </label>
+                          <input
+                            type="tel"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            placeholder={contactPageContent.form.fields.phone.placeholder}
+                            className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Company Name */}
+                      <div>
+                        <label className="block text-gray-400 text-sm mb-2">
+                          {contactPageContent.form.fields.company.label}
+                        </label>
+                        <input
+                          type="text"
+                          name="company"
+                          value={formData.company}
+                          onChange={handleChange}
+                          placeholder={contactPageContent.form.fields.company.placeholder}
+                          className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
+                        />
+                      </div>
+
+                      {/* Service Interest */}
+                      <div>
+                        <label className="block text-gray-400 text-sm mb-2">
+                          {contactPageContent.form.fields.serviceInterest.label}
+                        </label>
+                        <select
+                          name="serviceInterest"
+                          value={formData.serviceInterest}
+                          onChange={handleChange}
+                          required
+                          className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 appearance-none cursor-pointer"
+                          style={{
+                            backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                            backgroundPosition: 'right 0.75rem center',
+                            backgroundRepeat: 'no-repeat',
+                            backgroundSize: '1.5em 1.5em',
+                          }}
+                        >
+                          <option value="" className="bg-[#0a0a0a]">
+                            {contactPageContent.form.fields.serviceInterest.placeholder}
+                          </option>
+                          {contactPageContent.form.fields.serviceInterest.options.map((option) => (
+                            <option key={option} value={option} className="bg-[#0a0a0a]">
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      {/* Call Volume - Conditional */}
+                      {formData.serviceInterest === "Voice AI Agents" && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <label className="block text-gray-400 text-sm mb-2">
+                            {contactPageContent.form.fields.callVolume.label}
+                          </label>
+                          <select
+                            name="callVolume"
+                            value={formData.callVolume}
+                            onChange={handleChange}
+                            className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 appearance-none cursor-pointer"
+                            style={{
+                              backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                              backgroundPosition: 'right 0.75rem center',
+                              backgroundRepeat: 'no-repeat',
+                              backgroundSize: '1.5em 1.5em',
+                            }}
+                          >
+                            <option value="" className="bg-[#0a0a0a]">
+                              {contactPageContent.form.fields.callVolume.placeholder}
+                            </option>
+                            {contactPageContent.form.fields.callVolume.options.map((option) => (
+                              <option key={option} value={option} className="bg-[#0a0a0a]">
+                                {option}
+                              </option>
+                            ))}
+                          </select>
+                        </motion.div>
+                      )}
+
+                      {/* Message */}
+                      <div>
+                        <label className="block text-gray-400 text-sm mb-2">
+                          {contactPageContent.form.fields.message.label}
+                        </label>
+                        <textarea
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          required
+                          placeholder={contactPageContent.form.fields.message.placeholder}
+                          rows={4}
+                          className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600 resize-none"
+                        />
+                      </div>
+
+                      {/* Submit Button */}
+                      <motion.button
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full py-4 bg-[#0065F8] hover:bg-[#3B8BFF] text-white text-sm font-semibold rounded-xl transition-all flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(0,101,248,0.4)] disabled:opacity-70 disabled:cursor-not-allowed"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            {contactPageContent.form.submitButton} <ArrowRight className="w-4 h-4" />
+                          </>
+                        )}
+                      </motion.button>
+                    </form>
+                  )}
+                </motion.div>
+              </AnimatedSection>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="footer-gradient border-t border-white/5 pt-20 pb-10 px-6 relative z-10">
-        <div className="max-w-7xl mx-auto">
-          {/* Top Section */}
-          <div className="flex flex-col md:flex-row justify-between gap-12 mb-16">
-            {/* Brand */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="max-w-xs"
-            >
-              <Link href="/" className="flex items-center mb-6">
-                <Image
-                  src={siteConfig.logo}
-                  alt={siteConfig.name}
-                  width={200}
-                  height={26}
-                  className="h-7 w-auto"
-                />
-              </Link>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                {siteConfig.footerDesc}
-              </p>
-            </motion.div>
-
-            {/* Links Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-12">
-              {/* Pages */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-                <h4 className="text-white font-medium text-sm mb-6 uppercase tracking-wider">Pages</h4>
-                <ul className="space-y-4">
-                  {footerLinks.templatePages.map((link) => (
-                    <li key={link.name}>
-                      <Link
-                        href={link.link}
-                        className="text-gray-500 hover:text-white text-sm transition-colors"
-                      >
-                        {link.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-
-              {/* Social */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <h4 className="text-white font-medium text-sm mb-6 uppercase tracking-wider">Social</h4>
-                <ul className="space-y-4">
-                  {footerLinks.social.map((link) => (
-                    <li key={link.name}>
-                      <a
-                        href={link.link}
-                        className="text-gray-500 hover:text-white text-sm transition-colors"
-                      >
-                        {link.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-
-              {/* Subscribe */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                viewport={{ once: true }}
-              >
-                <h4 className="text-white font-medium text-sm mb-6 uppercase tracking-wider">Subscribe</h4>
-                <form className="space-y-3">
-                  <input
-                    type="email"
-                    placeholder="Your email"
-                    className="w-full bg-white/5 border border-white/10 text-white rounded-lg px-4 py-3 text-sm outline-none focus:border-[#0065F8] transition-colors placeholder:text-gray-600"
-                  />
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="submit"
-                    className="w-full py-3 bg-[#0065F8] hover:bg-[#3B8BFF] text-white text-sm font-semibold rounded-lg transition-colors"
-                  >
-                    Subscribe
-                  </motion.button>
-                </form>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Bottom Section */}
-          <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-600 text-sm">{siteConfig.copyright}</p>
-            <div className="flex gap-6">
-              {footerLinks.legal.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.link}
-                  className="text-gray-600 hover:text-gray-400 text-sm transition-colors"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

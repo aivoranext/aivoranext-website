@@ -28,6 +28,7 @@ import {
   siteConfig,
 } from "@/lib/content";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 // Animation variants
 const fadeInUp = {
@@ -530,26 +531,7 @@ export default function AIHiringPage() {
         />
       </section>
 
-      {/* Simple Footer */}
-      <footer className="footer-gradient border-t border-white/5 py-12 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            {/* Logo */}
-            <Link href="/" className="flex items-center">
-              <Image
-                src={siteConfig.logo}
-                alt={siteConfig.name}
-                width={160}
-                height={22}
-                className="h-6 w-auto"
-              />
-            </Link>
-
-            {/* Copyright */}
-            <p className="text-gray-600 text-sm">{siteConfig.copyright}</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }
