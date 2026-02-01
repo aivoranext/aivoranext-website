@@ -218,7 +218,7 @@ export default function CustomSoftwarePage() {
                 {item.dropdown ? (
                   <div className="relative">
                     <button className={`text-sm font-medium nav-link transition-colors flex items-center gap-1 ${
-                      item.name === "Services" ? "text-[#0065F8]" : "text-gray-400 hover:text-white"
+                      item.name === "Services" ? "text-[#00D9FF]" : "text-gray-400 hover:text-white"
                     }`}>
                       {item.name}
                       <ChevronDown className="w-4 h-4" />
@@ -241,7 +241,7 @@ export default function CustomSoftwarePage() {
                   <Link
                     href={item.link}
                     className={`text-sm font-medium nav-link transition-colors ${
-                      item.name === "Services" ? "text-[#0065F8]" : "text-gray-400 hover:text-white"
+                      item.name === "Services" ? "text-[#00D9FF]" : "text-gray-400 hover:text-white"
                     }`}
                   >
                     {item.name}
@@ -259,7 +259,7 @@ export default function CustomSoftwarePage() {
           >
             <Link
               href="/contact"
-              className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-[#0065F8] hover:bg-[#3B8BFF] text-white text-sm font-semibold rounded-lg transition-all hover:shadow-[0_0_30px_rgba(0,101,248,0.4)]"
+              className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-[#00D9FF] hover:bg-[#4DE8FF] text-white text-sm font-semibold rounded-lg transition-all hover:shadow-[0_0_30px_rgba(0,217,255,0.4)]"
             >
               Get In Touch
             </Link>
@@ -295,7 +295,7 @@ export default function CustomSoftwarePage() {
                 {item.dropdown ? (
                   <div className="space-y-4">
                     <span className={`block text-lg font-medium ${
-                      item.name === "Services" ? "text-[#0065F8]" : "text-white"
+                      item.name === "Services" ? "text-[#00D9FF]" : "text-white"
                     }`}>
                       {item.name}
                     </span>
@@ -305,7 +305,7 @@ export default function CustomSoftwarePage() {
                           key={subItem.name}
                           href={subItem.link}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="block text-gray-400 text-base hover:text-[#0065F8] transition-colors"
+                          className="block text-gray-400 text-base hover:text-[#00D9FF] transition-colors"
                         >
                           {subItem.name}
                         </Link>
@@ -317,7 +317,7 @@ export default function CustomSoftwarePage() {
                     href={item.link}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`block text-lg font-medium transition-colors ${
-                      item.name === "Services" ? "text-[#0065F8]" : "text-white hover:text-[#0065F8]"
+                      item.name === "Services" ? "text-[#00D9FF]" : "text-white hover:text-[#00D9FF]"
                     }`}
                   >
                     {item.name}
@@ -328,7 +328,7 @@ export default function CustomSoftwarePage() {
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#0065F8] text-white text-sm font-semibold rounded-lg"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D9FF] text-white text-sm font-semibold rounded-lg"
             >
               Get In Touch
             </Link>
@@ -352,7 +352,7 @@ export default function CustomSoftwarePage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="badge-pill flex items-center gap-2 pl-1.5 pr-4 py-1.5 rounded-full mb-10"
           >
-            <span className="bg-[#0065F8] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+            <span className="bg-[#00D9FF] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
               Custom AI Software
             </span>
             <span className="text-white/80 text-sm font-medium">Built For Your Business</span>
@@ -419,7 +419,7 @@ export default function CustomSoftwarePage() {
       <section id="what-we-build" className="relative py-24 px-6 section-gradient">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-16">
-            <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+            <p className="text-[#00D9FF] text-sm uppercase tracking-[0.2em] mb-4">
               What We Build
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4">
@@ -446,9 +446,9 @@ export default function CustomSoftwarePage() {
                 className="glass-card rounded-2xl p-6 group"
               >
                 <div className="icon-container w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-                  <item.icon className="w-6 h-6 text-[#0065F8]" />
+                  <item.icon className="w-6 h-6 text-[#00D9FF]" />
                 </div>
-                <h3 className="text-xl font-medium text-white mb-2 group-hover:text-[#3B8BFF] transition-colors">
+                <h3 className="text-xl font-medium text-white mb-2 group-hover:text-[#4DE8FF] transition-colors">
                   {item.title}
                 </h3>
                 <p className="text-gray-400 text-sm leading-relaxed mb-4">
@@ -457,7 +457,7 @@ export default function CustomSoftwarePage() {
                 <div className="space-y-2">
                   {item.features.map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-[#0065F8] shrink-0" />
+                      <Check className="w-4 h-4 text-[#00D9FF] shrink-0" />
                       <span className="text-gray-300 text-sm">{feature}</span>
                     </div>
                   ))}
@@ -472,7 +472,7 @@ export default function CustomSoftwarePage() {
       <section className="relative py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-16">
-            <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+            <p className="text-[#00D9FF] text-sm uppercase tracking-[0.2em] mb-4">
               Technology Stack
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4">
@@ -489,14 +489,14 @@ export default function CustomSoftwarePage() {
             <AnimatedSection delay={0.1}>
               <div className="glass-card rounded-2xl p-6">
                 <h3 className="text-lg font-medium text-white mb-6 flex items-center gap-2">
-                  <Brain className="w-5 h-5 text-[#0065F8]" />
+                  <Brain className="w-5 h-5 text-[#00D9FF]" />
                   {technologyStack.llms.title}
                 </h3>
                 <div className="space-y-3">
                   {technologyStack.llms.items.map((item, index) => (
                     <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
                       <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
-                        <Cpu className="w-4 h-4 text-[#0065F8]" />
+                        <Cpu className="w-4 h-4 text-[#00D9FF]" />
                       </div>
                       <span className="text-gray-300 text-sm font-medium">{item}</span>
                     </div>
@@ -509,14 +509,14 @@ export default function CustomSoftwarePage() {
             <AnimatedSection delay={0.2}>
               <div className="glass-card rounded-2xl p-6">
                 <h3 className="text-lg font-medium text-white mb-6 flex items-center gap-2">
-                  <Layers className="w-5 h-5 text-[#0065F8]" />
+                  <Layers className="w-5 h-5 text-[#00D9FF]" />
                   {technologyStack.frameworks.title}
                 </h3>
                 <div className="space-y-3">
                   {technologyStack.frameworks.items.map((item, index) => (
                     <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
                       <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
-                        <Box className="w-4 h-4 text-[#0065F8]" />
+                        <Box className="w-4 h-4 text-[#00D9FF]" />
                       </div>
                       <span className="text-gray-300 text-sm font-medium">{item}</span>
                     </div>
@@ -529,14 +529,14 @@ export default function CustomSoftwarePage() {
             <AnimatedSection delay={0.3}>
               <div className="glass-card rounded-2xl p-6">
                 <h3 className="text-lg font-medium text-white mb-6 flex items-center gap-2">
-                  <Database className="w-5 h-5 text-[#0065F8]" />
+                  <Database className="w-5 h-5 text-[#00D9FF]" />
                   {technologyStack.vectorDbs.title}
                 </h3>
                 <div className="space-y-3">
                   {technologyStack.vectorDbs.items.map((item, index) => (
                     <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
                       <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
-                        <Database className="w-4 h-4 text-[#0065F8]" />
+                        <Database className="w-4 h-4 text-[#00D9FF]" />
                       </div>
                       <span className="text-gray-300 text-sm font-medium">{item}</span>
                     </div>
@@ -549,14 +549,14 @@ export default function CustomSoftwarePage() {
             <AnimatedSection delay={0.4}>
               <div className="glass-card rounded-2xl p-6">
                 <h3 className="text-lg font-medium text-white mb-6 flex items-center gap-2">
-                  <Cloud className="w-5 h-5 text-[#0065F8]" />
+                  <Cloud className="w-5 h-5 text-[#00D9FF]" />
                   {technologyStack.cloud.title}
                 </h3>
                 <div className="space-y-3">
                   {technologyStack.cloud.items.map((item, index) => (
                     <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
                       <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
-                        <Cloud className="w-4 h-4 text-[#0065F8]" />
+                        <Cloud className="w-4 h-4 text-[#00D9FF]" />
                       </div>
                       <span className="text-gray-300 text-sm font-medium">{item}</span>
                     </div>
@@ -572,7 +572,7 @@ export default function CustomSoftwarePage() {
       <section className="relative py-24 px-6 section-gradient">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-16">
-            <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+            <p className="text-[#00D9FF] text-sm uppercase tracking-[0.2em] mb-4">
               Our Process
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4">
@@ -598,14 +598,14 @@ export default function CustomSoftwarePage() {
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
                 className="glass-card rounded-2xl p-6 group relative overflow-hidden"
               >
-                <div className="absolute top-4 right-4 text-5xl font-bold text-white/5 group-hover:text-[#0065F8]/10 transition-colors">
+                <div className="absolute top-4 right-4 text-5xl font-bold text-white/5 group-hover:text-[#00D9FF]/10 transition-colors">
                   {step.step}
                 </div>
                 <div className="relative z-10">
                   <div className="icon-container w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-                    <step.icon className="w-6 h-6 text-[#0065F8]" />
+                    <step.icon className="w-6 h-6 text-[#00D9FF]" />
                   </div>
-                  <h3 className="text-xl font-medium text-white mb-2 group-hover:text-[#3B8BFF] transition-colors">
+                  <h3 className="text-xl font-medium text-white mb-2 group-hover:text-[#4DE8FF] transition-colors">
                     {step.title}
                   </h3>
                   <p className="text-gray-400 text-sm leading-relaxed">
@@ -621,7 +621,7 @@ export default function CustomSoftwarePage() {
       {/* CTA Section */}
       <section className="relative py-32 px-6">
         <AnimatedSection className="max-w-4xl mx-auto text-center relative z-10">
-          <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-6">
+          <p className="text-[#00D9FF] text-sm uppercase tracking-[0.2em] mb-6">
             Get Started
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 leading-tight">

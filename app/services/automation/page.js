@@ -248,7 +248,7 @@ export default function AutomationPage() {
                 {item.dropdown ? (
                   <div className="relative">
                     <button className={`text-sm font-medium nav-link transition-colors flex items-center gap-1 ${
-                      item.name === "Services" ? "text-[#0065F8]" : "text-gray-400 hover:text-white"
+                      item.name === "Services" ? "text-[#00D9FF]" : "text-gray-400 hover:text-white"
                     }`}>
                       {item.name}
                       <ChevronDown className="w-4 h-4" />
@@ -271,7 +271,7 @@ export default function AutomationPage() {
                   <Link
                     href={item.link}
                     className={`text-sm font-medium nav-link transition-colors ${
-                      item.name === "Services" ? "text-[#0065F8]" : "text-gray-400 hover:text-white"
+                      item.name === "Services" ? "text-[#00D9FF]" : "text-gray-400 hover:text-white"
                     }`}
                   >
                     {item.name}
@@ -289,7 +289,7 @@ export default function AutomationPage() {
           >
             <Link
               href="/contact"
-              className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-[#0065F8] hover:bg-[#3B8BFF] text-white text-sm font-semibold rounded-lg transition-all hover:shadow-[0_0_30px_rgba(0,101,248,0.4)]"
+              className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-[#00D9FF] hover:bg-[#4DE8FF] text-white text-sm font-semibold rounded-lg transition-all hover:shadow-[0_0_30px_rgba(0,217,255,0.4)]"
             >
               Get In Touch
             </Link>
@@ -325,7 +325,7 @@ export default function AutomationPage() {
                 {item.dropdown ? (
                   <div className="space-y-4">
                     <span className={`block text-lg font-medium ${
-                      item.name === "Services" ? "text-[#0065F8]" : "text-white"
+                      item.name === "Services" ? "text-[#00D9FF]" : "text-white"
                     }`}>
                       {item.name}
                     </span>
@@ -335,7 +335,7 @@ export default function AutomationPage() {
                           key={subItem.name}
                           href={subItem.link}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="block text-gray-400 text-base hover:text-[#0065F8] transition-colors"
+                          className="block text-gray-400 text-base hover:text-[#00D9FF] transition-colors"
                         >
                           {subItem.name}
                         </Link>
@@ -347,7 +347,7 @@ export default function AutomationPage() {
                     href={item.link}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`block text-lg font-medium transition-colors ${
-                      item.name === "Services" ? "text-[#0065F8]" : "text-white hover:text-[#0065F8]"
+                      item.name === "Services" ? "text-[#00D9FF]" : "text-white hover:text-[#00D9FF]"
                     }`}
                   >
                     {item.name}
@@ -358,7 +358,7 @@ export default function AutomationPage() {
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#0065F8] text-white text-sm font-semibold rounded-lg"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D9FF] text-white text-sm font-semibold rounded-lg"
             >
               Get In Touch
             </Link>
@@ -382,7 +382,7 @@ export default function AutomationPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="badge-pill flex items-center gap-2 pl-1.5 pr-4 py-1.5 rounded-full mb-10"
           >
-            <span className="bg-[#0065F8] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+            <span className="bg-[#00D9FF] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
               Workflow Automation
             </span>
             <span className="text-white/80 text-sm font-medium">85% Cost Reduction</span>
@@ -450,7 +450,7 @@ export default function AutomationPage() {
       <section id="what-we-automate" className="relative py-24 px-6 section-gradient">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-16">
-            <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+            <p className="text-[#00D9FF] text-sm uppercase tracking-[0.2em] mb-4">
               What We Automate
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4">
@@ -477,9 +477,9 @@ export default function AutomationPage() {
                 className="glass-card rounded-2xl p-6 group"
               >
                 <div className="icon-container w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-                  <category.icon className="w-6 h-6 text-[#0065F8]" />
+                  <category.icon className="w-6 h-6 text-[#00D9FF]" />
                 </div>
-                <h3 className="text-xl font-medium text-white mb-2 group-hover:text-[#3B8BFF] transition-colors">
+                <h3 className="text-xl font-medium text-white mb-2 group-hover:text-[#4DE8FF] transition-colors">
                   {category.title}
                 </h3>
                 <p className="text-gray-400 text-sm leading-relaxed mb-4">
@@ -488,7 +488,7 @@ export default function AutomationPage() {
                 <div className="space-y-2">
                   {category.features.map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-[#0065F8] shrink-0" />
+                      <Check className="w-4 h-4 text-[#00D9FF] shrink-0" />
                       <span className="text-gray-300 text-sm">{feature}</span>
                     </div>
                   ))}
@@ -503,7 +503,7 @@ export default function AutomationPage() {
       <section className="relative py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-16">
-            <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+            <p className="text-[#00D9FF] text-sm uppercase tracking-[0.2em] mb-4">
               Results That Matter
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4">
@@ -530,12 +530,12 @@ export default function AutomationPage() {
                 className="glass-card rounded-2xl p-6 group text-center"
               >
                 <div className="icon-container w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <benefit.icon className="w-7 h-7 text-[#0065F8]" />
+                  <benefit.icon className="w-7 h-7 text-[#00D9FF]" />
                 </div>
                 <div className="text-4xl font-bold text-gradient-blue mb-2">
                   {benefit.metric}
                 </div>
-                <h3 className="text-lg font-medium text-white mb-2 group-hover:text-[#3B8BFF] transition-colors">
+                <h3 className="text-lg font-medium text-white mb-2 group-hover:text-[#4DE8FF] transition-colors">
                   {benefit.title}
                 </h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
@@ -551,7 +551,7 @@ export default function AutomationPage() {
       <section className="relative py-24 px-6 section-gradient">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-16">
-            <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+            <p className="text-[#00D9FF] text-sm uppercase tracking-[0.2em] mb-4">
               How It Works
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4">
@@ -577,14 +577,14 @@ export default function AutomationPage() {
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
                 className="glass-card rounded-2xl p-6 group relative overflow-hidden"
               >
-                <div className="absolute top-4 right-4 text-5xl font-bold text-white/5 group-hover:text-[#0065F8]/10 transition-colors">
+                <div className="absolute top-4 right-4 text-5xl font-bold text-white/5 group-hover:text-[#00D9FF]/10 transition-colors">
                   {step.step}
                 </div>
                 <div className="relative z-10">
                   <div className="icon-container w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-                    <step.icon className="w-6 h-6 text-[#0065F8]" />
+                    <step.icon className="w-6 h-6 text-[#00D9FF]" />
                   </div>
-                  <h3 className="text-xl font-medium text-white mb-2 group-hover:text-[#3B8BFF] transition-colors">
+                  <h3 className="text-xl font-medium text-white mb-2 group-hover:text-[#4DE8FF] transition-colors">
                     {step.title}
                   </h3>
                   <p className="text-gray-400 text-sm leading-relaxed">
@@ -601,7 +601,7 @@ export default function AutomationPage() {
       <section className="relative py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-16">
-            <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+            <p className="text-[#00D9FF] text-sm uppercase tracking-[0.2em] mb-4">
               Integrations
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4">
@@ -618,14 +618,14 @@ export default function AutomationPage() {
             <AnimatedSection delay={0.1}>
               <div className="glass-card rounded-2xl p-6">
                 <h3 className="text-lg font-medium text-white mb-6 flex items-center gap-2">
-                  <RefreshCw className="w-5 h-5 text-[#0065F8]" />
+                  <RefreshCw className="w-5 h-5 text-[#00D9FF]" />
                   Automation Tools
                 </h3>
                 <div className="space-y-4">
                   {integrationPartners.tools.map((partner, index) => (
                     <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
                       <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
-                        <partner.icon className="w-5 h-5 text-[#0065F8]" />
+                        <partner.icon className="w-5 h-5 text-[#00D9FF]" />
                       </div>
                       <span className="text-gray-300 font-medium">{partner.name}</span>
                     </div>
@@ -638,14 +638,14 @@ export default function AutomationPage() {
             <AnimatedSection delay={0.2}>
               <div className="glass-card rounded-2xl p-6">
                 <h3 className="text-lg font-medium text-white mb-6 flex items-center gap-2">
-                  <Database className="w-5 h-5 text-[#0065F8]" />
+                  <Database className="w-5 h-5 text-[#00D9FF]" />
                   CRM Systems
                 </h3>
                 <div className="space-y-4">
                   {integrationPartners.crm.map((partner, index) => (
                     <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
                       <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
-                        <partner.icon className="w-5 h-5 text-[#0065F8]" />
+                        <partner.icon className="w-5 h-5 text-[#00D9FF]" />
                       </div>
                       <span className="text-gray-300 font-medium">{partner.name}</span>
                     </div>
@@ -658,14 +658,14 @@ export default function AutomationPage() {
             <AnimatedSection delay={0.3}>
               <div className="glass-card rounded-2xl p-6">
                 <h3 className="text-lg font-medium text-white mb-6 flex items-center gap-2">
-                  <FileSpreadsheet className="w-5 h-5 text-[#0065F8]" />
+                  <FileSpreadsheet className="w-5 h-5 text-[#00D9FF]" />
                   Documents
                 </h3>
                 <div className="space-y-4">
                   {integrationPartners.documents.map((partner, index) => (
                     <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
                       <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
-                        <partner.icon className="w-5 h-5 text-[#0065F8]" />
+                        <partner.icon className="w-5 h-5 text-[#00D9FF]" />
                       </div>
                       <span className="text-gray-300 font-medium">{partner.name}</span>
                     </div>
@@ -678,14 +678,14 @@ export default function AutomationPage() {
             <AnimatedSection delay={0.4}>
               <div className="glass-card rounded-2xl p-6">
                 <h3 className="text-lg font-medium text-white mb-6 flex items-center gap-2">
-                  <Cloud className="w-5 h-5 text-[#0065F8]" />
+                  <Cloud className="w-5 h-5 text-[#00D9FF]" />
                   Cloud Storage
                 </h3>
                 <div className="space-y-4">
                   {integrationPartners.storage.map((partner, index) => (
                     <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
                       <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
-                        <partner.icon className="w-5 h-5 text-[#0065F8]" />
+                        <partner.icon className="w-5 h-5 text-[#00D9FF]" />
                       </div>
                       <span className="text-gray-300 font-medium">{partner.name}</span>
                     </div>
@@ -700,7 +700,7 @@ export default function AutomationPage() {
       {/* CTA Section */}
       <section className="relative py-32 px-6">
         <AnimatedSection className="max-w-4xl mx-auto text-center relative z-10">
-          <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-6">
+          <p className="text-[#00D9FF] text-sm uppercase tracking-[0.2em] mb-6">
             Get Started
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 leading-tight">
