@@ -366,59 +366,59 @@ export default function CaseStudyPage() {
       </section>
 
       {/* Navigation to other case studies */}
-      <section className="relative py-10 px-6 border-t border-white/5">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Previous */}
-            {prevProject ? (
-              <Link
-                href={`/portfolio/${prevProject.slug}`}
-                className="group glass-card rounded-2xl p-6 border border-white/5 hover:border-[#0065F8]/30 transition-all"
-              >
-                <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
-                  <ArrowLeft className="w-4 h-4" />
-                  <span>Previous Case Study</span>
-                </div>
-                <h3 className="text-xl text-white font-medium group-hover:text-[#3B8BFF] transition-colors">
-                  {prevProject.title}
-                </h3>
-              </Link>
-            ) : (
-              <div />
-            )}
+      {(prevProject || nextProject) && (
+        <section className="relative py-8 px-6 border-t border-white/5">
+          <div className="max-w-7xl mx-auto">
+            <div className={`flex ${prevProject && nextProject ? 'justify-between' : prevProject ? 'justify-start' : 'justify-end'} gap-6`}>
+              {/* Previous */}
+              {prevProject && (
+                <Link
+                  href={`/portfolio/${prevProject.slug}`}
+                  className="group glass-card rounded-2xl p-5 border border-white/5 hover:border-[#0065F8]/30 transition-all flex-1 max-w-md"
+                >
+                  <div className="flex items-center gap-2 text-gray-500 text-sm mb-1">
+                    <ArrowLeft className="w-4 h-4" />
+                    <span>Previous Case Study</span>
+                  </div>
+                  <h3 className="text-lg text-white font-medium group-hover:text-[#3B8BFF] transition-colors">
+                    {prevProject.title}
+                  </h3>
+                </Link>
+              )}
 
-            {/* Next */}
-            {nextProject && (
-              <Link
-                href={`/portfolio/${nextProject.slug}`}
-                className="group glass-card rounded-2xl p-6 border border-white/5 hover:border-[#0065F8]/30 transition-all text-right"
-              >
-                <div className="flex items-center justify-end gap-2 text-gray-500 text-sm mb-2">
-                  <span>Next Case Study</span>
-                  <ArrowRight className="w-4 h-4" />
-                </div>
-                <h3 className="text-xl text-white font-medium group-hover:text-[#3B8BFF] transition-colors">
-                  {nextProject.title}
-                </h3>
-              </Link>
-            )}
+              {/* Next */}
+              {nextProject && (
+                <Link
+                  href={`/portfolio/${nextProject.slug}`}
+                  className="group glass-card rounded-2xl p-5 border border-white/5 hover:border-[#0065F8]/30 transition-all text-right flex-1 max-w-md"
+                >
+                  <div className="flex items-center justify-end gap-2 text-gray-500 text-sm mb-1">
+                    <span>Next Case Study</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                  <h3 className="text-lg text-white font-medium group-hover:text-[#3B8BFF] transition-colors">
+                    {nextProject.title}
+                  </h3>
+                </Link>
+              )}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* CTA Section */}
-      <section className="relative py-20 px-6">
+      <section className="relative py-16 px-6">
         <AnimatedSection className="max-w-4xl mx-auto text-center relative z-10">
-          <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-6">
+          <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
             {ctaSection.caption}
           </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-2 leading-tight">
             {ctaSection.title1}
           </h2>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-gradient-blue mb-8 leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-gradient-blue mb-6 leading-tight">
             {ctaSection.title2}
           </h2>
-          <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
+          <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
             {ctaSection.description}
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
