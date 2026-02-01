@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -22,8 +22,8 @@ import {
 // Animation variants
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
   }
@@ -44,7 +44,7 @@ const staggerContainer = {
 function AnimatedSection({ children, className, delay = 0 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
+
   return (
     <motion.div
       ref={ref}
@@ -58,17 +58,90 @@ function AnimatedSection({ children, className, delay = 0 }) {
   );
 }
 
+// Project Card Component
+function ProjectCard({ project, index, featured = false }) {
+  return (
+    <motion.div
+      variants={fadeInUp}
+      className={`group glass-card rounded-3xl overflow-hidden ${featured ? 'md:col-span-2' : ''}`}
+    >
+      {/* Project Image */}
+      <div className={`relative overflow-hidden ${featured ? 'h-[400px] md:h-[500px]' : 'h-[280px] md:h-[320px]'}`}>
+        <Image
+          src={project.imageUrl}
+          alt={project.title}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+        {/* Year Badge */}
+        <div className="absolute top-6 left-6">
+          <span className="inline-block px-4 py-2 bg-[#0065F8] text-white text-xs font-bold rounded-full">
+            {project.year}
+          </span>
+        </div>
+
+        {/* Link Button */}
+        <motion.div
+          className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors"
+          >
+            <ArrowUpRight className="w-5 h-5 text-white" />
+          </a>
+        </motion.div>
+
+        {/* Content Overlay */}
+        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.tags.map((tag, tagIndex) => (
+              <span
+                key={tagIndex}
+                className="px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-white backdrop-blur-sm border border-white/10"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Title */}
+          <h3 className={`font-semibold text-white mb-3 group-hover:text-[#3B8BFF] transition-colors ${featured ? 'text-2xl md:text-3xl' : 'text-xl md:text-2xl'}`}>
+            {project.title}
+          </h3>
+
+          {/* Description */}
+          <p className={`text-gray-300 leading-relaxed mb-4 ${featured ? 'text-base md:text-lg max-w-2xl' : 'text-sm line-clamp-2'}`}>
+            {project.description}
+          </p>
+
+          {/* View Case Study Link */}
+          <Link
+            href={project.link}
+            className="inline-flex items-center gap-2 text-[#3B8BFF] font-medium text-sm hover:text-[#0065F8] transition-colors"
+          >
+            View Case Study
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function PortfolioPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-  
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const heroY = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
+
+  // Separate featured project (first one) from rest
+  const featuredProject = portfolioPageContent.projects[0];
+  const remainingProjects = portfolioPageContent.projects.slice(1);
 
   return (
     <main className="relative min-h-screen bg-black overflow-hidden">
@@ -76,7 +149,7 @@ export default function PortfolioPage() {
       <div className="fixed top-0 left-0 w-full h-[800px] spotlight pointer-events-none z-0" />
 
       {/* Navigation */}
-      <motion.header 
+      <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -223,21 +296,15 @@ export default function PortfolioPage() {
         </motion.div>
       </motion.header>
 
-      {/* Hero Section */}
-      <section 
-        ref={heroRef}
-        className="relative min-h-[70vh] flex flex-col items-center justify-center pt-32 pb-20 px-6"
-      >
-        <motion.div
-          style={{ opacity: heroOpacity, y: heroY }}
-          className="flex flex-col items-center"
-        >
+      {/* Hero Section - Clean and Simple */}
+      <section className="relative pt-40 pb-20 px-6">
+        <div className="max-w-7xl mx-auto text-center">
           {/* Badge */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="badge-pill flex items-center gap-3 px-5 py-3 rounded-full mb-12 animate-float"
+            className="badge-pill inline-flex items-center gap-3 px-5 py-3 rounded-full mb-8"
           >
             <span className="bg-[#0065F8] text-white text-xs font-bold px-3 py-1 rounded-full">
               {portfolioPageContent.hero.year}
@@ -245,128 +312,70 @@ export default function PortfolioPage() {
             <span className="text-white text-sm font-medium">{portfolioPageContent.hero.badge}</span>
           </motion.div>
 
-          {/* Main Headline with Reflection */}
-          <div className="text-center relative max-w-5xl mx-auto">
-            <motion.h1 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl md:text-7xl lg:text-8xl font-light text-white tracking-tight leading-[1.1] mb-4"
-            >
-              {portfolioPageContent.hero.titleLine1}
-            </motion.h1>
-            <motion.h2 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl md:text-7xl lg:text-8xl font-light text-gradient-purple tracking-tight leading-[1.1] mb-4"
-            >
-              <em>{portfolioPageContent.hero.titleLine2}</em>
-            </motion.h2>
-            <motion.h2 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight leading-[1.1] text-reflection"
-              data-text={portfolioPageContent.hero.titleLine3}
-              style={{
-                background: 'linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%)',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                color: 'transparent',
-              }}
-            >
-              <em>{portfolioPageContent.hero.titleLine3}</em>
-            </motion.h2>
-          </div>
-        </motion.div>
+          {/* Main Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-4"
+          >
+            Our Work
+          </motion.h1>
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="text-5xl md:text-6xl lg:text-7xl font-bold text-gradient-blue tracking-tight leading-[1.1] mb-8"
+          >
+            Case Studies
+          </motion.h2>
 
-        {/* Purple Glow under text */}
-        <motion.div 
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto"
+          >
+            See how we&apos;ve helped businesses automate and scale with AI solutions
+          </motion.p>
+        </div>
+
+        {/* Blue Glow */}
+        <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.6, scale: 1 }}
+          animate={{ opacity: 0.5, scale: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[200px] gradient-purple-glow blur-3xl pointer-events-none" 
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] gradient-blue-glow blur-3xl pointer-events-none"
         />
       </section>
 
-      {/* Portfolio Grid */}
-      <section className="relative py-24 px-6">
+      {/* Featured Project Section */}
+      <section className="relative py-12 px-6">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <ProjectCard project={featuredProject} index={0} featured={true} />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Portfolio Grid - 2 Columns */}
+      <section className="relative py-12 px-6">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             className="grid md:grid-cols-2 gap-8"
           >
-            {portfolioPageContent.projects.map((project, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                className="group glass-card rounded-3xl overflow-hidden"
-              >
-                {/* Project Image */}
-                <motion.div 
-                  className="relative h-[300px] md:h-[350px] overflow-hidden"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <Image
-                    src={project.imageUrl}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                  
-                  {/* Year Badge */}
-                  <motion.div 
-                    className="absolute top-4 left-4 badge-pill px-4 py-2 rounded-full"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3 + index * 0.1 }}
-                  >
-                    <span className="text-white text-xs font-medium">{project.year}</span>
-                  </motion.div>
-
-                  {/* Link Button */}
-                  <motion.div 
-                    className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors"
-                    >
-                      <ArrowUpRight className="w-5 h-5 text-white" />
-                    </a>
-                  </motion.div>
-                </motion.div>
-
-                {/* Project Info */}
-                <div className="p-6">
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span
-                        key={tagIndex}
-                        className="px-3 py-1 rounded-full text-xs font-medium bg-[#0065F8]/20 text-[#0065F8] border border-[#0065F8]/20"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-medium text-white mb-3 group-hover:text-[#0065F8] transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    {project.description}
-                  </p>
-                </div>
-              </motion.div>
+            {remainingProjects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index + 1} />
             ))}
           </motion.div>
         </div>
@@ -375,7 +384,7 @@ export default function PortfolioPage() {
       {/* Stats Section */}
       <section className="relative py-24 px-6 section-gradient">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
+          <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -383,13 +392,13 @@ export default function PortfolioPage() {
             className="grid grid-cols-2 md:grid-cols-4 gap-6"
           >
             {portfolioPageContent.stats.map((stat, index) => (
-              <motion.div 
-                key={index} 
+              <motion.div
+                key={index}
                 variants={fadeInUp}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 className="glass-card rounded-2xl p-8 text-center"
               >
-                <div className="text-4xl md:text-5xl font-bold text-gradient-purple mb-2">
+                <div className="text-4xl md:text-5xl font-bold text-gradient-blue mb-2">
                   {stat.value}
                 </div>
                 <div className="text-gray-400 text-sm">{stat.label}</div>
@@ -405,10 +414,10 @@ export default function PortfolioPage() {
           <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-6">
             {ctaSection.caption}
           </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
             {ctaSection.title1}
           </h2>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-gradient-purple mb-8 leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gradient-blue mb-8 leading-tight">
             {ctaSection.title2}
           </h2>
           <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
@@ -425,11 +434,11 @@ export default function PortfolioPage() {
         </AnimatedSection>
 
         {/* Background Glow */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.4 }}
+          whileInView={{ opacity: 0.3 }}
           viewport={{ once: true }}
-          className="absolute inset-0 gradient-purple-glow pointer-events-none" 
+          className="absolute inset-0 gradient-blue-glow pointer-events-none"
         />
       </section>
 
@@ -439,7 +448,7 @@ export default function PortfolioPage() {
           {/* Top Section */}
           <div className="flex flex-col md:flex-row justify-between gap-12 mb-16">
             {/* Brand */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
