@@ -83,84 +83,82 @@ function AnimatedSection({ children, className, delay = 0 }) {
 // Project Card Component - Finch-inspired design
 function ProjectCard({ project, index }) {
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="group relative"
-    >
-      {/* Card with animated gradient border */}
-      <div className="relative rounded-[20px] overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] border border-white/10 hover:border-[#0065F8]/50 transition-all duration-500">
-        {/* Animated gradient border effect */}
-        <div className="absolute inset-0 rounded-[20px] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <div className="absolute inset-[-2px] rounded-[22px] bg-gradient-to-r from-[#0065F8] via-[#3B8BFF] to-[#0065F8] animate-gradient-rotate" />
-          <div className="absolute inset-[1px] rounded-[19px] bg-[#0d0d0d]" />
-        </div>
-
-        {/* Image Container */}
-        <div className="relative h-[280px] overflow-hidden">
-          <Image
-            src={project.imageUrl}
-            alt={project.title}
-            fill
-            className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:-translate-y-4"
-          />
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-transparent to-transparent opacity-80" />
-
-          {/* Year Badge */}
-          <div className="absolute top-5 left-5 z-10">
-            <span className="inline-block px-3 py-1.5 bg-[#0065F8] text-white text-xs font-bold rounded-full shadow-lg shadow-[#0065F8]/30">
-              {project.year}
-            </span>
+    <Link href={`/portfolio/${project.slug}`}>
+      <motion.div
+        layout
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        transition={{ duration: 0.4, delay: index * 0.05 }}
+        className="group relative cursor-pointer"
+      >
+        {/* Card with animated gradient border */}
+        <div className="relative rounded-[20px] overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] border border-white/10 hover:border-[#0065F8]/50 transition-all duration-500">
+          {/* Animated gradient border effect */}
+          <div className="absolute inset-0 rounded-[20px] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <div className="absolute inset-[-2px] rounded-[22px] bg-gradient-to-r from-[#0065F8] via-[#3B8BFF] to-[#0065F8] animate-gradient-rotate" />
+            <div className="absolute inset-[1px] rounded-[19px] bg-[#0d0d0d]" />
           </div>
 
-          {/* External Link Button */}
-          <motion.a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute top-5 right-5 z-10 w-10 h-10 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center border border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white/20 hover:scale-110"
-            whileHover={{ rotate: 45 }}
-          >
-            <ArrowUpRight className="w-4 h-4 text-white" />
-          </motion.a>
-        </div>
+          {/* Image Container */}
+          <div className="relative h-[280px] overflow-hidden">
+            <Image
+              src={project.imageUrl}
+              alt={project.title}
+              fill
+              className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:-translate-y-4"
+            />
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-transparent to-transparent opacity-80" />
 
-        {/* Content */}
-        <div className="relative p-6">
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {project.tags.map((tag, tagIndex) => (
-              <span
-                key={tagIndex}
-                className="px-3 py-1 rounded-full text-xs font-medium bg-[#0065F8]/10 text-[#3B8BFF] border border-[#0065F8]/20"
-              >
-                {tag}
+            {/* Year Badge */}
+            <div className="absolute top-5 left-5 z-10">
+              <span className="inline-block px-3 py-1.5 bg-[#0065F8] text-white text-xs font-bold rounded-full shadow-lg shadow-[#0065F8]/30">
+                {project.year}
               </span>
-            ))}
+            </div>
+
+            {/* Arrow Button */}
+            <div
+              className="absolute top-5 right-5 z-10 w-10 h-10 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center border border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-300"
+            >
+              <ArrowUpRight className="w-4 h-4 text-white" />
+            </div>
           </div>
 
-          {/* Title */}
-          <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-[#3B8BFF] transition-colors duration-300">
-            {project.title}
-          </h3>
+          {/* Content */}
+          <div className="relative p-6">
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 mb-4">
+              {project.tags.map((tag, tagIndex) => (
+                <span
+                  key={tagIndex}
+                  className="px-3 py-1 rounded-full text-xs font-medium bg-[#0065F8]/10 text-[#3B8BFF] border border-[#0065F8]/20"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
 
-          {/* Description */}
-          <p className="text-gray-400 text-sm leading-relaxed line-clamp-3 mb-5">
-            {project.description}
-          </p>
+            {/* Title */}
+            <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-[#3B8BFF] transition-colors duration-300">
+              {project.title}
+            </h3>
 
-          {/* View Case Study Link */}
-          <div className="flex items-center gap-2 text-[#3B8BFF] font-medium text-sm group/link cursor-pointer">
-            <span className="group-hover/link:underline">View Case Study</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
+            {/* Description */}
+            <p className="text-gray-400 text-sm leading-relaxed line-clamp-3 mb-5">
+              {project.description}
+            </p>
+
+            {/* View Case Study Link */}
+            <div className="flex items-center gap-2 text-[#3B8BFF] font-medium text-sm">
+              <span className="group-hover:underline">View Case Study</span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </div>
           </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </Link>
   );
 }
 
