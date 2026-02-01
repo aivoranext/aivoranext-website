@@ -260,13 +260,13 @@ export default function CaseStudyPage() {
       </section>
 
       {/* Results */}
-      <section className="relative py-16 px-6 section-gradient">
+      <section className="relative py-12 px-6 section-gradient">
         <div className="max-w-7xl mx-auto">
-          <AnimatedSection className="text-center mb-10">
-            <span className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4 block">
+          <AnimatedSection className="text-center mb-8">
+            <span className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-2 block">
               The Results
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-white">
               Measurable <span className="text-gradient-blue">Impact</span>
             </h2>
           </AnimatedSection>
@@ -305,12 +305,12 @@ export default function CaseStudyPage() {
 
       {/* Testimonial */}
       {project.testimonial && (
-        <section className="relative py-12 px-6">
+        <section className="relative py-8 px-6">
           <div className="max-w-4xl mx-auto">
             <AnimatedSection>
-              <div className="relative glass-card rounded-3xl p-10 md:p-16 border border-white/5">
-                <Quote className="w-12 h-12 text-[#0065F8]/30 mb-6" />
-                <blockquote className="text-xl md:text-2xl lg:text-3xl text-white font-light leading-relaxed mb-8">
+              <div className="relative glass-card rounded-2xl p-8 md:p-10 border border-white/5">
+                <Quote className="w-10 h-10 text-[#0065F8]/30 mb-4" />
+                <blockquote className="text-lg md:text-xl lg:text-2xl text-white font-light leading-relaxed mb-6">
                   &ldquo;{project.testimonial.quote}&rdquo;
                 </blockquote>
                 <div className="flex items-center gap-4">
@@ -333,13 +333,13 @@ export default function CaseStudyPage() {
       )}
 
       {/* Technologies Used */}
-      <section className="relative py-10 px-6">
+      <section className="relative py-6 px-6">
         <div className="max-w-7xl mx-auto">
-          <AnimatedSection className="text-center mb-6">
-            <span className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4 block">
+          <AnimatedSection className="text-center mb-4">
+            <span className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-2 block">
               Tech Stack
             </span>
-            <h2 className="text-2xl md:text-3xl font-medium text-white">
+            <h2 className="text-xl md:text-2xl font-medium text-white">
               Technologies Used
             </h2>
           </AnimatedSection>
@@ -367,7 +367,7 @@ export default function CaseStudyPage() {
 
       {/* Navigation to other case studies */}
       {(prevProject || nextProject) && (
-        <section className="relative py-8 px-6 border-t border-white/5">
+        <section className="relative py-6 px-6 border-t border-white/5">
           <div className="max-w-7xl mx-auto">
             <div className={`flex ${prevProject && nextProject ? 'justify-between' : prevProject ? 'justify-start' : 'justify-end'} gap-6`}>
               {/* Previous */}
@@ -407,7 +407,7 @@ export default function CaseStudyPage() {
       )}
 
       {/* CTA Section */}
-      <section className="relative py-16 px-6">
+      <section className="relative py-12 px-6">
         <AnimatedSection className="max-w-4xl mx-auto text-center relative z-10">
           <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
             {ctaSection.caption}
