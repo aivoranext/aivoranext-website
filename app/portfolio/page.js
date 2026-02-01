@@ -107,7 +107,7 @@ export default function PortfolioPage() {
                 <Link
                   href={item.link}
                   className={`text-sm font-medium nav-link transition-colors ${
-                    item.name === "Portfolio" ? "text-violet-400" : "text-gray-400 hover:text-white"
+                    item.name === "Portfolio" ? "text-[#0065F8]" : "text-gray-400 hover:text-white"
                   }`}
                 >
                   {item.name}
@@ -124,7 +124,7 @@ export default function PortfolioPage() {
           >
             <Link
               href="/contact"
-              className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold rounded-full transition-all hover:shadow-[0_0_30px_rgba(124,58,237,0.4)]"
+              className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-[#0065F8] hover:bg-[#3B8BFF] text-white text-sm font-semibold rounded-full transition-all hover:shadow-[0_0_30px_rgba(0,101,248,0.4)]"
             >
               Get In Touch
             </Link>
@@ -161,7 +161,7 @@ export default function PortfolioPage() {
                   href={item.link}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`block text-lg font-medium transition-colors ${
-                    item.name === "Portfolio" ? "text-violet-400" : "text-white hover:text-violet-400"
+                    item.name === "Portfolio" ? "text-[#0065F8]" : "text-white hover:text-[#0065F8]"
                   }`}
                 >
                   {item.name}
@@ -171,7 +171,7 @@ export default function PortfolioPage() {
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-violet-600 text-white text-sm font-semibold rounded-full"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#0065F8] text-white text-sm font-semibold rounded-full"
             >
               Get In Touch
             </Link>
@@ -195,7 +195,7 @@ export default function PortfolioPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="badge-pill flex items-center gap-3 px-5 py-3 rounded-full mb-12 animate-float"
           >
-            <span className="bg-violet-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+            <span className="bg-[#0065F8] text-white text-xs font-bold px-3 py-1 rounded-full">
               {portfolioPageContent.hero.year}
             </span>
             <span className="text-white text-sm font-medium">{portfolioPageContent.hero.badge}</span>
@@ -309,13 +309,13 @@ export default function PortfolioPage() {
                     {project.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="px-3 py-1 rounded-full text-xs font-medium bg-violet-600/20 text-violet-400 border border-violet-500/20"
+                        className="px-3 py-1 rounded-full text-xs font-medium bg-[#0065F8]/20 text-[#0065F8] border border-[#0065F8]/20"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <h3 className="text-xl md:text-2xl font-medium text-white mb-3 group-hover:text-violet-400 transition-colors">
+                  <h3 className="text-xl md:text-2xl font-medium text-white mb-3 group-hover:text-[#0065F8] transition-colors">
                     {project.title}
                   </h3>
                   <p className="text-gray-400 text-sm leading-relaxed">
@@ -358,7 +358,7 @@ export default function PortfolioPage() {
       {/* CTA Section */}
       <section className="relative py-32 px-6">
         <AnimatedSection className="max-w-4xl mx-auto text-center relative z-10">
-          <p className="text-violet-400 text-sm uppercase tracking-[0.2em] mb-6">
+          <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-6">
             {ctaSection.caption}
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 leading-tight">
@@ -473,13 +473,13 @@ export default function PortfolioPage() {
                   <input
                     type="email"
                     placeholder="Your email"
-                    className="w-full bg-white/5 border border-white/10 text-white rounded-lg px-4 py-3 text-sm outline-none focus:border-violet-500 transition-colors placeholder:text-gray-600"
+                    className="w-full bg-white/5 border border-white/10 text-white rounded-lg px-4 py-3 text-sm outline-none focus:border-[#0065F8] transition-colors placeholder:text-gray-600"
                   />
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="w-full py-3 bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold rounded-lg transition-colors"
+                    className="w-full py-3 bg-[#0065F8] hover:bg-[#3B8BFF] text-white text-sm font-semibold rounded-lg transition-colors"
                   >
                     Subscribe
                   </motion.button>

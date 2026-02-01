@@ -111,7 +111,7 @@ export default function AboutPage() {
                 <Link
                   href={item.link}
                   className={`text-sm font-medium nav-link transition-colors ${
-                    item.name === "About" ? "text-violet-400" : "text-gray-400 hover:text-white"
+                    item.name === "About" ? "text-[#0065F8]" : "text-gray-400 hover:text-white"
                   }`}
                 >
                   {item.name}
@@ -128,7 +128,7 @@ export default function AboutPage() {
           >
             <Link
               href="/contact"
-              className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold rounded-full transition-all hover:shadow-[0_0_30px_rgba(124,58,237,0.4)]"
+              className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-[#0065F8] hover:bg-[#3B8BFF] text-white text-sm font-semibold rounded-full transition-all hover:shadow-[0_0_30px_rgba(0,101,248,0.4)]"
             >
               Get In Touch
             </Link>
@@ -165,7 +165,7 @@ export default function AboutPage() {
                   href={item.link}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`block text-lg font-medium transition-colors ${
-                    item.name === "About" ? "text-violet-400" : "text-white hover:text-violet-400"
+                    item.name === "About" ? "text-[#0065F8]" : "text-white hover:text-[#0065F8]"
                   }`}
                 >
                   {item.name}
@@ -175,7 +175,7 @@ export default function AboutPage() {
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-violet-600 text-white text-sm font-semibold rounded-full"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#0065F8] text-white text-sm font-semibold rounded-full"
             >
               Get In Touch
             </Link>
@@ -199,7 +199,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="badge-pill flex items-center gap-3 px-5 py-3 rounded-full mb-12 animate-float"
           >
-            <span className="bg-violet-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+            <span className="bg-[#0065F8] text-white text-xs font-bold px-3 py-1 rounded-full">
               {aboutPageContent.hero.year}
             </span>
             <span className="text-white text-sm font-medium">{aboutPageContent.hero.badge}</span>
@@ -295,8 +295,8 @@ export default function AboutPage() {
             {/* Left - Title */}
             <AnimatedSection>
               <div className="badge-pill inline-flex items-center gap-3 px-5 py-3 rounded-full mb-8">
-                <div className="w-8 h-8 rounded-lg bg-violet-600/20 flex items-center justify-center">
-                  <Star className="w-4 h-4 text-violet-400" />
+                <div className="w-8 h-8 rounded-lg bg-[#0065F8]/20 flex items-center justify-center">
+                  <Star className="w-4 h-4 text-[#0065F8]" />
                 </div>
                 <span className="text-white text-sm font-medium">{aboutPageContent.aboutUs.caption}</span>
               </div>
@@ -333,7 +333,7 @@ export default function AboutPage() {
             {/* Left - Content */}
             <AnimatedSection className="space-y-8">
               <div>
-                <p className="text-violet-400 text-sm uppercase tracking-[0.2em] mb-4">
+                <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
                   Our Services
                 </p>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight mb-2">
@@ -359,10 +359,10 @@ export default function AboutPage() {
                     viewport={{ once: true }}
                   >
                     <div className="icon-container w-12 h-12 rounded-xl flex items-center justify-center shrink-0">
-                      {index === 0 && <Phone className="w-5 h-5 text-violet-400" />}
-                      {index === 1 && <Workflow className="w-5 h-5 text-violet-400" />}
-                      {index === 2 && <Code className="w-5 h-5 text-violet-400" />}
-                      {index === 3 && <Users className="w-5 h-5 text-violet-400" />}
+                      {index === 0 && <Phone className="w-5 h-5 text-[#0065F8]" />}
+                      {index === 1 && <Workflow className="w-5 h-5 text-[#0065F8]" />}
+                      {index === 2 && <Code className="w-5 h-5 text-[#0065F8]" />}
+                      {index === 3 && <Users className="w-5 h-5 text-[#0065F8]" />}
                     </div>
                     <div>
                       <h4 className="text-white font-medium mb-2">{service.title}</h4>
@@ -422,7 +422,7 @@ export default function AboutPage() {
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ delay: 0.5 + i * 0.1 }}
-                        className="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 border-2 border-black flex items-center justify-center"
+                        className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0065F8] to-[#3B8BFF] border-2 border-black flex items-center justify-center"
                       >
                         <Star className="w-4 h-4 text-white fill-current" />
                       </motion.div>
@@ -442,7 +442,7 @@ export default function AboutPage() {
       {/* CTA Section */}
       <section className="relative py-32 px-6">
         <AnimatedSection className="max-w-4xl mx-auto text-center relative z-10">
-          <p className="text-violet-400 text-sm uppercase tracking-[0.2em] mb-6">
+          <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-6">
             {ctaSection.caption}
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 leading-tight">
@@ -557,13 +557,13 @@ export default function AboutPage() {
                   <input
                     type="email"
                     placeholder="Your email"
-                    className="w-full bg-white/5 border border-white/10 text-white rounded-lg px-4 py-3 text-sm outline-none focus:border-violet-500 transition-colors placeholder:text-gray-600"
+                    className="w-full bg-white/5 border border-white/10 text-white rounded-lg px-4 py-3 text-sm outline-none focus:border-[#0065F8] transition-colors placeholder:text-gray-600"
                   />
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="w-full py-3 bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold rounded-lg transition-colors"
+                    className="w-full py-3 bg-[#0065F8] hover:bg-[#3B8BFF] text-white text-sm font-semibold rounded-lg transition-colors"
                   >
                     Subscribe
                   </motion.button>

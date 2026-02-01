@@ -94,10 +94,10 @@ export default function ContactPage() {
     <main className="relative min-h-screen bg-black overflow-hidden">
       {/* Side Purple Glows - Like Nubien Contact Page */}
       <div className="fixed top-0 left-0 w-[400px] h-full opacity-30 pointer-events-none z-0">
-        <div className="absolute top-1/3 left-0 w-[300px] h-[400px] bg-violet-600/50 blur-[150px] rounded-full" />
+        <div className="absolute top-1/3 left-0 w-[300px] h-[400px] bg-[#0065F8]/50 blur-[150px] rounded-full" />
       </div>
       <div className="fixed top-0 right-0 w-[400px] h-full opacity-30 pointer-events-none z-0">
-        <div className="absolute top-1/2 right-0 w-[300px] h-[400px] bg-violet-600/50 blur-[150px] rounded-full" />
+        <div className="absolute top-1/2 right-0 w-[300px] h-[400px] bg-[#0065F8]/50 blur-[150px] rounded-full" />
       </div>
 
       {/* Spotlight Effect */}
@@ -136,7 +136,7 @@ export default function ContactPage() {
                 <Link
                   href={item.link}
                   className={`text-sm font-medium nav-link transition-colors ${
-                    item.name === "Contact" ? "text-violet-400" : "text-gray-400 hover:text-white"
+                    item.name === "Contact" ? "text-[#0065F8]" : "text-gray-400 hover:text-white"
                   }`}
                 >
                   {item.name}
@@ -153,7 +153,7 @@ export default function ContactPage() {
           >
             <Link
               href="/contact"
-              className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold rounded-full transition-all hover:shadow-[0_0_30px_rgba(124,58,237,0.4)]"
+              className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-[#0065F8] hover:bg-[#3B8BFF] text-white text-sm font-semibold rounded-full transition-all hover:shadow-[0_0_30px_rgba(0,101,248,0.4)]"
             >
               Get In Touch
             </Link>
@@ -190,7 +190,7 @@ export default function ContactPage() {
                   href={item.link}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`block text-lg font-medium transition-colors ${
-                    item.name === "Contact" ? "text-violet-400" : "text-white hover:text-violet-400"
+                    item.name === "Contact" ? "text-[#0065F8]" : "text-white hover:text-[#0065F8]"
                   }`}
                 >
                   {item.name}
@@ -200,7 +200,7 @@ export default function ContactPage() {
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-violet-600 text-white text-sm font-semibold rounded-full"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#0065F8] text-white text-sm font-semibold rounded-full"
             >
               Get In Touch
             </Link>
@@ -224,7 +224,7 @@ export default function ContactPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="badge-pill flex items-center gap-3 px-5 py-3 rounded-full mb-12 animate-float"
           >
-            <span className="bg-violet-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+            <span className="bg-[#0065F8] text-white text-xs font-bold px-3 py-1 rounded-full">
               {contactPageContent.hero.year}
             </span>
             <span className="text-white text-sm font-medium">{contactPageContent.hero.badge}</span>
@@ -281,7 +281,7 @@ export default function ContactPage() {
           <AnimatedSection>
             <motion.div 
               className="glass-card rounded-3xl p-8 md:p-12"
-              whileHover={{ boxShadow: "0 0 60px rgba(124, 58, 237, 0.1)" }}
+              whileHover={{ boxShadow: "0 0 60px rgba(0, 101, 248, 0.1)" }}
             >
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name Fields */}
@@ -300,7 +300,7 @@ export default function ContactPage() {
                       value={formData.firstName}
                       onChange={handleChange}
                       placeholder={contactPageContent.form.fields.firstName.placeholder}
-                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 placeholder:text-gray-600"
+                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
                     />
                   </motion.div>
                   <motion.div variants={fadeInUp}>
@@ -311,7 +311,7 @@ export default function ContactPage() {
                       value={formData.lastName}
                       onChange={handleChange}
                       placeholder={contactPageContent.form.fields.lastName.placeholder}
-                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 placeholder:text-gray-600"
+                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
                     />
                   </motion.div>
                 </motion.div>
@@ -332,7 +332,7 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder={contactPageContent.form.fields.email.placeholder}
-                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 placeholder:text-gray-600"
+                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
                     />
                   </motion.div>
                   <motion.div variants={fadeInUp}>
@@ -343,7 +343,7 @@ export default function ContactPage() {
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder={contactPageContent.form.fields.phone.placeholder}
-                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 placeholder:text-gray-600"
+                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
                     />
                   </motion.div>
                 </motion.div>
@@ -362,7 +362,7 @@ export default function ContactPage() {
                     value={formData.company}
                     onChange={handleChange}
                     placeholder={contactPageContent.form.fields.company.placeholder}
-                    className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 placeholder:text-gray-600"
+                    className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
                   />
                 </motion.div>
 
@@ -378,7 +378,7 @@ export default function ContactPage() {
                     name="serviceInterest"
                     value={formData.serviceInterest}
                     onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 appearance-none cursor-pointer"
+                    className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 appearance-none cursor-pointer"
                     style={{
                       backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
                       backgroundPosition: 'right 0.5rem center',
@@ -406,7 +406,7 @@ export default function ContactPage() {
                       name="callVolume"
                       value={formData.callVolume}
                       onChange={handleChange}
-                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 appearance-none cursor-pointer"
+                      className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 appearance-none cursor-pointer"
                       style={{
                         backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
                         backgroundPosition: 'right 0.5rem center',
@@ -434,7 +434,7 @@ export default function ContactPage() {
                     name="timeline"
                     value={formData.timeline}
                     onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 appearance-none cursor-pointer"
+                    className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 appearance-none cursor-pointer"
                     style={{
                       backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
                       backgroundPosition: 'right 0.5rem center',
@@ -463,7 +463,7 @@ export default function ContactPage() {
                     onChange={handleChange}
                     placeholder={contactPageContent.form.fields.message.placeholder}
                     rows={5}
-                    className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-violet-500 transition-all focus:ring-2 focus:ring-violet-500/20 placeholder:text-gray-600 resize-none"
+                    className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600 resize-none"
                   />
                 </motion.div>
 
@@ -478,7 +478,7 @@ export default function ContactPage() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="w-full py-4 bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold rounded-xl transition-all flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(124,58,237,0.4)]"
+                    className="w-full py-4 bg-[#0065F8] hover:bg-[#3B8BFF] text-white text-sm font-semibold rounded-xl transition-all flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(0,101,248,0.4)]"
                   >
                     {contactPageContent.form.submitButton} <ArrowRight className="w-4 h-4" />
                   </motion.button>
@@ -506,16 +506,16 @@ export default function ContactPage() {
               className="glass-card rounded-2xl p-8 text-center"
             >
               <motion.div
-                className="w-14 h-14 rounded-xl bg-violet-600/20 flex items-center justify-center mx-auto mb-6"
+                className="w-14 h-14 rounded-xl bg-[#0065F8]/20 flex items-center justify-center mx-auto mb-6"
                 whileHover={{ rotate: 5, scale: 1.1 }}
               >
-                <Mail className="w-6 h-6 text-violet-400" />
+                <Mail className="w-6 h-6 text-[#0065F8]" />
               </motion.div>
               <h3 className="text-white font-medium text-lg mb-2">Email Us</h3>
               <p className="text-gray-500 text-sm mb-4">Send us an email anytime</p>
               <a
                 href={`mailto:${contactPageContent.info.email}`}
-                className="text-violet-400 hover:text-violet-300 transition-colors"
+                className="text-[#0065F8] hover:text-[#3B8BFF] transition-colors"
               >
                 {contactPageContent.info.email}
               </a>
@@ -528,16 +528,16 @@ export default function ContactPage() {
               className="glass-card rounded-2xl p-8 text-center"
             >
               <motion.div
-                className="w-14 h-14 rounded-xl bg-violet-600/20 flex items-center justify-center mx-auto mb-6"
+                className="w-14 h-14 rounded-xl bg-[#0065F8]/20 flex items-center justify-center mx-auto mb-6"
                 whileHover={{ rotate: 5, scale: 1.1 }}
               >
-                <Phone className="w-6 h-6 text-violet-400" />
+                <Phone className="w-6 h-6 text-[#0065F8]" />
               </motion.div>
               <h3 className="text-white font-medium text-lg mb-2">Call Us</h3>
               <p className="text-gray-500 text-sm mb-4">Mon-Fri from 9am to 6pm</p>
               <a
                 href={`tel:${contactPageContent.info.phone.replace(/\s/g, '')}`}
-                className="text-violet-400 hover:text-violet-300 transition-colors"
+                className="text-[#0065F8] hover:text-[#3B8BFF] transition-colors"
               >
                 {contactPageContent.info.phone}
               </a>
@@ -550,14 +550,14 @@ export default function ContactPage() {
               className="glass-card rounded-2xl p-8 text-center"
             >
               <motion.div
-                className="w-14 h-14 rounded-xl bg-violet-600/20 flex items-center justify-center mx-auto mb-6"
+                className="w-14 h-14 rounded-xl bg-[#0065F8]/20 flex items-center justify-center mx-auto mb-6"
                 whileHover={{ rotate: 5, scale: 1.1 }}
               >
-                <MapPin className="w-6 h-6 text-violet-400" />
+                <MapPin className="w-6 h-6 text-[#0065F8]" />
               </motion.div>
               <h3 className="text-white font-medium text-lg mb-2">Visit Us</h3>
               <p className="text-gray-500 text-sm mb-4">Our office location</p>
-              <span className="text-violet-400">
+              <span className="text-[#0065F8]">
                 {contactPageContent.info.address}
               </span>
             </motion.div>
@@ -649,13 +649,13 @@ export default function ContactPage() {
                   <input
                     type="email"
                     placeholder="Your email"
-                    className="w-full bg-white/5 border border-white/10 text-white rounded-lg px-4 py-3 text-sm outline-none focus:border-violet-500 transition-colors placeholder:text-gray-600"
+                    className="w-full bg-white/5 border border-white/10 text-white rounded-lg px-4 py-3 text-sm outline-none focus:border-[#0065F8] transition-colors placeholder:text-gray-600"
                   />
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="w-full py-3 bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold rounded-lg transition-colors"
+                    className="w-full py-3 bg-[#0065F8] hover:bg-[#3B8BFF] text-white text-sm font-semibold rounded-lg transition-colors"
                   >
                     Subscribe
                   </motion.button>
