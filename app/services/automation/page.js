@@ -268,7 +268,7 @@ export default function AutomationPage() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 btn-primary text-white font-semibold rounded-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 btn-primary text-white font-semibold rounded-none"
               >
                 Get Started <ArrowRight className="w-5 h-5" />
               </Link>
@@ -276,7 +276,7 @@ export default function AutomationPage() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <a
                 href="#what-we-automate"
-                className="inline-flex items-center gap-2 px-8 py-4 btn-secondary text-white font-semibold rounded-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 btn-secondary text-white font-semibold rounded-none"
               >
                 See Examples
               </a>
@@ -563,7 +563,7 @@ export default function AutomationPage() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-12 py-5 btn-primary text-white text-lg font-semibold rounded-lg"
+              className="inline-flex items-center gap-2 px-12 py-5 btn-primary text-white text-lg font-semibold rounded-none"
             >
               Schedule a Consultation <ArrowRight className="w-5 h-5" />
             </Link>

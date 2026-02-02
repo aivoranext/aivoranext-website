@@ -90,11 +90,11 @@ const values = [
   },
 ];
 
-// Team expertise
+// Team expertise - Real metrics from founder's portfolio
 const expertise = [
-  { label: "AI/ML Engineers", value: "15+" },
-  { label: "Voice AI Projects", value: "100+" },
-  { label: "Years Combined Experience", value: "50+" },
+  { label: "Years Experience", value: "8+" },
+  { label: "Automation Rate", value: "100%" },
+  { label: "Faster Conversions", value: "3x" },
   { label: "Client Satisfaction", value: "98%" },
 ];
 
@@ -217,7 +217,7 @@ export default function AboutPage() {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   href="/services"
-                  className="inline-flex items-center gap-2 px-8 py-4 btn-primary text-white font-semibold rounded-xl"
+                  className="inline-flex items-center gap-2 px-8 py-4 btn-primary text-white font-semibold rounded-none"
                 >
                   Explore Our Services <ArrowRight className="w-5 h-5" />
                 </Link>
@@ -291,6 +291,132 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Tech Stack Section */}
+      <section className="relative py-24 px-6 section-gradient">
+        <div className="max-w-7xl mx-auto">
+          <AnimatedSection className="text-center mb-16">
+            <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+              Technology Stack
+            </p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4">
+              Built With <span className="text-gradient-blue">Modern AI</span>
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              We leverage cutting-edge AI frameworks and tools to build production-ready solutions
+            </p>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* AI Frameworks */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="glass-card rounded-2xl p-6 border border-white/5"
+            >
+              <h4 className="text-[#0065F8] text-sm font-semibold mb-4">AI Frameworks</h4>
+              <div className="flex flex-wrap gap-2">
+                {["LangGraph", "LangChain", "CrewAI", "AutoGen"].map((tech) => (
+                  <span key={tech} className="px-3 py-1.5 rounded-lg bg-white/5 text-gray-300 text-sm">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Voice AI */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              viewport={{ once: true }}
+              className="glass-card rounded-2xl p-6 border border-white/5"
+            >
+              <h4 className="text-[#0065F8] text-sm font-semibold mb-4">Voice AI</h4>
+              <div className="flex flex-wrap gap-2">
+                {["LiveKit", "Twilio", "ElevenLabs", "Deepgram"].map((tech) => (
+                  <span key={tech} className="px-3 py-1.5 rounded-lg bg-white/5 text-gray-300 text-sm">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Vector Databases */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              viewport={{ once: true }}
+              className="glass-card rounded-2xl p-6 border border-white/5"
+            >
+              <h4 className="text-[#0065F8] text-sm font-semibold mb-4">Vector Databases</h4>
+              <div className="flex flex-wrap gap-2">
+                {["Pinecone", "Weaviate", "ChromaDB"].map((tech) => (
+                  <span key={tech} className="px-3 py-1.5 rounded-lg bg-white/5 text-gray-300 text-sm">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* LLM Providers */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              viewport={{ once: true }}
+              className="glass-card rounded-2xl p-6 border border-white/5"
+            >
+              <h4 className="text-[#0065F8] text-sm font-semibold mb-4">LLM Providers</h4>
+              <div className="flex flex-wrap gap-2">
+                {["OpenAI", "Anthropic", "Azure OpenAI", "AWS Bedrock"].map((tech) => (
+                  <span key={tech} className="px-3 py-1.5 rounded-lg bg-white/5 text-gray-300 text-sm">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Languages & Frameworks */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              viewport={{ once: true }}
+              className="glass-card rounded-2xl p-6 border border-white/5"
+            >
+              <h4 className="text-[#0065F8] text-sm font-semibold mb-4">Languages & Frameworks</h4>
+              <div className="flex flex-wrap gap-2">
+                {["Python", "Node.js", "TypeScript", "Next.js", "React.js"].map((tech) => (
+                  <span key={tech} className="px-3 py-1.5 rounded-lg bg-white/5 text-gray-300 text-sm">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Cloud Platforms */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              viewport={{ once: true }}
+              className="glass-card rounded-2xl p-6 border border-white/5"
+            >
+              <h4 className="text-[#0065F8] text-sm font-semibold mb-4">Cloud Platforms</h4>
+              <div className="flex flex-wrap gap-2">
+                {["AWS", "Azure", "GCP"].map((tech) => (
+                  <span key={tech} className="px-3 py-1.5 rounded-lg bg-white/5 text-gray-300 text-sm">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Services Section */}
       <section className="relative py-24 px-6">
         <div className="max-w-7xl mx-auto">
@@ -339,7 +465,7 @@ export default function AboutPage() {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 btn-primary text-white font-semibold rounded-xl"
+                  className="inline-flex items-center gap-2 px-8 py-4 btn-primary text-white font-semibold rounded-none"
                 >
                   Start Your Project <ArrowRight className="w-5 h-5" />
                 </Link>

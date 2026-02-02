@@ -289,7 +289,7 @@ export default function VoiceAIPage() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 btn-primary text-white font-semibold rounded-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 btn-primary text-white font-semibold rounded-none"
               >
                 Request a Demo <ArrowRight className="w-5 h-5" />
               </Link>
@@ -297,7 +297,7 @@ export default function VoiceAIPage() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <a
                 href="#pricing"
-                className="inline-flex items-center gap-2 px-8 py-4 btn-secondary text-white font-semibold rounded-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 btn-secondary text-white font-semibold rounded-none"
               >
                 See Pricing
               </a>
@@ -597,7 +597,7 @@ export default function VoiceAIPage() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-12 py-5 btn-primary text-white text-lg font-semibold rounded-lg"
+              className="inline-flex items-center gap-2 px-12 py-5 btn-primary text-white text-lg font-semibold rounded-none"
             >
               Schedule a Demo <ArrowRight className="w-5 h-5" />
             </Link>

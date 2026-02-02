@@ -7,12 +7,12 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight,
   Check,
+  Code,
+  Server,
   Brain,
-  BarChart3,
-  MessageSquare,
-  Eye,
-  FileText,
-  Settings,
+  Palette,
+  Layers,
+  Building2,
   FileCheck,
   Users,
   UserCheck,
@@ -24,9 +24,6 @@ import {
   Zap,
   CalendarCheck,
 } from "lucide-react";
-import {
-  siteConfig,
-} from "@/lib/content";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -72,40 +69,40 @@ function AnimatedSection({ children, className, delay = 0 }) {
 // Talent Categories
 const talentCategories = [
   {
+    icon: Code,
+    title: "Frontend Developer",
+    description: "Expert frontend developers skilled in modern frameworks and responsive design.",
+    features: ["React", "Next.js", "Vue.js", "TypeScript"]
+  },
+  {
+    icon: Server,
+    title: "Backend Developer",
+    description: "Experienced backend engineers for scalable server-side applications.",
+    features: ["Node.js", "Python", "Java", "Go"]
+  },
+  {
     icon: Brain,
-    title: "ML Engineers",
-    description: "Expert machine learning engineers for your AI projects.",
-    features: ["TensorFlow", "PyTorch", "scikit-learn"]
+    title: "AI Developer",
+    description: "Specialists in machine learning, LLMs, and AI-powered solutions.",
+    features: ["TensorFlow", "PyTorch", "LLMs", "RAG"]
   },
   {
-    icon: BarChart3,
-    title: "Data Scientists",
-    description: "Transform data into actionable business insights.",
-    features: ["Analytics", "Modeling", "Insights"]
+    icon: Palette,
+    title: "UI/UX Designer",
+    description: "Creative designers who craft beautiful and intuitive user experiences.",
+    features: ["Figma", "User Research", "Prototyping", "Design Systems"]
   },
   {
-    icon: MessageSquare,
-    title: "LLM Specialists",
-    description: "Experts in large language models and generative AI.",
-    features: ["GPT", "Claude", "Fine-tuning", "RAG"]
+    icon: Layers,
+    title: "Full Stack Developer",
+    description: "Versatile developers proficient in both frontend and backend technologies.",
+    features: ["MERN Stack", "Next.js", "PostgreSQL", "AWS"]
   },
   {
-    icon: Eye,
-    title: "Computer Vision Engineers",
-    description: "Build systems that can see and understand visual data.",
-    features: ["Object detection", "Image processing", "Video analytics"]
-  },
-  {
-    icon: FileText,
-    title: "NLP Engineers",
-    description: "Specialists in natural language processing and understanding.",
-    features: ["Text processing", "Sentiment analysis", "Chatbots"]
-  },
-  {
-    icon: Settings,
-    title: "MLOps Engineers",
-    description: "Deploy and scale ML models in production environments.",
-    features: ["Pipelines", "Deployment", "Monitoring"]
+    icon: Building2,
+    title: "Solution Architect",
+    description: "Technical leaders who design scalable and robust system architectures.",
+    features: ["System Design", "Cloud Architecture", "Microservices", "DevOps"]
   }
 ];
 
@@ -171,6 +168,122 @@ const processSteps = [
   }
 ];
 
+// Tech Stack Data with devicon URLs
+const techStackData = [
+  {
+    category: "Frontend",
+    technologies: [
+      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+      { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+      { name: "Vue.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
+      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+      { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+      { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
+      { name: "Nuxt.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg" },
+      { name: "Vite", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" },
+    ]
+  },
+  {
+    category: "Backend",
+    technologies: [
+      { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+      { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+      { name: "Express.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+      { name: "NestJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg" },
+      { name: "Laravel", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" },
+      { name: "PHP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
+      { name: "GraphQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" },
+      { name: "FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
+    ]
+  },
+  {
+    category: "Database",
+    technologies: [
+      { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+      { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+      { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+      { name: "Redis", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" },
+      { name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+      { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg" },
+      { name: "DynamoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dynamodb/dynamodb-original.svg" },
+    ]
+  },
+  {
+    category: "Cloud & DevOps",
+    technologies: [
+      { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" },
+      { name: "Azure", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" },
+      { name: "GCP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" },
+      { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+      { name: "Kubernetes", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" },
+      { name: "NGINX", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" },
+      { name: "Vercel", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" },
+    ]
+  },
+  {
+    category: "AI & ML",
+    technologies: [
+      { name: "OpenAI", icon: "/tech/openai.png" },
+      { name: "Anthropic", icon: "/tech/anthropic.png" },
+      { name: "Google Gemini", icon: "/tech/gemini.png" },
+      { name: "Meta Llama", icon: "/tech/meta.png" },
+      { name: "Mistral AI", icon: "/tech/mistral.png" },
+      { name: "Cohere", icon: "/tech/cohere.png" },
+      { name: "PyTorch", icon: "/tech/pytorch.png" },
+      { name: "TensorFlow", icon: "/tech/tensorflow.png" },
+      { name: "Hugging Face", icon: "/tech/huggingface.png" },
+      { name: "scikit-learn", icon: "/tech/scikitlearn.png" },
+    ]
+  },
+  {
+    category: "AI Frameworks & Tools",
+    technologies: [
+      { name: "LangChain", icon: "/tech/langchain.png" },
+      { name: "LangSmith", icon: "/tech/langchain.png" },
+      { name: "LangGraph", icon: "/tech/langchain.png" },
+      { name: "CrewAI", icon: "/tech/crewai.png" },
+      { name: "AutoGen", icon: "/tech/microsoft.png" },
+      { name: "LiveKit", icon: "/tech/livekit.png" },
+      { name: "Pinecone", icon: "/tech/pinecone.png" },
+      { name: "Weaviate", icon: "/tech/weaviate.png" },
+      { name: "ChromaDB", icon: "/tech/chromadb.png" },
+      { name: "Ollama", icon: "/tech/ollama.png" },
+    ]
+  },
+  {
+    category: "Voice AI",
+    technologies: [
+      { name: "ElevenLabs", icon: "/tech/elevenlabs.png" },
+      { name: "Deepgram", icon: "/tech/deepgram.png" },
+      { name: "Twilio", icon: "/tech/twilio.png" },
+      { name: "AssemblyAI", icon: "/tech/assemblyai.png" },
+      { name: "Whisper", icon: "/tech/openai.png" },
+      { name: "PlayHT", icon: "/tech/openai.png" },
+    ]
+  },
+  {
+    category: "Design Tools",
+    technologies: [
+      { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
+      { name: "Photoshop", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" },
+      { name: "Illustrator", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" },
+      { name: "After Effects", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aftereffects/aftereffects-original.svg" },
+      { name: "Framer", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/framermotion/framermotion-original.svg" },
+    ]
+  },
+  {
+    category: "Automation & CMS",
+    technologies: [
+      { name: "n8n", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+      { name: "Zapier", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+      { name: "WordPress", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" },
+      { name: "Webflow", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/webflow/webflow-original.svg" },
+      { name: "Strapi", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/strapi/strapi-original.svg" },
+      { name: "Shopify", icon: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopify.svg" },
+    ]
+  },
+];
+
 // Why Choose Us Benefits
 const benefitsData = [
   {
@@ -195,7 +308,7 @@ const benefitsData = [
   }
 ];
 
-export default function AIHiringPage() {
+export default function StaffAugmentationPage() {
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -230,9 +343,9 @@ export default function AIHiringPage() {
             className="badge-pill flex items-center gap-2 pl-1.5 pr-4 py-1.5 rounded-full mb-10"
           >
             <span className="bg-[#0065F8] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
-              AI Engineer Hiring
+              Staff Augmentation
             </span>
-            <span className="text-white/80 text-sm font-medium">Top AI Talent On-Demand</span>
+            <span className="text-white/80 text-sm font-medium">Top Talent On-Demand</span>
           </motion.div>
 
           {/* Main Headline */}
@@ -242,7 +355,7 @@ export default function AIHiringPage() {
             transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium text-white tracking-tight leading-[1.1] mb-6"
           >
-            Top AI Talent{" "}
+            Scale Your Team{" "}
             <span className="text-gradient-blue">On-Demand</span>
           </motion.h1>
 
@@ -253,8 +366,8 @@ export default function AIHiringPage() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-gray-400 text-lg md:text-xl leading-relaxed max-w-2xl mb-10"
           >
-            Access vetted ML engineers, data scientists, and LLM specialists.
-            Build your AI team with pre-screened talent ready to deliver results from day one.
+            Access vetted developers, designers, and architects.
+            Build your dream team with pre-screened talent ready to deliver results from day one.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -267,15 +380,15 @@ export default function AIHiringPage() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 btn-primary text-white font-semibold rounded-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 btn-primary text-white font-semibold rounded-none"
               >
-                Find AI Talent <ArrowRight className="w-5 h-5" />
+                Find Talent <ArrowRight className="w-5 h-5" />
               </Link>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <a
                 href="#talent-categories"
-                className="inline-flex items-center gap-2 px-8 py-4 btn-secondary text-white font-semibold rounded-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 btn-secondary text-white font-semibold rounded-none"
               >
                 View Talent Pool
               </a>
@@ -300,11 +413,11 @@ export default function AIHiringPage() {
               Talent Categories
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4">
-              AI Specialists for{" "}
+              Specialists for{" "}
               <span className="text-gradient-blue">Every Need</span>
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              From machine learning to MLOps, find the specialized talent your projects demand.
+              From frontend to architecture, find the specialized talent your projects demand.
             </p>
           </AnimatedSection>
 
@@ -348,8 +461,64 @@ export default function AIHiringPage() {
         </div>
       </section>
 
-      {/* Engagement Models Section */}
+      {/* Tech Stack Section */}
       <section className="relative py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <AnimatedSection className="text-center mb-16">
+            <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+              Technologies
+            </p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4">
+              Our Team&apos;s{" "}
+              <span className="text-gradient-blue">Tech Stack</span>
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Our developers are proficient in the latest technologies across the full stack.
+            </p>
+          </AnimatedSection>
+
+          <div className="space-y-12">
+            {techStackData.map((category, categoryIndex) => (
+              <motion.div
+                key={categoryIndex}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: categoryIndex * 0.1 }}
+                className="glass-card rounded-2xl p-6 md:p-8"
+              >
+                <h3 className="text-[#0065F8] text-sm font-semibold uppercase tracking-wider mb-6">
+                  {category.category}
+                </h3>
+                <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-4 md:gap-6">
+                  {category.technologies.map((tech, techIndex) => (
+                    <motion.div
+                      key={techIndex}
+                      whileHover={{ scale: 1.1, y: -5 }}
+                      className="flex flex-col items-center gap-2 group"
+                    >
+                      <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#0065F8]/50 group-hover:bg-white/10 transition-all p-2">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={tech.icon}
+                          alt={tech.name}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <span className="text-gray-400 text-xs text-center group-hover:text-white transition-colors">
+                        {tech.name}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Engagement Models Section */}
+      <section className="relative py-24 px-6 section-gradient">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-16">
             <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
@@ -459,11 +628,11 @@ export default function AIHiringPage() {
               Why Choose Us
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4">
-              The Aivora{" "}
+              The Aivoranext{" "}
               <span className="text-gradient-blue">Advantage</span>
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              We make hiring AI talent simple, fast, and risk-free.
+              We make hiring top talent simple, fast, and risk-free.
             </p>
           </AnimatedSection>
 
@@ -503,19 +672,19 @@ export default function AIHiringPage() {
             Get Started
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 leading-tight">
-            Ready to Find Your
+            Ready to Build Your
           </h2>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-gradient-blue mb-8 leading-tight">
-            AI Engineer?
+            Dream Team?
           </h2>
           <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
-            Start your search today and get matched with pre-vetted AI talent
+            Start your search today and get matched with pre-vetted talent
             within 48 hours. No risk, no obligation.
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-12 py-5 btn-primary text-white text-lg font-semibold rounded-lg"
+              className="inline-flex items-center gap-2 px-12 py-5 btn-primary text-white text-lg font-semibold rounded-none"
             >
               Get Started <ArrowRight className="w-5 h-5" />
             </Link>

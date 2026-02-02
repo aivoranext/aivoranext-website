@@ -23,6 +23,9 @@ module.exports = {
           900: "#001850",
         },
       },
+      maxWidth: {
+        container: "1280px",
+      },
       animation: {
         "fade-in-up": "fadeInUp 0.8s ease-out forwards",
         float: "float 6s ease-in-out infinite",
@@ -30,8 +33,13 @@ module.exports = {
         shimmer: "shimmer 2s linear infinite",
         "gradient-shift": "gradient-shift 3s ease infinite",
         "glow-pulse": "glow-pulse 4s ease-in-out infinite",
+        "marquee-testimonials": "marquee-testimonials var(--duration) linear infinite",
       },
       keyframes: {
+        "marquee-testimonials": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
         fadeInUp: {
           "0%": { opacity: "0", transform: "translateY(30px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },

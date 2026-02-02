@@ -237,7 +237,7 @@ export default function CustomSoftwarePage() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 btn-primary text-white font-semibold rounded-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 btn-primary text-white font-semibold rounded-none"
               >
                 Discuss Your Project <ArrowRight className="w-5 h-5" />
               </Link>
@@ -245,7 +245,7 @@ export default function CustomSoftwarePage() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/portfolio"
-                className="inline-flex items-center gap-2 px-8 py-4 btn-secondary text-white font-semibold rounded-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 btn-secondary text-white font-semibold rounded-none"
               >
                 View Case Studies
               </Link>
@@ -484,7 +484,7 @@ export default function CustomSoftwarePage() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-12 py-5 btn-primary text-white text-lg font-semibold rounded-lg"
+              className="inline-flex items-center gap-2 px-12 py-5 btn-primary text-white text-lg font-semibold rounded-none"
             >
               Schedule a Discovery Call <ArrowRight className="w-5 h-5" />
             </Link>

@@ -19,19 +19,33 @@ import {
   Workflow,
   Code,
   Users,
+  X,
+  Check,
+  AlertTriangle,
+  Quote,
+  Bot,
+  Brain,
+  Server,
+  MessageSquare,
+  Zap,
+  Mail,
 } from "lucide-react";
 import {
   siteConfig,
   heroContent,
+  heroTrustedBrands,
   heroStatsPanel,
   belowHeroStatement,
   aboutSection,
+  hireUsSection,
+  testimonialsSection,
   featureCards,
   servicesSection,
   faqSection,
   ctaSection,
   footerLinks,
 } from "@/lib/content";
+import { TestimonialsSection } from "@/components/ui/testimonials-with-marquee";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -151,54 +165,6 @@ function StatIcon({ name }) {
   return <Sparkles className="w-7 h-7 text-[#0065F8]" />;
 }
 
-// 3D Floating Element Component
-function Floating3DElement() {
-  return (
-    <div className="perspective-container absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block">
-      <motion.div
-        className="relative w-[300px] h-[300px]"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, delay: 0.8 }}
-      >
-        {/* Floating Orb 1 */}
-        <div className="floating-orb w-32 h-32 top-0 right-0" style={{ animationDelay: '0s' }} />
-
-        {/* Floating Orb 2 - smaller */}
-        <div className="floating-orb w-20 h-20 bottom-10 left-10" style={{ animationDelay: '2s' }} />
-
-        {/* Floating Orb 3 - smallest */}
-        <div className="floating-orb w-12 h-12 top-1/2 left-0" style={{ animationDelay: '4s' }} />
-
-        {/* Glowing ring */}
-        <motion.div
-          className="absolute inset-0 rounded-full border-2 border-[#0065F8]/20"
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.6, 0.3]
-          }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        {/* Inner glowing ring */}
-        <motion.div
-          className="absolute inset-8 rounded-full border border-[#0065F8]/30"
-          animate={{
-            scale: [1.1, 1, 1.1],
-            opacity: [0.5, 0.2, 0.5]
-          }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        />
-
-        {/* Center glow */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-4 h-4 rounded-full bg-[#0065F8] blur-sm animate-pulse-glow" />
-        </div>
-      </motion.div>
-    </div>
-  );
-}
-
 export default function Home() {
   const [openFaq, setOpenFaq] = useState(null);
 
@@ -231,9 +197,6 @@ export default function Home() {
         id="hero"
         className="relative min-h-screen flex flex-col items-center justify-start pt-32 md:pt-36 pb-20 md:pb-24 px-6"
       >
-        {/* 3D Floating Element */}
-        <Floating3DElement />
-
         <motion.div
           className="flex flex-col items-center text-center max-w-5xl mx-auto z-10"
         >
@@ -306,13 +269,73 @@ export default function Home() {
             <motion.div whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
               <Link
                 href={heroStatsPanel.cta.href}
-                className="inline-flex items-center justify-center px-10 py-5 bg-white hover:bg-gray-100 text-gray-900 text-base font-semibold rounded-lg transition-all shadow-lg hover:shadow-xl"
+                className="inline-flex items-center justify-center px-10 py-5 bg-white hover:bg-gray-100 text-gray-900 text-base font-semibold rounded-none transition-all shadow-lg hover:shadow-xl"
               >
                 {heroStatsPanel.cta.label}
               </Link>
             </motion.div>
           </div>
         </motion.div>
+      </section>
+
+      {/* Trusted Brands Below Hero - Scrolling Marquee */}
+      <section className="relative py-12 md:py-16 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 mb-8">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-gray-500 text-sm text-center"
+          >
+            {heroTrustedBrands.caption}
+          </motion.p>
+        </div>
+
+        {/* Marquee Container */}
+        <div className="relative">
+          {/* Gradient Fades */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
+
+          {/* Scrolling Track */}
+          <div className="flex animate-marquee">
+            {/* First set of brands */}
+            <div className="flex shrink-0 items-center gap-16 md:gap-20 px-8">
+              {heroTrustedBrands.brands.map((brand, index) => (
+                <div
+                  key={`brand-1-${index}`}
+                  className="flex items-center justify-center h-10 opacity-50 hover:opacity-80 transition-opacity"
+                >
+                  <Image
+                    src={brand.logo}
+                    alt={brand.name}
+                    width={120}
+                    height={40}
+                    className="h-8 md:h-10 w-auto object-contain brightness-0 invert"
+                  />
+                </div>
+              ))}
+            </div>
+            {/* Duplicate for seamless loop */}
+            <div className="flex shrink-0 items-center gap-16 md:gap-20 px-8">
+              {heroTrustedBrands.brands.map((brand, index) => (
+                <div
+                  key={`brand-2-${index}`}
+                  className="flex items-center justify-center h-10 opacity-50 hover:opacity-80 transition-opacity"
+                >
+                  <Image
+                    src={brand.logo}
+                    alt={brand.name}
+                    width={120}
+                    height={40}
+                    className="h-8 md:h-10 w-auto object-contain brightness-0 invert"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Statement Section (below hero) - About Us with scroll-driven text animation */}
@@ -352,7 +375,7 @@ export default function Home() {
             >
               <Link
                 href={belowHeroStatement.cta.href}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-[#0065F8] text-white font-medium shadow-[0_0_30px_rgba(0,101,248,0.45)] hover:shadow-[0_0_40px_rgba(0,101,248,0.6)] hover:bg-[#3B8BFF] transition-all"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-none bg-[#0065F8] text-white font-medium shadow-[0_0_30px_rgba(0,101,248,0.45)] hover:shadow-[0_0_40px_rgba(0,101,248,0.6)] hover:bg-[#3B8BFF] transition-all"
               >
                 {belowHeroStatement.cta.label}
               </Link>
@@ -374,7 +397,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           {/* Hero Banner with Button */}
           <div className="relative mb-24">
-            <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 mb-8">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-8">
               <AnimatedSection className="max-w-2xl">
                 <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">{aboutSection.caption}</p>
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white leading-tight">
@@ -386,7 +409,7 @@ export default function Home() {
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     href="/about"
-                    className="inline-flex items-center gap-2 px-10 py-4 btn-primary text-white font-semibold rounded-lg"
+                    className="inline-flex items-center gap-2 px-10 py-4 btn-primary text-white font-semibold rounded-none"
                   >
                     {heroContent.primaryButton} <ArrowRight className="w-5 h-5" />
                   </Link>
@@ -413,14 +436,8 @@ export default function Home() {
           </div>
 
           {/* About Content */}
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            <AnimatedSection>
-              <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">{aboutSection.caption}</p>
-              <h3 className="text-3xl md:text-4xl font-light text-white mb-6">
-                {aboutSection.title1} <span className="text-gradient-blue">{aboutSection.title2}</span>
-              </h3>
-            </AnimatedSection>
-            <AnimatedSection delay={0.2} className="space-y-6">
+          <div className="max-w-4xl">
+            <AnimatedSection className="space-y-6">
               <p className="text-gray-400 text-lg leading-relaxed">
                 {aboutSection.description}
               </p>
@@ -432,47 +449,161 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Why Hire Us Section */}
+      <section className="relative py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <AnimatedSection className="text-center mb-16">
+            <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+              {hireUsSection.caption}
+            </p>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-2 leading-tight">
+              {hireUsSection.title1}
+            </h2>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-gradient-blue mb-6 leading-tight">
+              {hireUsSection.title2}
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              {hireUsSection.description}
+            </p>
+          </AnimatedSection>
+
+          {/* Two Column Layout */}
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+            {/* Left Column - Alternatives/Problems */}
+            <AnimatedSection delay={0.1}>
+              <div className="space-y-4">
+                <h3 className="text-xl font-medium text-white/60 mb-6">Common Alternatives & Their Problems</h3>
+                {hireUsSection.alternatives.map((alt, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex gap-4 p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-red-500/20 transition-colors group"
+                  >
+                    <div className="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0 group-hover:bg-red-500/20 transition-colors">
+                      <X className="w-5 h-5 text-red-400" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-medium mb-1">{alt.title}</h4>
+                      <p className="text-gray-500 text-sm leading-relaxed">{alt.problem}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </AnimatedSection>
+
+            {/* Right Column - Our Services */}
+            <AnimatedSection delay={0.2}>
+              <div className="space-y-4">
+                <h3 className="text-xl font-medium text-white/60 mb-6">What We Deliver Instead</h3>
+                {hireUsSection.services.map((service, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex gap-4 p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#0065F8]/30 transition-colors group"
+                  >
+                    <div className="w-10 h-10 rounded-lg bg-[#0065F8]/10 border border-[#0065F8]/20 flex items-center justify-center shrink-0 group-hover:bg-[#0065F8]/20 transition-colors">
+                      {service.icon === "Phone" && <Phone className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Workflow" && <Workflow className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Code" && <Code className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Users" && <Users className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Bot" && <Bot className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Brain" && <Brain className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Server" && <Server className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "MessageSquare" && <MessageSquare className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Zap" && <Zap className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Mail" && <Mail className="w-5 h-5 text-[#0065F8]" />}
+                    </div>
+                    <div>
+                      <h4 className="text-white font-medium mb-1">{service.title}</h4>
+                      <p className="text-gray-500 text-sm leading-relaxed">{service.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </AnimatedSection>
+          </div>
+
+          {/* CTA Button */}
+          <AnimatedSection delay={0.3} className="flex justify-center mt-12">
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link
+                href={hireUsSection.cta.href}
+                className="inline-flex items-center gap-2 px-10 py-4 btn-primary text-white font-semibold rounded-none"
+              >
+                {hireUsSection.cta.label} <ArrowRight className="w-5 h-5" />
+              </Link>
+            </motion.div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* Feature Cards Section */}
       <section id="services" className="relative py-24 px-6 section-gradient">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <span className="inline-block px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#0065F8] text-sm font-medium mb-4">
+              Our Services
+            </span>
+            <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+              Everything You Need to <span className="text-[#0065F8]">Scale with AI</span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              From Voice AI agents to custom software - we provide end-to-end AI solutions that deliver measurable results
+            </p>
+          </motion.div>
+
+          <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid md:grid-cols-3 gap-6"
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {featureCards.map((card, index) => (
               <motion.div
                 key={index}
                 variants={fadeInUp}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="glass-card rounded-3xl p-8"
+                className="glass-card rounded-3xl p-6 flex flex-col h-full"
               >
                 {/* Tag */}
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center gap-3 mb-4">
                   <span className="text-[#0065F8] text-sm font-semibold uppercase tracking-wider">
                     {card.tag}
                   </span>
-          </div>
+                </div>
 
                 {/* Title */}
-                <h3 className="text-xl md:text-2xl font-medium text-white mb-4 leading-tight">
+                <h3 className="text-lg md:text-xl font-medium text-white mb-3 leading-tight">
                   {card.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">
                   {card.description}
                 </p>
 
-                {/* Badges or Button */}
+                {/* Badges */}
                 {card.badges && (
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {card.badges.map((badge, badgeIndex) => (
                       <span
                         key={badgeIndex}
-                        className="px-4 py-2 rounded-lg text-xs font-medium bg-white/5 text-gray-300 border border-white/10"
+                        className="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-gray-300 border border-white/10"
                       >
                         {badge}
                       </span>
@@ -480,21 +611,29 @@ export default function Home() {
                   </div>
                 )}
 
-                {card.hasButton && (
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Link
-                      href="/contact"
-                      className="inline-flex items-center gap-2 px-6 py-3 btn-primary text-white text-sm font-semibold rounded-lg"
-                    >
-                      {card.buttonText} <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </motion.div>
-                )}
+                {/* CTA Button */}
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <Link
+                    href={card.link || "/contact"}
+                    className="inline-flex items-center gap-2 text-[#0065F8] text-sm font-semibold hover:text-white transition-colors group"
+                  >
+                    {card.buttonText} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
+
+      {/* Client Testimonials Section */}
+      <AnimatedSection>
+        <TestimonialsSection
+          title={testimonialsSection.title}
+          description={testimonialsSection.description}
+          testimonials={testimonialsSection.testimonials}
+        />
+      </AnimatedSection>
 
       {/* Services Section with Stats */}
       <section className="relative py-24 px-6">
@@ -512,9 +651,11 @@ export default function Home() {
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-gradient-blue leading-tight mb-2">
                   {servicesSection.title2}
                 </h2>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight">
-                  {servicesSection.title3}
-              </h2>
+                {servicesSection.title3 && (
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight">
+                    {servicesSection.title3}
+                  </h2>
+                )}
               </div>
 
               {/* Service Cards */}
@@ -535,6 +676,12 @@ export default function Home() {
                       {service.icon === "Workflow" && <Workflow className="w-5 h-5 text-[#0065F8]" />}
                       {service.icon === "Code" && <Code className="w-5 h-5 text-[#0065F8]" />}
                       {service.icon === "Users" && <Users className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Bot" && <Bot className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Brain" && <Brain className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Server" && <Server className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "MessageSquare" && <MessageSquare className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Zap" && <Zap className="w-5 h-5 text-[#0065F8]" />}
+                      {service.icon === "Mail" && <Mail className="w-5 h-5 text-[#0065F8]" />}
                     </div>
                     <div>
                       <h4 className="text-white font-medium mb-2">{service.title}</h4>
@@ -547,7 +694,7 @@ export default function Home() {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-10 py-4 btn-primary text-white font-semibold rounded-lg"
+                  className="inline-flex items-center gap-2 px-10 py-4 btn-primary text-white font-semibold rounded-none"
                 >
                   {servicesSection.buttonText} <ArrowRight className="w-5 h-5" />
                 </Link>
@@ -679,7 +826,7 @@ export default function Home() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-12 py-5 btn-primary text-white text-lg font-semibold rounded-lg"
+              className="inline-flex items-center gap-2 px-12 py-5 btn-primary text-white text-lg font-semibold rounded-none"
             >
               {ctaSection.buttonText} <ArrowRight className="w-5 h-5" />
             </Link>

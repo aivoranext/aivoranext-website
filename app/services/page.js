@@ -11,6 +11,7 @@ import {
   Code,
   Users,
   Check,
+  Palette,
 } from "lucide-react";
 import {
   siteConfig,
@@ -62,6 +63,21 @@ function AnimatedSection({ children, className, delay = 0 }) {
 // Services data
 const servicesData = [
   {
+    icon: Palette,
+    title: "UI/UX Design",
+    description: "Create beautiful, intuitive digital experiences. From research and wireframes to high-fidelity designs and prototypes.",
+    features: [
+      "UI/UX Design",
+      "UX Research",
+      "Usability Testing",
+      "Design Systems",
+      "Digital Prototyping",
+      "Digital Branding"
+    ],
+    link: "/services/ui-ux-design",
+    gradient: "from-pink-500/20 to-rose-500/10"
+  },
+  {
     icon: Phone,
     title: "Voice AI & Calling Agents",
     description: "Deploy AI agents that handle inbound and outbound calls 24/7. Perfect for customer support, appointment booking, lead qualification, and sales.",
@@ -108,17 +124,17 @@ const servicesData = [
   },
   {
     icon: Users,
-    title: "AI Engineer Hiring",
-    description: "Access top AI talent on-demand. ML engineers, data scientists, and LLM specialists for contract or full-time roles.",
+    title: "Staff Augmentation",
+    description: "Access top talent on-demand. Frontend, backend, AI developers, designers, and solution architects for contract or full-time roles.",
     features: [
-      "ML Engineers",
-      "LLM Specialists",
-      "Computer Vision Engineers",
-      "MLOps Engineers",
-      "Contract/full-time options",
-      "2-week trial periods"
+      "Frontend Developer",
+      "Backend Developer",
+      "AI Developer",
+      "UI/UX Designer",
+      "Full Stack Developer",
+      "Solution Architect"
     ],
-    link: "/services/ai-hiring",
+    link: "/services/staff-augmentation",
     gradient: "from-orange-500/20 to-amber-500/10"
   }
 ];
@@ -194,7 +210,7 @@ export default function ServicesPage() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 btn-primary text-white font-semibold rounded-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 btn-primary text-white font-semibold rounded-none"
               >
                 Book a Demo <ArrowRight className="w-5 h-5" />
               </Link>
@@ -202,7 +218,7 @@ export default function ServicesPage() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <a
                 href="#services-grid"
-                className="inline-flex items-center gap-2 px-8 py-4 btn-secondary text-white font-semibold rounded-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 btn-secondary text-white font-semibold rounded-none"
               >
                 Explore Services
               </a>
@@ -299,7 +315,7 @@ export default function ServicesPage() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-12 py-5 btn-primary text-white text-lg font-semibold rounded-lg"
+              className="inline-flex items-center gap-2 px-12 py-5 btn-primary text-white text-lg font-semibold rounded-none"
             >
               Schedule a Call <ArrowRight className="w-5 h-5" />
             </Link>
