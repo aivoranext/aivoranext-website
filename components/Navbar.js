@@ -11,7 +11,7 @@ export default function Navbar({ currentPage = "Home" }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState(0);
 
-  const isInternalRoute = (link) => link.startsWith('/') && !link.includes('#');
+  const isInternalRoute = (link) => link.startsWith("/") && !link.includes("#");
 
   return (
     <AnimatePresence mode="wait">
@@ -24,10 +24,7 @@ export default function Navbar({ currentPage = "Home" }) {
         <nav className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Image
                 src={siteConfig.logo}
                 alt={siteConfig.name}
@@ -50,7 +47,11 @@ export default function Navbar({ currentPage = "Home" }) {
               >
                 {item.megaMenu ? (
                   <div className="relative">
-                    <button className="text-gray-400 hover:text-white transition-colors text-sm font-medium nav-link flex items-center gap-1">
+                    <button
+                      className="text-gray-400 hover:text-white transition-colors text-sm font-medium nav-link flex items-center gap-1"
+                      aria-label={`${item.name} menu`}
+                      aria-haspopup="true"
+                    >
                       {item.name}
                       <ChevronDown className="w-4 h-4 group-hover:rotate-180 transition-transform duration-200" />
                     </button>
@@ -60,14 +61,21 @@ export default function Navbar({ currentPage = "Home" }) {
                       <div className="max-w-7xl mx-auto px-6">
                         <div className="bg-[#0a0a0a] border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
                           <div className="grid grid-cols-12 min-h-[400px]">
-
                             {/* Categories - Left Column */}
                             <div className="col-span-3 border-r border-white/10 p-6">
                               <div className="space-y-2">
                                 {item.categories.map((category, catIndex) => (
                                   <button
                                     key={category.name}
-                                    onMouseEnter={() => setActiveCategory(catIndex)}
+                                    onMouseEnter={() =>
+                                      setActiveCategory(catIndex)
+                                    }
+                                    aria-label={`View ${category.name} services`}
+                                    aria-current={
+                                      activeCategory === catIndex
+                                        ? "true"
+                                        : "false"
+                                    }
                                     className={`block w-full text-left px-4 py-3 rounded-lg text-lg font-medium transition-all ${
                                       activeCategory === catIndex
                                         ? "text-[#0065F8] bg-[#0065F8]/10"
@@ -85,7 +93,8 @@ export default function Navbar({ currentPage = "Home" }) {
                                   href="/services"
                                   className="inline-flex items-center gap-2 px-6 py-3 border border-[#0065F8] text-[#0065F8] hover:bg-[#0065F8] hover:text-white text-sm font-semibold rounded-none transition-all"
                                 >
-                                  VIEW ALL SERVICES <ArrowRight className="w-4 h-4" />
+                                  VIEW ALL SERVICES{" "}
+                                  <ArrowRight className="w-4 h-4" />
                                 </Link>
                               </div>
                             </div>
@@ -93,15 +102,17 @@ export default function Navbar({ currentPage = "Home" }) {
                             {/* Services - Middle Columns */}
                             <div className="col-span-5 p-6">
                               <div className="grid grid-cols-2 gap-x-8 gap-y-2">
-                                {item.categories[activeCategory]?.services.map((service) => (
-                                  <Link
-                                    key={service.name}
-                                    href={service.link}
-                                    className="block py-3 text-gray-400 hover:text-white transition-colors text-sm"
-                                  >
-                                    {service.name}
-                                  </Link>
-                                ))}
+                                {item.categories[activeCategory]?.services.map(
+                                  (service) => (
+                                    <Link
+                                      key={service.name}
+                                      href={service.link}
+                                      className="block py-3 text-gray-400 hover:text-white transition-colors text-sm"
+                                    >
+                                      {service.name}
+                                    </Link>
+                                  ),
+                                )}
                               </div>
                             </div>
 
@@ -129,8 +140,12 @@ export default function Navbar({ currentPage = "Home" }) {
                           {/* Bottom CTA Bar */}
                           <div className="border-t border-white/10 px-6 py-4 bg-white/[0.02]">
                             <p className="text-center text-gray-400 text-sm">
-                              Want to build your AI solution? Let&apos;s connect!{" "}
-                              <Link href="/contact" className="text-white font-semibold hover:text-[#0065F8] transition-colors">
+                              Want to build your AI solution? Let&apos;s
+                              connect!{" "}
+                              <Link
+                                href="/contact"
+                                className="text-white font-semibold hover:text-[#0065F8] transition-colors"
+                              >
                                 CONTACT US
                               </Link>
                             </p>
@@ -143,7 +158,9 @@ export default function Navbar({ currentPage = "Home" }) {
                   <Link
                     href={item.link}
                     className={`text-sm font-medium nav-link transition-colors ${
-                      item.name === currentPage ? "text-[#0065F8]" : "text-gray-400 hover:text-white"
+                      item.name === currentPage
+                        ? "text-[#0065F8]"
+                        : "text-gray-400 hover:text-white"
                     }`}
                   >
                     {item.name}
@@ -177,9 +194,16 @@ export default function Navbar({ currentPage = "Home" }) {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-white p-2"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+            className="md:hidden text-white p-2 relative z-50 touch-manipulation active:scale-95 transition-transform"
+            style={{ WebkitTapHighlightColor: "transparent" }}
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </nav>
 
@@ -188,17 +212,24 @@ export default function Navbar({ currentPage = "Home" }) {
           initial={false}
           animate={{
             height: mobileMenuOpen ? "auto" : 0,
-            opacity: mobileMenuOpen ? 1 : 0
+            opacity: mobileMenuOpen ? 1 : 0,
           }}
           transition={{ duration: 0.3 }}
           className="md:hidden overflow-hidden bg-black/95 backdrop-blur-xl border-t border-white/10 max-h-[80vh] overflow-y-auto"
+          style={{
+            WebkitOverflowScrolling: "touch",
+            overscrollBehavior: "contain",
+          }}
         >
           <div className="px-6 py-6 space-y-4">
             {navigation.navItems.map((item, index) => (
               <motion.div
                 key={item.name}
                 initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: mobileMenuOpen ? 1 : 0, x: mobileMenuOpen ? 0 : -20 }}
+                animate={{
+                  opacity: mobileMenuOpen ? 1 : 0,
+                  x: mobileMenuOpen ? 0 : -20,
+                }}
                 transition={{ delay: 0.1 * index }}
               >
                 {item.megaMenu ? (
@@ -211,7 +242,10 @@ export default function Navbar({ currentPage = "Home" }) {
                       {item.name}
                     </Link>
                     {item.categories.map((category) => (
-                      <div key={category.name} className="pl-4 space-y-1.5 border-l-2 border-[#0065F8]/30">
+                      <div
+                        key={category.name}
+                        className="pl-4 space-y-1.5 border-l-2 border-[#0065F8]/30"
+                      >
                         <span className="block text-[#0065F8] text-xs font-semibold uppercase tracking-wider py-1">
                           {category.name}
                         </span>
@@ -221,7 +255,7 @@ export default function Navbar({ currentPage = "Home" }) {
                               key={service.name}
                               href={service.link}
                               onClick={() => setMobileMenuOpen(false)}
-                              className="block text-gray-400 text-sm py-1.5 hover:text-[#0065F8] transition-colors active:text-[#0065F8]"
+                              className="block text-gray-400 text-sm py-1.5 hover:text-[#0065F8] transition-colors active:text-[#0065F8] touch-manipulation"
                             >
                               {service.name}
                             </Link>
@@ -243,7 +277,7 @@ export default function Navbar({ currentPage = "Home" }) {
                   <Link
                     href={item.link}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block text-white text-lg font-medium py-2 hover:text-[#0065F8] transition-colors active:text-[#0065F8]"
+                    className="block text-white text-lg font-medium py-2 hover:text-[#0065F8] transition-colors active:text-[#0065F8] touch-manipulation"
                   >
                     {item.name}
                   </Link>
@@ -251,7 +285,7 @@ export default function Navbar({ currentPage = "Home" }) {
                   <a
                     href={item.link}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block text-white text-lg font-medium py-2 hover:text-[#0065F8] transition-colors active:text-[#0065F8]"
+                    className="block text-white text-lg font-medium py-2 hover:text-[#0065F8] transition-colors active:text-[#0065F8] touch-manipulation"
                   >
                     {item.name}
                   </a>
@@ -261,7 +295,7 @@ export default function Navbar({ currentPage = "Home" }) {
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#0065F8] text-white text-sm font-semibold rounded-none w-full justify-center mt-4"
+              className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#0065F8] text-white text-sm font-semibold rounded-none w-full justify-center mt-4 touch-manipulation"
             >
               Get In Touch
             </Link>

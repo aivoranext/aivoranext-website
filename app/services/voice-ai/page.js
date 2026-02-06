@@ -29,9 +29,7 @@ import {
   TestTube,
   Rocket,
 } from "lucide-react";
-import {
-  siteConfig,
-} from "@/lib/content";
+import { siteConfig } from "@/lib/content";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -41,8 +39,8 @@ const fadeInUp = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-  }
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+  },
 };
 
 const staggerContainer = {
@@ -51,9 +49,9 @@ const staggerContainer = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.2
-    }
-  }
+      delayChildren: 0.2,
+    },
+  },
 };
 
 // Animated Section Component
@@ -80,38 +78,41 @@ const howItWorksSteps = [
     icon: Search,
     step: "01",
     title: "Discovery",
-    description: "Understand your call handling needs, volume, and specific requirements."
+    description:
+      "Understand your call handling needs, volume, and specific requirements.",
   },
   {
     icon: Palette,
     step: "02",
     title: "Voice Design",
-    description: "Design the AI voice personality, tone, and conversation scripts."
+    description:
+      "Design the AI voice personality, tone, and conversation scripts.",
   },
   {
     icon: Link2,
     step: "03",
     title: "Integration",
-    description: "Connect to your phone system, CRM, and business tools."
+    description: "Connect to your phone system, CRM, and business tools.",
   },
   {
     icon: GraduationCap,
     step: "04",
     title: "Training",
-    description: "Train the AI on your products, services, and company knowledge."
+    description:
+      "Train the AI on your products, services, and company knowledge.",
   },
   {
     icon: TestTube,
     step: "05",
     title: "Testing",
-    description: "Comprehensive testing and refinement with real scenarios."
+    description: "Comprehensive testing and refinement with real scenarios.",
   },
   {
     icon: Rocket,
     step: "06",
     title: "Deployment",
-    description: "Go live with monitoring, optimization, and ongoing support."
-  }
+    description: "Go live with monitoring, optimization, and ongoing support.",
+  },
 ];
 
 // Use Cases by Industry
@@ -119,39 +120,55 @@ const useCases = [
   {
     icon: Building2,
     industry: "Real Estate",
-    description: "Appointment booking, property inquiries, and lead qualification for agents and brokerages.",
-    features: ["Schedule property viewings", "Answer listing questions", "Qualify buyer leads"]
+    description:
+      "Appointment booking, property inquiries, and lead qualification for agents and brokerages.",
+    features: [
+      "Schedule property viewings",
+      "Answer listing questions",
+      "Qualify buyer leads",
+    ],
   },
   {
     icon: Heart,
     industry: "Healthcare",
-    description: "Patient intake, appointment reminders, and prescription refill requests.",
-    features: ["HIPAA-compliant calls", "Appointment scheduling", "Patient follow-ups"]
+    description:
+      "Patient intake, appointment reminders, and prescription refill requests.",
+    features: [
+      "HIPAA-compliant calls",
+      "Appointment scheduling",
+      "Patient follow-ups",
+    ],
   },
   {
     icon: ShoppingCart,
     industry: "E-commerce",
-    description: "Order status updates, returns processing, and customer support.",
-    features: ["Order tracking", "Return authorization", "Product inquiries"]
+    description:
+      "Order status updates, returns processing, and customer support.",
+    features: ["Order tracking", "Return authorization", "Product inquiries"],
   },
   {
     icon: Wallet,
     industry: "Financial Services",
     description: "Account inquiries, fraud alerts, and payment reminders.",
-    features: ["Balance inquiries", "Transaction alerts", "Payment collection"]
+    features: ["Balance inquiries", "Transaction alerts", "Payment collection"],
   },
   {
     icon: Monitor,
     industry: "SaaS",
     description: "Onboarding calls, support triage, and renewal reminders.",
-    features: ["User onboarding", "Technical support", "Account renewals"]
+    features: ["User onboarding", "Technical support", "Account renewals"],
   },
   {
     icon: UserCheck,
     industry: "Recruitment",
-    description: "Candidate screening, interview scheduling, and follow-up calls.",
-    features: ["Initial screening", "Interview coordination", "Offer follow-ups"]
-  }
+    description:
+      "Candidate screening, interview scheduling, and follow-up calls.",
+    features: [
+      "Initial screening",
+      "Interview coordination",
+      "Offer follow-ups",
+    ],
+  },
 ];
 
 // Features Grid
@@ -159,69 +176,104 @@ const featuresData = [
   {
     icon: Clock,
     title: "24/7 Availability",
-    description: "Never miss a call. AI agents handle inquiries around the clock, including holidays."
+    description:
+      "Never miss a call. AI agents handle inquiries around the clock, including holidays.",
   },
   {
     icon: Globe,
     title: "Multi-language Support",
-    description: "Communicate with customers in their preferred language with native fluency."
+    description:
+      "Communicate with customers in their preferred language with native fluency.",
   },
   {
     icon: MessageSquare,
     title: "Natural Conversations",
-    description: "Human-like dialogue with context awareness, emotion detection, and natural pauses."
+    description:
+      "Human-like dialogue with context awareness, emotion detection, and natural pauses.",
   },
   {
     icon: Database,
     title: "CRM Integration",
-    description: "Automatically log calls, update records, and trigger workflows in your CRM."
+    description:
+      "Automatically log calls, update records, and trigger workflows in your CRM.",
   },
   {
     icon: FileText,
     title: "Call Recording & Transcription",
-    description: "Full recordings and AI-generated transcripts for every conversation."
+    description:
+      "Full recordings and AI-generated transcripts for every conversation.",
   },
   {
     icon: BarChart3,
     title: "Real-time Analytics",
-    description: "Live dashboards showing call volume, outcomes, and performance metrics."
+    description:
+      "Live dashboards showing call volume, outcomes, and performance metrics.",
   },
   {
     icon: Mic,
     title: "Custom Voice Personalities",
-    description: "Choose from professional voices or create a custom voice matching your brand."
+    description:
+      "Choose from professional voices or create a custom voice matching your brand.",
   },
   {
     icon: Users,
     title: "Seamless Human Handoff",
-    description: "Intelligent escalation to live agents when complex situations arise."
-  }
+    description:
+      "Intelligent escalation to live agents when complex situations arise.",
+  },
 ];
 
 // Integration Partners
 const integrationPartners = {
   telephony: [
-    { name: "Twilio", logo: "/integrations/twilio.svg" },
-    { name: "Vonage", logo: "/integrations/vonage.svg" },
-    { name: "RingCentral", logo: "/integrations/ringcentral.svg" }
+    {
+      name: "Twilio",
+      logo: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770269514/twilio_yqixns.svg",
+    },
+    {
+      name: "Vonage",
+      logo: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770269515/vonage_q53toi.svg",
+    },
+    {
+      name: "RingCentral",
+      logo: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770269511/ringcentral_hazn3z.svg",
+    },
   ],
   crm: [
-    { name: "Salesforce", logo: "/integrations/salesforce.svg" },
-    { name: "HubSpot", logo: "/integrations/hubspot.svg" },
-    { name: "Pipedrive", logo: "/integrations/pipedrive.svg" }
+    {
+      name: "Salesforce",
+      logo: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770269512/salesforce_qqn8aa.svg",
+    },
+    {
+      name: "HubSpot",
+      logo: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770269509/hubspot_xtl5u0.svg",
+    },
+    {
+      name: "Pipedrive",
+      logo: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770269510/pipedrive_i3hvso.svg",
+    },
   ],
   other: [
-    { name: "Slack", logo: "/integrations/slack.svg" },
-    { name: "Zapier", logo: "/integrations/zapier.svg" },
-    { name: "Custom APIs", logo: "/integrations/api.svg" }
-  ]
+    {
+      name: "Slack",
+      logo: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770269513/slack_k8wdqm.svg",
+    },
+    {
+      name: "Zapier",
+      logo: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770269516/zapier_cap5l3.svg",
+    },
+    {
+      name: "Custom APIs",
+      logo: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770269507/api_z6fi2j.svg",
+    },
+  ],
 };
 
 export default function VoiceAIPage() {
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end start"],
   });
 
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
@@ -254,7 +306,9 @@ export default function VoiceAIPage() {
             <span className="bg-[#0065F8] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
               Voice AI Agents
             </span>
-            <span className="text-white/80 text-sm font-medium">24/7 Intelligent Calling</span>
+            <span className="text-white/80 text-sm font-medium">
+              24/7 Intelligent Calling
+            </span>
           </motion.div>
 
           {/* Main Headline */}
@@ -275,8 +329,9 @@ export default function VoiceAIPage() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-gray-400 text-lg md:text-xl leading-relaxed max-w-2xl mb-10"
           >
-            24/7 call handling for appointment booking, customer support, sales calls, and more.
-            Our Voice AI agents understand context, handle objections, and deliver results around the clock.
+            24/7 call handling for appointment booking, customer support, sales
+            calls, and more. Our Voice AI agents understand context, handle
+            objections, and deliver results around the clock.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -326,7 +381,8 @@ export default function VoiceAIPage() {
               <span className="text-gradient-blue">Deployment</span>
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Our proven 6-step process ensures a seamless implementation of your Voice AI system.
+              Our proven 6-step process ensures a seamless implementation of
+              your Voice AI system.
             </p>
           </AnimatedSection>
 
@@ -376,7 +432,8 @@ export default function VoiceAIPage() {
               <span className="text-gradient-blue">Every Industry</span>
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              See how businesses across industries are leveraging Voice AI to transform their operations.
+              See how businesses across industries are leveraging Voice AI to
+              transform their operations.
             </p>
           </AnimatedSection>
 
@@ -474,7 +531,8 @@ export default function VoiceAIPage() {
               <span className="text-gradient-blue">Existing Tools</span>
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Seamlessly connect with your phone systems, CRMs, and business tools.
+              Seamlessly connect with your phone systems, CRMs, and business
+              tools.
             </p>
           </AnimatedSection>
 
@@ -486,7 +544,9 @@ export default function VoiceAIPage() {
                   <div className="w-10 h-10 rounded-xl bg-[#0065F8]/20 flex items-center justify-center">
                     <Phone className="w-5 h-5 text-[#0065F8]" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white">Telephony</h3>
+                  <h3 className="text-xl font-semibold text-white">
+                    Telephony
+                  </h3>
                 </div>
                 <div className="space-y-4">
                   {integrationPartners.telephony.map((partner, index) => (
@@ -504,7 +564,9 @@ export default function VoiceAIPage() {
                           className="object-contain"
                         />
                       </div>
-                      <span className="text-white font-medium text-lg">{partner.name}</span>
+                      <span className="text-white font-medium text-lg">
+                        {partner.name}
+                      </span>
                     </motion.div>
                   ))}
                 </div>
@@ -518,7 +580,9 @@ export default function VoiceAIPage() {
                   <div className="w-10 h-10 rounded-xl bg-[#0065F8]/20 flex items-center justify-center">
                     <Database className="w-5 h-5 text-[#0065F8]" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white">CRM Systems</h3>
+                  <h3 className="text-xl font-semibold text-white">
+                    CRM Systems
+                  </h3>
                 </div>
                 <div className="space-y-4">
                   {integrationPartners.crm.map((partner, index) => (
@@ -536,7 +600,9 @@ export default function VoiceAIPage() {
                           className="object-contain"
                         />
                       </div>
-                      <span className="text-white font-medium text-lg">{partner.name}</span>
+                      <span className="text-white font-medium text-lg">
+                        {partner.name}
+                      </span>
                     </motion.div>
                   ))}
                 </div>
@@ -550,7 +616,9 @@ export default function VoiceAIPage() {
                   <div className="w-10 h-10 rounded-xl bg-[#0065F8]/20 flex items-center justify-center">
                     <Link2 className="w-5 h-5 text-[#0065F8]" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white">Other Tools</h3>
+                  <h3 className="text-xl font-semibold text-white">
+                    Other Tools
+                  </h3>
                 </div>
                 <div className="space-y-4">
                   {integrationPartners.other.map((partner, index) => (
@@ -568,7 +636,9 @@ export default function VoiceAIPage() {
                           className="object-contain"
                         />
                       </div>
-                      <span className="text-white font-medium text-lg">{partner.name}</span>
+                      <span className="text-white font-medium text-lg">
+                        {partner.name}
+                      </span>
                     </motion.div>
                   ))}
                 </div>
@@ -591,8 +661,8 @@ export default function VoiceAIPage() {
             Voice AI?
           </h2>
           <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
-            Schedule a demo to see how our Voice AI agents can transform your call operations
-            and deliver measurable ROI within weeks.
+            Schedule a demo to see how our Voice AI agents can transform your
+            call operations and deliver measurable ROI within weeks.
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link

@@ -33,8 +33,8 @@ const fadeInUp = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-  }
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+  },
 };
 
 const staggerContainer = {
@@ -43,9 +43,9 @@ const staggerContainer = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.2
-    }
-  }
+      delayChildren: 0.2,
+    },
+  },
 };
 
 // Animated Section Component
@@ -71,39 +71,50 @@ const talentCategories = [
   {
     icon: Code,
     title: "Frontend Developer",
-    description: "Expert frontend developers skilled in modern frameworks and responsive design.",
-    features: ["React", "Next.js", "Vue.js", "TypeScript"]
+    description:
+      "Expert frontend developers skilled in modern frameworks and responsive design.",
+    features: ["React", "Next.js", "Vue.js", "TypeScript"],
   },
   {
     icon: Server,
     title: "Backend Developer",
-    description: "Experienced backend engineers for scalable server-side applications.",
-    features: ["Node.js", "Python", "Java", "Go"]
+    description:
+      "Experienced backend engineers for scalable server-side applications.",
+    features: ["Node.js", "Python", "Java", "Go"],
   },
   {
     icon: Brain,
     title: "AI Developer",
-    description: "Specialists in machine learning, LLMs, and AI-powered solutions.",
-    features: ["TensorFlow", "PyTorch", "LLMs", "RAG"]
+    description:
+      "Specialists in machine learning, LLMs, and AI-powered solutions.",
+    features: ["TensorFlow", "PyTorch", "LLMs", "RAG"],
   },
   {
     icon: Palette,
     title: "UI/UX Designer",
-    description: "Creative designers who craft beautiful and intuitive user experiences.",
-    features: ["Figma", "User Research", "Prototyping", "Design Systems"]
+    description:
+      "Creative designers who craft beautiful and intuitive user experiences.",
+    features: ["Figma", "User Research", "Prototyping", "Design Systems"],
   },
   {
     icon: Layers,
     title: "Full Stack Developer",
-    description: "Versatile developers proficient in both frontend and backend technologies.",
-    features: ["MERN Stack", "Next.js", "PostgreSQL", "AWS"]
+    description:
+      "Versatile developers proficient in both frontend and backend technologies.",
+    features: ["MERN Stack", "Next.js", "PostgreSQL", "AWS"],
   },
   {
     icon: Building2,
     title: "Solution Architect",
-    description: "Technical leaders who design scalable and robust system architectures.",
-    features: ["System Design", "Cloud Architecture", "Microservices", "DevOps"]
-  }
+    description:
+      "Technical leaders who design scalable and robust system architectures.",
+    features: [
+      "System Design",
+      "Cloud Architecture",
+      "Microservices",
+      "DevOps",
+    ],
+  },
 ];
 
 // Engagement Models
@@ -112,26 +123,26 @@ const engagementModels = [
     icon: FileCheck,
     title: "Contract",
     description: "Project-based engagement with flexible duration.",
-    features: ["Flexible duration", "Project-based", "Scalable team size"]
+    features: ["Flexible duration", "Project-based", "Scalable team size"],
   },
   {
     icon: Users,
     title: "Full-time",
     description: "Direct hire placements for permanent positions.",
-    features: ["Permanent placement", "Full benefits", "Long-term commitment"]
+    features: ["Permanent placement", "Full benefits", "Long-term commitment"],
   },
   {
     icon: UserCheck,
     title: "Team Augmentation",
     description: "Extend your existing team with specialized talent.",
-    features: ["Seamless integration", "Quick onboarding", "Flexible scaling"]
+    features: ["Seamless integration", "Quick onboarding", "Flexible scaling"],
   },
   {
     icon: CalendarCheck,
     title: "2-Week Trial",
     description: "Evaluate fit before making a commitment.",
-    features: ["Risk-free trial", "Performance evaluation", "No obligation"]
-  }
+    features: ["Risk-free trial", "Performance evaluation", "No obligation"],
+  },
 ];
 
 // Our Process Steps
@@ -140,32 +151,34 @@ const processSteps = [
     icon: Search,
     step: "01",
     title: "Requirements",
-    description: "Define your needs and tech stack for the ideal candidate profile."
+    description:
+      "Define your needs and tech stack for the ideal candidate profile.",
   },
   {
     icon: UserCheck,
     step: "02",
     title: "Matching",
-    description: "We match you with pre-vetted candidates from our talent pool."
+    description:
+      "We match you with pre-vetted candidates from our talent pool.",
   },
   {
     icon: Handshake,
     step: "03",
     title: "Interview",
-    description: "You interview selected candidates to assess cultural fit."
+    description: "You interview selected candidates to assess cultural fit.",
   },
   {
     icon: Users,
     step: "04",
     title: "Onboarding",
-    description: "Smooth integration with your team and existing workflows."
+    description: "Smooth integration with your team and existing workflows.",
   },
   {
     icon: HeartHandshake,
     step: "05",
     title: "Support",
-    description: "Ongoing relationship management and performance support."
-  }
+    description: "Ongoing relationship management and performance support.",
+  },
 ];
 
 // Tech Stack Data with devicon URLs
@@ -173,114 +186,315 @@ const techStackData = [
   {
     category: "Frontend",
     technologies: [
-      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-      { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
-      { name: "Vue.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
-      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-      { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-      { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
-      { name: "Nuxt.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg" },
-      { name: "Vite", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" },
-    ]
+      {
+        name: "React",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "Next.js",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+      },
+      {
+        name: "Vue.js",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+      },
+      {
+        name: "TypeScript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      },
+      {
+        name: "JavaScript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      },
+      {
+        name: "Tailwind CSS",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+      },
+      {
+        name: "Nuxt.js",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg",
+      },
+      {
+        name: "Vite",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg",
+      },
+    ],
   },
   {
     category: "Backend",
     technologies: [
-      { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-      { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-      { name: "Express.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
-      { name: "NestJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg" },
-      { name: "Laravel", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" },
-      { name: "PHP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
-      { name: "GraphQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" },
-      { name: "FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
-    ]
+      {
+        name: "Node.js",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      },
+      {
+        name: "Python",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+      },
+      {
+        name: "Express.js",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+      },
+      {
+        name: "NestJS",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg",
+      },
+      {
+        name: "Laravel",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg",
+      },
+      {
+        name: "PHP",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
+      },
+      {
+        name: "GraphQL",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg",
+      },
+      {
+        name: "FastAPI",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+      },
+    ],
   },
   {
     category: "Database",
     technologies: [
-      { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-      { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-      { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-      { name: "Redis", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" },
-      { name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
-      { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg" },
-      { name: "DynamoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dynamodb/dynamodb-original.svg" },
-    ]
+      {
+        name: "PostgreSQL",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+      },
+      {
+        name: "MongoDB",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+      },
+      {
+        name: "MySQL",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+      },
+      {
+        name: "Redis",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
+      },
+      {
+        name: "Firebase",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
+      },
+      {
+        name: "Supabase",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg",
+      },
+      {
+        name: "DynamoDB",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dynamodb/dynamodb-original.svg",
+      },
+    ],
   },
   {
     category: "Cloud & DevOps",
     technologies: [
-      { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" },
-      { name: "Azure", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" },
-      { name: "GCP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" },
-      { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-      { name: "Kubernetes", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" },
-      { name: "NGINX", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" },
-      { name: "Vercel", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" },
-    ]
+      {
+        name: "AWS",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+      },
+      {
+        name: "Azure",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg",
+      },
+      {
+        name: "GCP",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
+      },
+      {
+        name: "Docker",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+      },
+      {
+        name: "Kubernetes",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
+      },
+      {
+        name: "NGINX",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg",
+      },
+      {
+        name: "Vercel",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg",
+      },
+    ],
   },
   {
     category: "AI & ML",
     technologies: [
-      { name: "OpenAI", icon: "/tech/openai.png" },
-      { name: "Anthropic", icon: "/tech/anthropic.png" },
-      { name: "Google Gemini", icon: "/tech/gemini.png" },
-      { name: "Meta Llama", icon: "/tech/meta.png" },
-      { name: "Mistral AI", icon: "/tech/mistral.png" },
-      { name: "Cohere", icon: "/tech/cohere.png" },
-      { name: "PyTorch", icon: "/tech/pytorch.png" },
-      { name: "TensorFlow", icon: "/tech/tensorflow.png" },
-      { name: "Hugging Face", icon: "/tech/huggingface.png" },
-      { name: "scikit-learn", icon: "/tech/scikitlearn.png" },
-    ]
+      {
+        name: "OpenAI",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270538/openai_xmuukc.png",
+      },
+      {
+        name: "Anthropic",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270519/anthropic_usv1bn.png",
+      },
+      {
+        name: "Google Gemini",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270527/gemini_stkc5z.png",
+      },
+      {
+        name: "Meta Llama",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270533/meta_mkcolx.png",
+      },
+      {
+        name: "Mistral AI",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270536/mistral_hc3i5b.png",
+      },
+      {
+        name: "Cohere",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270523/cohere_c4dwfm.png",
+      },
+      {
+        name: "PyTorch",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270541/pytorch_xjcbpv.png",
+      },
+      {
+        name: "TensorFlow",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270544/tensorflow_sgm6r2.png",
+      },
+      {
+        name: "Hugging Face",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270529/huggingface_v2puam.png",
+      },
+      {
+        name: "scikit-learn",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270542/scikitlearn_ijrmky.png",
+      },
+    ],
   },
   {
     category: "AI Frameworks & Tools",
     technologies: [
-      { name: "LangChain", icon: "/tech/langchain.png" },
-      { name: "LangSmith", icon: "/tech/langchain.png" },
-      { name: "LangGraph", icon: "/tech/langchain.png" },
-      { name: "CrewAI", icon: "/tech/crewai.png" },
-      { name: "AutoGen", icon: "/tech/microsoft.png" },
-      { name: "LiveKit", icon: "/tech/livekit.png" },
-      { name: "Pinecone", icon: "/tech/pinecone.png" },
-      { name: "Weaviate", icon: "/tech/weaviate.png" },
-      { name: "ChromaDB", icon: "/tech/chromadb.png" },
-      { name: "Ollama", icon: "/tech/ollama.png" },
-    ]
+      {
+        name: "LangChain",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270530/langchain_fdbg65.png",
+      },
+      {
+        name: "LangSmith",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270530/langchain_fdbg65.png",
+      },
+      {
+        name: "LangGraph",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270530/langchain_fdbg65.png",
+      },
+      {
+        name: "CrewAI",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270524/crewai_wm9oew.png",
+      },
+      {
+        name: "AutoGen",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270534/microsoft_ztfusb.png",
+      },
+      {
+        name: "LiveKit",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270532/livekit_btkauv.jpg",
+      },
+      {
+        name: "Pinecone",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270540/pinecone_ybwjkm.png",
+      },
+      {
+        name: "Weaviate",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270546/weaviate_jdiws1.jpg",
+      },
+      {
+        name: "ChromaDB",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270521/chromadb_gqj5g3.png",
+      },
+      {
+        name: "Ollama",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270537/ollama_i1mebm.png",
+      },
+    ],
   },
   {
     category: "Voice AI",
     technologies: [
-      { name: "ElevenLabs", icon: "/tech/elevenlabs.png" },
-      { name: "Deepgram", icon: "/tech/deepgram.png" },
-      { name: "Twilio", icon: "/tech/twilio.png" },
-      { name: "AssemblyAI", icon: "/tech/assemblyai.png" },
-      { name: "Whisper", icon: "/tech/openai.png" },
-      { name: "PlayHT", icon: "/tech/openai.png" },
-    ]
+      {
+        name: "ElevenLabs",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270526/elevenlabs_l8o7fv.png",
+      },
+      {
+        name: "Deepgram",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270525/deepgram_pfzgbd.jpg",
+      },
+      {
+        name: "Twilio",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270545/twilio_jwnf7s.png",
+      },
+      {
+        name: "AssemblyAI",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270520/assemblyai_qnldtk.png",
+      },
+      {
+        name: "Whisper",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270538/openai_xmuukc.png",
+      },
+      {
+        name: "PlayHT",
+        icon: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1770270538/openai_xmuukc.png",
+      },
+    ],
   },
   {
     category: "Design Tools",
     technologies: [
-      { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
-      { name: "Photoshop", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" },
-      { name: "Illustrator", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" },
-      { name: "After Effects", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aftereffects/aftereffects-original.svg" },
-      { name: "Framer", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/framermotion/framermotion-original.svg" },
-    ]
+      {
+        name: "Figma",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+      },
+      {
+        name: "Photoshop",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg",
+      },
+      {
+        name: "Illustrator",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg",
+      },
+      {
+        name: "After Effects",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aftereffects/aftereffects-original.svg",
+      },
+      {
+        name: "Framer",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/framermotion/framermotion-original.svg",
+      },
+    ],
   },
   {
     category: "Automation & CMS",
     technologies: [
-      { name: "n8n", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-      { name: "Zapier", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-      { name: "WordPress", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" },
-      { name: "Webflow", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/webflow/webflow-original.svg" },
-      { name: "Strapi", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/strapi/strapi-original.svg" },
-      { name: "Shopify", icon: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopify.svg" },
-    ]
+      {
+        name: "n8n",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      },
+      {
+        name: "Zapier",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      },
+      {
+        name: "WordPress",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg",
+      },
+      {
+        name: "Webflow",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/webflow/webflow-original.svg",
+      },
+      {
+        name: "Strapi",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/strapi/strapi-original.svg",
+      },
+      {
+        name: "Shopify",
+        icon: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopify.svg",
+      },
+    ],
   },
 ];
 
@@ -289,30 +503,34 @@ const benefitsData = [
   {
     icon: Shield,
     title: "Pre-vetted Talent",
-    description: "Rigorous technical screening ensures only top-tier candidates."
+    description:
+      "Rigorous technical screening ensures only top-tier candidates.",
   },
   {
     icon: Zap,
     title: "Fast Matching",
-    description: "Receive qualified candidates within 48 hours of your request."
+    description:
+      "Receive qualified candidates within 48 hours of your request.",
   },
   {
     icon: Clock,
     title: "No Risk",
-    description: "2-week trial periods to ensure the perfect fit for your team."
+    description:
+      "2-week trial periods to ensure the perfect fit for your team.",
   },
   {
     icon: HeartHandshake,
     title: "Ongoing Support",
-    description: "Dedicated account manager for continuous relationship management."
-  }
+    description:
+      "Dedicated account manager for continuous relationship management.",
+  },
 ];
 
 export default function StaffAugmentationPage() {
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end start"],
   });
 
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
@@ -345,7 +563,9 @@ export default function StaffAugmentationPage() {
             <span className="bg-[#0065F8] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
               Staff Augmentation
             </span>
-            <span className="text-white/80 text-sm font-medium">Top Talent On-Demand</span>
+            <span className="text-white/80 text-sm font-medium">
+              Top Talent On-Demand
+            </span>
           </motion.div>
 
           {/* Main Headline */}
@@ -366,8 +586,9 @@ export default function StaffAugmentationPage() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-gray-400 text-lg md:text-xl leading-relaxed max-w-2xl mb-10"
           >
-            Access vetted developers, designers, and architects.
-            Build your dream team with pre-screened talent ready to deliver results from day one.
+            Access vetted developers, designers, and architects. Build your
+            dream team with pre-screened talent ready to deliver results from
+            day one.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -406,7 +627,10 @@ export default function StaffAugmentationPage() {
       </section>
 
       {/* Talent Categories Section */}
-      <section id="talent-categories" className="relative py-24 px-6 section-gradient">
+      <section
+        id="talent-categories"
+        className="relative py-24 px-6 section-gradient"
+      >
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-16">
             <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
@@ -417,7 +641,8 @@ export default function StaffAugmentationPage() {
               <span className="text-gradient-blue">Every Need</span>
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              From frontend to architecture, find the specialized talent your projects demand.
+              From frontend to architecture, find the specialized talent your
+              projects demand.
             </p>
           </AnimatedSection>
 
@@ -473,7 +698,8 @@ export default function StaffAugmentationPage() {
               <span className="text-gradient-blue">Tech Stack</span>
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Our developers are proficient in the latest technologies across the full stack.
+              Our developers are proficient in the latest technologies across
+              the full stack.
             </p>
           </AnimatedSection>
 
@@ -529,7 +755,8 @@ export default function StaffAugmentationPage() {
               <span className="text-gradient-blue">Options</span>
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Choose the engagement model that best fits your project needs and timeline.
+              Choose the engagement model that best fits your project needs and
+              timeline.
             </p>
           </AnimatedSection>
 
@@ -558,7 +785,10 @@ export default function StaffAugmentationPage() {
                 </p>
                 <div className="space-y-2">
                   {model.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-center justify-center gap-2">
+                    <div
+                      key={featureIndex}
+                      className="flex items-center justify-center gap-2"
+                    >
                       <Check className="w-4 h-4 text-[#0065F8] shrink-0" />
                       <span className="text-gray-300 text-sm">{feature}</span>
                     </div>
@@ -582,7 +812,8 @@ export default function StaffAugmentationPage() {
               <span className="text-gradient-blue">Onboarding</span>
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Our streamlined 5-step process ensures you get the right talent quickly and efficiently.
+              Our streamlined 5-step process ensures you get the right talent
+              quickly and efficiently.
             </p>
           </AnimatedSection>
 
