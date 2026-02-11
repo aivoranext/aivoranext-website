@@ -10,6 +10,16 @@ import { siteConfig, navigation } from "@/lib/content";
 export default function Navbar({ currentPage = "Home" }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState(0);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+
+  // Mobile services menu data
+  const mobileServices = [
+    { title: "Voice AI & Calling Agents", link: "/services/voice-ai" },
+    { title: "Workflow Automation", link: "/services/automation" },
+    { title: "Custom AI Software", link: "/services/custom-software" },
+    { title: "Staff Augmentation", link: "/services/staff-augmentation" },
+    { title: "UI/UX Design", link: "/services/ui-ux-design" },
+  ];
 
   const isInternalRoute = (link) => link.startsWith("/") && !link.includes("#");
 
@@ -233,45 +243,43 @@ export default function Navbar({ currentPage = "Home" }) {
                 transition={{ delay: 0.1 * index }}
               >
                 {item.megaMenu ? (
-                  <div className="space-y-3">
-                    <Link
-                      href={item.link}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="block text-white text-lg font-medium hover:text-[#0065F8] transition-colors"
+                  <div className="space-y-2">
+                    <button
+                      onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                      className="flex items-center justify-between w-full text-white text-lg font-medium py-2 hover:text-[#0065F8] transition-colors touch-manipulation"
                     >
                       {item.name}
-                    </Link>
-                    {item.categories.map((category) => (
-                      <div
-                        key={category.name}
-                        className="pl-4 space-y-1.5 border-l-2 border-[#0065F8]/30"
-                      >
-                        <span className="block text-[#0065F8] text-xs font-semibold uppercase tracking-wider py-1">
-                          {category.name}
-                        </span>
-                        <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-                          {category.services.slice(0, 4).map((service) => (
+                      <ChevronDown
+                        className={`w-5 h-5 transition-transform ${
+                          mobileServicesOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {mobileServicesOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden pl-4 space-y-1"
+                        >
+                          {mobileServices.map((service) => (
                             <Link
-                              key={service.name}
+                              key={service.title}
                               href={service.link}
-                              onClick={() => setMobileMenuOpen(false)}
-                              className="block text-gray-400 text-sm py-1.5 hover:text-[#0065F8] transition-colors active:text-[#0065F8] touch-manipulation"
+                              onClick={() => {
+                                setMobileMenuOpen(false);
+                                setMobileServicesOpen(false);
+                              }}
+                              className="block text-gray-400 text-sm py-2 hover:text-[#0065F8] transition-colors active:text-[#0065F8] touch-manipulation"
                             >
-                              {service.name}
+                              {service.title}
                             </Link>
                           ))}
-                        </div>
-                        {category.services.length > 4 && (
-                          <Link
-                            href={item.link}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="block text-[#0065F8] text-xs font-medium pt-1"
-                          >
-                            +{category.services.length - 4} more
-                          </Link>
-                        )}
-                      </div>
-                    ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 ) : isInternalRoute(item.link) ? (
                   <Link
