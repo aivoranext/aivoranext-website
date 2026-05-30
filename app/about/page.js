@@ -81,7 +81,7 @@ const values = [
   {
     icon: Shield,
     title: "Enterprise Ready",
-    description: "Built for scale with security-first architecture. SOC2 compliant processes and enterprise-grade infrastructure."
+    description: "Security-first engineering and production-grade infrastructure built in from day one."
   },
   {
     icon: Heart,
@@ -93,7 +93,7 @@ const values = [
 // Team expertise - Real metrics from founder's portfolio
 const expertise = [
   { label: "Years Building AI", value: "8+" },
-  { label: "Production Systems Shipped", value: "5" },
+  { label: "Production AI Systems Shipped", value: "5" },
   { label: "End-to-End Model", value: "Build + Operate" },
 ];
 
@@ -515,16 +515,16 @@ export default function AboutPage() {
                     ))}
                   </div>
                 </div>
-                <div className="text-3xl font-bold text-white mb-2">50+ Businesses Automated</div>
-                <p className="text-gray-400 mb-6">Trusted by growing companies worldwide</p>
+                <div className="text-3xl font-bold text-white mb-2">Production AI, Built &amp; Operated</div>
+                <p className="text-gray-400 mb-6">We design, ship, and run the systems we build</p>
                 <div className="flex items-center gap-2">
                   <div className="flex">
                     {[1, 2, 3, 4, 5].map((i) => (
                       <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
                     ))}
                   </div>
-                  <span className="text-white font-medium">5.0</span>
-                  <span className="text-gray-500">Average Rating</span>
+                  <span className="text-white font-medium">Senior engineers</span>
+                  <span className="text-gray-500">no hand-off to juniors</span>
                 </div>
               </motion.div>
 
@@ -538,8 +538,8 @@ export default function AboutPage() {
                   className="glass-card rounded-2xl p-6 text-center border border-white/5"
                 >
                   <Lightbulb className="w-8 h-8 text-[#0065F8] mx-auto mb-3" />
-                  <div className="text-2xl font-bold text-white mb-1">85%</div>
-                  <div className="text-gray-500 text-sm">Avg Cost Reduction</div>
+                  <div className="text-2xl font-bold text-white mb-1">&lt;1s</div>
+                  <div className="text-gray-500 text-sm">Voice Agent Latency</div>
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
