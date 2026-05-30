@@ -20,13 +20,13 @@ export default function VoiceWaveform({ className = "" }) {
     let height = 0;
 
     // Wave layers — each drifts at its own speed/frequency for an organic feel.
-    // y is the vertical center as a fraction of height; biased to lower-center
-    // so the waves sit behind the description/stats, keeping the headline crisp.
+    // y is the vertical center as a fraction of height; sits around the
+    // headline/description, with the readability scrim keeping text crisp.
     const layers = [
-      { amp: 0.090, freq: 1.4, speed: 0.16, lineWidth: 2.0, color: "0, 101, 248", alpha: 0.50, y: 0.62 },
-      { amp: 0.065, freq: 2.1, speed: -0.11, lineWidth: 1.5, color: "59, 139, 255", alpha: 0.38, y: 0.60 },
-      { amp: 0.120, freq: 0.9, speed: 0.09, lineWidth: 1.5, color: "0, 101, 248", alpha: 0.26, y: 0.66 },
-      { amp: 0.045, freq: 3.0, speed: 0.22, lineWidth: 1.0, color: "120, 170, 255", alpha: 0.22, y: 0.58 },
+      { amp: 0.090, freq: 1.4, speed: 0.16, lineWidth: 2.0, color: "0, 101, 248", alpha: 0.50, y: 0.48 },
+      { amp: 0.065, freq: 2.1, speed: -0.11, lineWidth: 1.5, color: "59, 139, 255", alpha: 0.38, y: 0.46 },
+      { amp: 0.120, freq: 0.9, speed: 0.09, lineWidth: 1.5, color: "0, 101, 248", alpha: 0.26, y: 0.52 },
+      { amp: 0.045, freq: 3.0, speed: 0.22, lineWidth: 1.0, color: "120, 170, 255", alpha: 0.22, y: 0.44 },
     ];
 
     const resize = () => {
