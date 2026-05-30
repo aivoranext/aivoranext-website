@@ -236,9 +236,9 @@ export default function BlogPage() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12"
           >
-            Expert insights on Voice AI, automation, and building AI-powered
-            solutions. Learn from real implementations and industry best
-            practices.
+            We&apos;re writing in-depth, no-fluff articles on Voice AI,
+            agentic automation, and shipping AI to production. First posts
+            are on the way.
           </motion.p>
 
           {/* Filter Tabs */}
@@ -314,7 +314,7 @@ export default function BlogPage() {
               className="text-center py-20"
             >
               <p className="text-gray-400 text-lg">
-                No articles found in this category yet.
+                Articles are coming soon. In the meantime, see our work or book a call.
               </p>
             </motion.div>
           )}
