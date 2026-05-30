@@ -445,6 +445,52 @@ export default function Home() {
         </div>
       </section>
 
+      {/* How We Work Section */}
+      <section id="how-we-work" className="relative py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <AnimatedSection className="text-center mb-16">
+            <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+              {howWeWorkSection.caption}
+            </p>
+            <h2 className="text-4xl md:text-5xl font-light text-white leading-tight">
+              {howWeWorkSection.title1}{" "}
+              <span className="text-gradient-blue">{howWeWorkSection.title2}</span>
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto mt-4">
+              {howWeWorkSection.description}
+            </p>
+          </AnimatedSection>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            {howWeWorkSection.steps.map((step, index) => (
+              <motion.div
+                key={step.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.08 }}
+                viewport={{ once: true }}
+                className="glass-card rounded-2xl p-6"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-[#0065F8] text-sm font-bold">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div className="w-10 h-10 rounded-lg bg-[#0065F8]/10 border border-[#0065F8]/20 flex items-center justify-center">
+                    {step.icon === "Target" && <Target className="w-5 h-5 text-[#0065F8]" />}
+                    {step.icon === "MessageSquare" && <MessageSquare className="w-5 h-5 text-[#0065F8]" />}
+                    {step.icon === "Code" && <Code className="w-5 h-5 text-[#0065F8]" />}
+                    {step.icon === "Server" && <Server className="w-5 h-5 text-[#0065F8]" />}
+                    {step.icon === "Workflow" && <Workflow className="w-5 h-5 text-[#0065F8]" />}
+                  </div>
+                </div>
+                <h3 className="text-white font-medium mb-2">{step.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{step.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Why Hire Us Section */}
       <section className="relative py-24 px-6">
         <div className="max-w-7xl mx-auto">
