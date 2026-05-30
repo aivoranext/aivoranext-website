@@ -14,10 +14,10 @@ export default function Navbar({ currentPage = "Home" }) {
 
   // Mobile services menu data
   const mobileServices = [
-    { title: "Voice AI & Calling Agents", link: "/services/voice-ai" },
-    { title: "Workflow Automation", link: "/services/automation" },
+    { title: "Voice AI Agents", link: "/services/voice-ai" },
+    { title: "Custom AI Agents", link: "/services/custom-software" },
+    { title: "Automation & RPA", link: "/services/automation" },
     { title: "Custom AI Software", link: "/services/custom-software" },
-    { title: "Staff Augmentation", link: "/services/staff-augmentation" },
     { title: "UI/UX Design", link: "/services/ui-ux-design" },
   ];
 
