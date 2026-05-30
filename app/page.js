@@ -38,14 +38,12 @@ import {
   belowHeroStatement,
   aboutSection,
   hireUsSection,
-  testimonialsSection,
   featureCards,
   servicesSection,
   faqSection,
   ctaSection,
   footerLinks,
 } from "@/lib/content";
-import { TestimonialsSection } from "@/components/ui/testimonials-with-marquee";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -625,15 +623,6 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-
-      {/* Client Testimonials Section */}
-      <AnimatedSection>
-        <TestimonialsSection
-          title={testimonialsSection.title}
-          description={testimonialsSection.description}
-          testimonials={testimonialsSection.testimonials}
-        />
-      </AnimatedSection>
 
       {/* Services Section with Stats */}
       <section className="relative py-24 px-6">
