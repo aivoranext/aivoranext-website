@@ -28,6 +28,7 @@ import {
   MessageSquare,
   Zap,
   Mail,
+  PhoneCall,
 } from "lucide-react";
 import {
   siteConfig,
@@ -41,6 +42,9 @@ import {
   faqSection,
   ctaSection,
   footerLinks,
+  liveDemoSection,
+  howWeWorkSection,
+  pilotOfferSection,
 } from "@/lib/content";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -274,6 +278,61 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* Live Demo Section */}
+      <section id="demo" className="relative py-24 px-6 section-gradient">
+        <div className="max-w-5xl mx-auto text-center">
+          <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+            {liveDemoSection.caption}
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight mb-2">
+            {liveDemoSection.title1}
+          </h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-gradient-blue leading-tight mb-6">
+            {liveDemoSection.title2}
+          </h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-10">
+            {liveDemoSection.description}
+          </p>
+
+          {liveDemoSection.phoneNumber ? (
+            <div className="flex flex-col items-center gap-3 mb-12">
+              <a
+                href={`tel:${liveDemoSection.phoneNumber.replace(/[^+\d]/g, "")}`}
+                className="inline-flex items-center gap-3 px-10 py-5 btn-primary text-white text-xl font-semibold rounded-none"
+              >
+                <PhoneCall className="w-6 h-6" /> {liveDemoSection.phoneNumber}
+              </a>
+              <span className="text-gray-500 text-sm">{liveDemoSection.phoneNote}</span>
+            </div>
+          ) : (
+            <div className="flex justify-center mb-12">
+              <Link
+                href={liveDemoSection.fallbackHref}
+                className="inline-flex items-center gap-2 px-10 py-5 btn-primary text-white text-lg font-semibold rounded-none"
+              >
+                {liveDemoSection.fallbackLabel} <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+          )}
+
+          <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            {liveDemoSection.agents.map((agent) => (
+              <div
+                key={agent.name}
+                className="glass-card rounded-2xl p-6 text-left flex gap-4 items-start"
+              >
+                <div className="w-12 h-12 rounded-xl bg-[#0065F8]/10 border border-[#0065F8]/20 flex items-center justify-center shrink-0">
+                  <Phone className="w-5 h-5 text-[#0065F8]" />
+                </div>
+                <div>
+                  <h3 className="text-white font-medium mb-1">{agent.name}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{agent.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Statement Section (below hero) - About Us with scroll-driven text animation */}
       <section className="relative min-h-[45vh] flex flex-col items-center justify-center py-12 md:py-16 px-6">
