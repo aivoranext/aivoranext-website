@@ -226,7 +226,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight leading-[1.08] mb-2"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight leading-[1.08] mb-2 hyphens-none break-words"
           >
             {heroContent.titleLine1}
           </motion.h1>
@@ -234,7 +234,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.08] mb-8"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.08] mb-8 hyphens-none break-words"
           >
             <span className="text-white/90">{heroContent.titleLine2}</span>{" "}
             <span className="text-white/90">{heroContent.titleLine3}</span>
@@ -253,16 +253,19 @@ export default function Home() {
         </motion.div>
 
 
-        {/* Stats Panel - All in one single line with button */}
+        {/* Stats Panel + CTA — stacked & centered on mobile, single row on desktop */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 1.0, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-20 w-full max-w-6xl mx-auto mt-auto mb-0"
+          className="relative z-20 w-full max-w-6xl mx-auto mt-14 md:mt-auto mb-0"
         >
-          <div className="flex flex-row flex-wrap items-center justify-center gap-8 md:gap-14">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-14">
             {heroStatsPanel.items.map((item) => (
-              <div key={item.label} className="flex items-center gap-4 text-left">
+              <div
+                key={item.label}
+                className="flex items-center gap-4 text-left w-[220px] sm:w-auto"
+              >
                 <div className="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
                   <StatIcon name={item.icon} />
                 </div>
@@ -272,12 +275,16 @@ export default function Home() {
                 </div>
               </div>
             ))}
-            
-            {/* CTA Button inline with stats */}
-            <motion.div whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
+
+            {/* CTA Button — full width on mobile, inline on desktop */}
+            <motion.div
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              className="w-full sm:w-auto mt-2 sm:mt-0"
+            >
               <Link
                 href={heroStatsPanel.cta.href}
-                className="inline-flex items-center justify-center px-10 py-5 bg-white hover:bg-gray-100 text-gray-900 text-base font-semibold rounded-none transition-all shadow-lg hover:shadow-xl"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-100 text-gray-900 text-base font-semibold rounded-none transition-all shadow-lg hover:shadow-xl"
               >
                 {heroStatsPanel.cta.label}
               </Link>
