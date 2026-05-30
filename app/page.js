@@ -49,6 +49,7 @@ import {
 } from "@/lib/content";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import VoiceWaveform from "@/components/VoiceWaveform";
 
 // Single word that animates based on scroll progress
 function ScrollWord({ word, index, totalWords, scrollYProgress }) {
@@ -196,8 +197,14 @@ export default function Home() {
       <section
         ref={heroRef}
         id="hero"
-        className="relative min-h-screen flex flex-col items-center justify-start pt-32 md:pt-36 pb-20 md:pb-24 px-6"
+        className="relative min-h-screen flex flex-col items-center justify-start pt-32 md:pt-36 pb-20 md:pb-24 px-6 overflow-hidden"
       >
+        {/* Animated voice-waveform backdrop */}
+        <VoiceWaveform className="absolute inset-0 w-full h-full z-0 pointer-events-none" />
+        {/* Readability scrim: keep the headline crisp over the animation */}
+        <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_60%_45%_at_50%_38%,rgba(5,5,5,0.85),transparent_70%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 z-0 pointer-events-none bg-gradient-to-t from-[#050505] to-transparent" />
+
         <motion.div
           className="flex flex-col items-center text-center max-w-5xl mx-auto z-10"
         >
