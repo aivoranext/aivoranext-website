@@ -226,7 +226,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-medium text-white tracking-tight leading-[1.08] mb-2"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight leading-[1.08] mb-2"
           >
             {heroContent.titleLine1}
           </motion.h1>
@@ -234,7 +234,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-medium tracking-tight leading-[1.08] mb-8"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.08] mb-8"
           >
             <span className="text-white/90">{heroContent.titleLine2}</span>{" "}
             <span className="text-white/90">{heroContent.titleLine3}</span>
