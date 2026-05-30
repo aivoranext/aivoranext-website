@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>No-Code Agent Builder</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+    background: #050505;
+    color: #fff;
+    width: 1440px;
+    height: 900px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Topbar */
+  .topbar {
+    height: 52px;
+    background: #0a0a0a;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex; align-items: center; padding: 0 20px; gap: 14px;
+    flex-shrink: 0; z-index: 10;
+  }
+  .logo { font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .logo-box { width: 22px; height: 22px; background: #0065F8; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+  .topbar-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.1); }
+  .agent-name-input {
+    background: none; border: none; outline: none;
+    font-size: 13px; font-weight: 600; color: #fff; font-family: inherit;
+    cursor: text;
+  }
+  .edit-indicator { font-size: 11px; color: rgba(255,255,255,0.25); }
+  .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  .topbar-tab {
+    font-size: 12px; padding: 5px 12px; border-radius: 6px; cursor: pointer;
+    color: rgba(255,255,255,0.4);
+  }
+  .topbar-tab.active { color: #fff; background: rgba(255,255,255,0.07); }
+  .btn-test {
+    font-size: 12px; padding: 6px 14px; border-radius: 7px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.7); cursor: pointer; font-family: inherit;
+  }
+  .btn-deploy {
+    font-size: 12px; padding: 6px 16px; border-radius: 7px;
+    background: #0065F8; border: none;
+    color: #fff; cursor: pointer; font-family: inherit; font-weight: 700;
+  }
+
+  /* Main */
+  .main { flex: 1; display: flex; overflow: hidden; }
+
+  /* Left palette */
+  .palette {
+    width: 220px;
+    background: #0a0a0a;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    display: flex; flex-direction: column;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .palette-search {
+    margin: 10px 12px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px; padding: 7px 10px;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .palette-search input { background: none; border: none; outline: none; font-size: 11.5px; color: rgba(255,255,255,0.4); font-family: inherit; flex: 1; }
+  .palette-section { margin-bottom: 4px; }
+  .ps-title {
+    font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.22);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 6px 14px 4px;
+  }
+  .block-item {
+    display: flex; align-items: center; gap: 9px;
+    padding: 7px 14px; cursor: grab;
+    border-radius: 0;
+    transition: background 0.12s;
+    user-select: none;
+  }
+  .block-item:hover { background: rgba(255,255,255,0.04); }
+  .block-icon {
+    width: 26px; height: 26px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; flex-shrink: 0;
+  }
+  .bi-trigger { background: rgba(0,101,248,0.18); color: #3B8BFF; }
+  .bi-intent { background: rgba(139,92,246,0.18); color: #A78BFA; }
+  .bi-condition { background: rgba(255,180,0,0.15); color: #FFB400; }
+  .bi-action { background: rgba(16,185,129,0.15); color: #10B981; }
+  .bi-tool { background: rgba(236,72,153,0.15); color: #F472B6; }
+  .bi-handoff { background: rgba(239,68,68,0.15); color: #EF4444; }
+  .bi-delay { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.45); }
+  .bi-message { background: rgba(59,130,246,0.18); color: #60A5FA; }
+  .block-label { font-size: 12px; color: rgba(255,255,255,0.6); }
+
+  /* Canvas */
+  .canvas-wrap {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(0,101,248,0.03) 0%, transparent 60%),
+      #050505;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* SVG connector lines */
+  .canvas-svg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+
+  /* Flow nodes */
+  .flow-node {
+    position: absolute;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: #0a0a0a;
+    min-width: 160px;
+    cursor: pointer;
+    transition: box-shadow 0.15s;
+  }
+  .flow-node:hover { box-shadow: 0 0 0 2px rgba(0,101,248,0.4); }
+  .flow-node.selected { border-color: #0065F8; box-shadow: 0 0 0 2px rgba(0,101,248,0.25); }
+  .fn-header {
+    display: flex; align-items: center; gap: 8px;
+    padding: 9px 12px 7px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .fn-icon {
+    width: 24px; height: 24px; border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; flex-shrink: 0;
+  }
+  .fn-name { font-size: 12px; font-weight: 600; color: #fff; }
+  .fn-type { font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 0.05em; text-transform: uppercase; }
+  .fn-body { padding: 7px 12px 9px; }
+  .fn-prop { font-size: 11px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+  .fn-prop span { color: rgba(255,255,255,0.7); }
+  .fn-port-out {
+    position: absolute; right: -8px; top: 50%;
+    transform: translateY(-50%);
+    width: 14px; height: 14px; border-radius: 50%;
+    background: #0a0a0a; border: 2px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+  }
+  .fn-port-in {
+    position: absolute; left: -8px; top: 50%;
+    transform: translateY(-50%);
+    width: 14px; height: 14px; border-radius: 50%;
+    background: #0a0a0a; border: 2px solid rgba(255,255,255,0.2);
+  }
+  .fn-port-out.blue { border-color: #0065F8; }
+  .fn-port-in.blue { border-color: #0065F8; }
+
+  /* Right panel */
+  .right-panel {
+    width: 260px;
+    background: #0a0a0a;
+    border-left: 1px solid rgba(255,255,255,0.08);
+    display: flex; flex-direction: column;
+    flex-shrink: 0;
+    overflow-y: auto;
+  }
+  .rp-section {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 14px 16px;
+  }
+  .rp-section-title {
+    font-size: 10.5px; font-weight: 700; color: rgba(255,255,255,0.3);
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px;
+  }
+
+  /* Channel toggles */
+  .channel-toggle {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .channel-toggle:last-child { border: none; }
+  .ch-label { display: flex; align-items: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.6); }
+  .ch-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .toggle {
+    width: 32px; height: 18px; border-radius: 9px;
+    background: rgba(255,255,255,0.1); position: relative;
+    cursor: pointer; flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .toggle.on { background: #0065F8; border-color: #0065F8; }
+  .toggle-knob {
+    position: absolute; top: 2px; left: 2px;
+    width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.4);
+    transition: left 0.15s;
+  }
+  .toggle.on .toggle-knob { left: 16px; background: #fff; }
+
+  /* Deploy button section */
+  .deploy-section { padding: 14px 16px; }
+  .deploy-btn {
+    width: 100%; padding: 11px;
+    background: #0065F8; border: none; border-radius: 8px;
+    font-size: 13px; font-weight: 700; color: #fff; cursor: pointer; font-family: inherit;
+    margin-bottom: 8px;
+  }
+  .deploy-btn:hover { background: #0054d4; }
+  .deploy-note { font-size: 10.5px; color: rgba(255,255,255,0.25); text-align: center; line-height: 1.5; }
+
+  /* Config fields */
+  .cfg-row { margin-bottom: 10px; }
+  .cfg-label { font-size: 11px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+  .cfg-input {
+    width: 100%; padding: 7px 10px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 6px; font-size: 12px; color: rgba(255,255,255,0.7);
+    font-family: inherit; outline: none;
+  }
+  .cfg-select {
+    width: 100%; padding: 7px 10px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 6px; font-size: 12px; color: rgba(255,255,255,0.7);
+    font-family: inherit; outline: none; appearance: none;
+  }
+
+  /* Canvas toolbar */
+  .canvas-toolbar {
+    position: absolute; top: 14px; left: 50%;
+    transform: translateX(-50%);
+    background: #0a0a0a; border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; display: flex; align-items: center; gap: 2px;
+    padding: 4px; z-index: 5;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  }
+  .ct-btn {
+    font-size: 11.5px; padding: 5px 10px; border-radius: 5px; cursor: pointer;
+    color: rgba(255,255,255,0.45);
+    transition: background 0.1s;
+  }
+  .ct-btn:hover { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8); }
+  .ct-sep { width: 1px; height: 18px; background: rgba(255,255,255,0.08); margin: 0 2px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">
+    <div class="logo-box">IP</div>
+    Insurance Portal
+  </div>
+  <div class="topbar-sep"></div>
+  <input class="agent-name-input" value="GL Renewal Agent v2" />
+  <span class="edit-indicator">✎</span>
+  <div style="display:flex; gap:2px; margin-left:8px;">
+    <div class="topbar-tab active">Flow</div>
+    <div class="topbar-tab">Intents</div>
+    <div class="topbar-tab">Responses</div>
+    <div class="topbar-tab">Analytics</div>
+  </div>
+  <div class="topbar-right">
+    <button class="btn-test">▶ Test Agent</button>
+    <button class="btn-deploy">🚀 Deploy</button>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- Palette -->
+  <div class="palette">
+    <div class="palette-search">
+      <span style="font-size:11px; color:rgba(255,255,255,0.25)">⌕</span>
+      <input placeholder="Search blocks…" />
+    </div>
+
+    <div class="palette-section">
+      <div class="ps-title">Triggers</div>
+      <div class="block-item"><div class="block-icon bi-trigger">⚡</div><span class="block-label">Inbound Message</span></div>
+      <div class="block-item"><div class="block-icon bi-trigger">📞</div><span class="block-label">Inbound Call</span></div>
+      <div class="block-item"><div class="block-icon bi-trigger">🔁</div><span class="block-label">Webhook Trigger</span></div>
+      <div class="block-item"><div class="block-icon bi-trigger">⏰</div><span class="block-label">Scheduled Event</span></div>
+    </div>
+
+    <div class="palette-section">
+      <div class="ps-title">Understanding</div>
+      <div class="block-item"><div class="block-icon bi-intent">🎯</div><span class="block-label">Intent Classifier</span></div>
+      <div class="block-item"><div class="block-icon bi-intent">🗂</div><span class="block-label">Entity Extractor</span></div>
+      <div class="block-item"><div class="block-icon bi-condition">⚖</div><span class="block-label">Condition / Branch</span></div>
+    </div>
+
+    <div class="palette-section">
+      <div class="ps-title">Actions</div>
+      <div class="block-item"><div class="block-icon bi-tool">🔧</div><span class="block-label">API Call</span></div>
+      <div class="block-item"><div class="block-icon bi-action">📄</div><span class="block-label">Policy Lookup</span></div>
+      <div class="block-item"><div class="block-icon bi-tool">💰</div><span class="block-label">Generate Quote</span></div>
+      <div class="block-item"><div class="block-icon bi-message">💬</div><span class="block-label">Send Message</span></div>
+      <div class="block-item"><div class="block-icon bi-delay">⏱</div><span class="block-label">Wait / Delay</span></div>
+    </div>
+
+    <div class="palette-section">
+      <div class="ps-title">Handoff</div>
+      <div class="block-item"><div class="block-icon bi-handoff">👤</div><span class="block-label">Human Handoff</span></div>
+      <div class="block-item"><div class="block-icon bi-handoff">↗</div><span class="block-label">Escalate</span></div>
+    </div>
+  </div>
+
+  <!-- Canvas -->
+  <div class="canvas-wrap">
+    <div class="canvas-toolbar">
+      <span class="ct-btn">Fit</span>
+      <div class="ct-sep"></div>
+      <span class="ct-btn">−</span>
+      <span style="font-size:11px; color:rgba(255,255,255,0.3); padding:0 6px; min-width:36px; text-align:center;">100%</span>
+      <span class="ct-btn">+</span>
+      <div class="ct-sep"></div>
+      <span class="ct-btn">⎻ Undo</span>
+      <span class="ct-btn">↻ Redo</span>
+    </div>
+
+    <!-- SVG edges -->
+    <!-- canvas starts at x=0 within canvas-wrap; nodes below -->
+    <svg class="canvas-svg">
+      <!-- Trigger(right=168) → Intent(left=230) -->
+      <path d="M 176 213 C 203 213 203 250 238 250" stroke="rgba(0,101,248,0.5)" stroke-width="2" fill="none"/>
+      <!-- Intent(right=416) → Policy Lookup(left=430, top=148) -->
+      <path d="M 424 235 C 427 235 427 163 438 163" stroke="rgba(139,92,246,0.5)" stroke-width="2" fill="none"/>
+      <!-- Intent(right=416) → Condition(left=430, top=313) -->
+      <path d="M 424 265 C 427 265 427 328 438 328" stroke="rgba(139,92,246,0.5)" stroke-width="2" fill="none"/>
+      <!-- Policy Lookup(right=608) → Quote Gen(left=622) -->
+      <path d="M 616 163 C 619 163 619 163 630 163" stroke="rgba(16,185,129,0.5)" stroke-width="2" fill="none"/>
+      <!-- Condition(right=608) → Handoff(left=622) -->
+      <path d="M 616 328 C 619 328 619 328 630 328" stroke="rgba(255,180,0,0.5)" stroke-width="2" fill="none"/>
+      <!-- Quote Gen(right=800) → Send Response(left=814) -->
+      <path d="M 808 163 C 811 163 811 248 822 248" stroke="rgba(16,185,129,0.5)" stroke-width="2" fill="none"/>
+      <!-- Handoff(right=800) → Send Response(left=814) -->
+      <path d="M 808 328 C 811 328 811 268 822 268" stroke="rgba(239,68,68,0.5)" stroke-width="2" fill="none"/>
+    </svg>
+
+    <!-- Node 1: Trigger (x=14, w=162) right edge=176 -->
+    <div class="flow-node" style="left: 14px; top: 175px; width: 162px;">
+      <div class="fn-header">
+        <div class="fn-icon bi-trigger">⚡</div>
+        <div>
+          <div class="fn-name">Inbound Message</div>
+          <div class="fn-type">Trigger</div>
+        </div>
+      </div>
+      <div class="fn-body">
+        <div class="fn-prop">Channels: <span>Web, WhatsApp</span></div>
+        <div class="fn-prop">Status: <span style="color:#10B981">Active</span></div>
+      </div>
+      <div class="fn-port-out blue"></div>
+    </div>
+
+    <!-- Node 2: Intent (x=238, w=178) right=416 -->
+    <div class="flow-node selected" style="left: 238px; top: 210px; width: 178px;">
+      <div class="fn-header">
+        <div class="fn-icon bi-intent">🎯</div>
+        <div>
+          <div class="fn-name">Intent Classifier</div>
+          <div class="fn-type">Understanding</div>
+        </div>
+      </div>
+      <div class="fn-body">
+        <div class="fn-prop">Model: <span>gpt-4o-mini</span></div>
+        <div class="fn-prop">Intents: <span>6 defined</span></div>
+        <div class="fn-prop">Fallback: <span>Handoff</span></div>
+      </div>
+      <div class="fn-port-in blue"></div>
+      <div class="fn-port-out blue"></div>
+    </div>
+
+    <!-- Node 3a: Policy Lookup (x=438, w=170) right=608 -->
+    <div class="flow-node" style="left: 438px; top: 125px; width: 170px;">
+      <div class="fn-header">
+        <div class="fn-icon bi-action">📄</div>
+        <div>
+          <div class="fn-name">Policy Lookup</div>
+          <div class="fn-type">Action · API Call</div>
+        </div>
+      </div>
+      <div class="fn-body">
+        <div class="fn-prop">Endpoint: <span>GET /policies/{id}</span></div>
+        <div class="fn-prop">Auth: <span>Bearer token</span></div>
+      </div>
+      <div class="fn-port-in"></div>
+      <div class="fn-port-out"></div>
+    </div>
+
+    <!-- Node 3b: Condition (x=438, w=170) right=608 -->
+    <div class="flow-node" style="left: 438px; top: 295px; width: 170px;">
+      <div class="fn-header">
+        <div class="fn-icon bi-condition">⚖</div>
+        <div>
+          <div class="fn-name">Eligibility Check</div>
+          <div class="fn-type">Condition / Branch</div>
+        </div>
+      </div>
+      <div class="fn-body">
+        <div class="fn-prop">If: <span>intent = billing_issue</span></div>
+        <div class="fn-prop">Then: <span>Escalate path</span></div>
+      </div>
+      <div class="fn-port-in"></div>
+      <div class="fn-port-out"></div>
+    </div>
+
+    <!-- Node 4a: Generate Quote (x=630, w=170) right=800 -->
+    <div class="flow-node" style="left: 630px; top: 125px; width: 170px;">
+      <div class="fn-header">
+        <div class="fn-icon bi-tool">💰</div>
+        <div>
+          <div class="fn-name">Generate Quote</div>
+          <div class="fn-type">Tool</div>
+        </div>
+      </div>
+      <div class="fn-body">
+        <div class="fn-prop">Source: <span>Rating engine API</span></div>
+        <div class="fn-prop">Cache: <span>5 min TTL</span></div>
+      </div>
+      <div class="fn-port-in"></div>
+      <div class="fn-port-out"></div>
+    </div>
+
+    <!-- Node 4b: Human Handoff (x=630, w=170) right=800 -->
+    <div class="flow-node" style="left: 630px; top: 295px; width: 170px;">
+      <div class="fn-header">
+        <div class="fn-icon bi-handoff">👤</div>
+        <div>
+          <div class="fn-name">Human Handoff</div>
+          <div class="fn-type">Handoff</div>
+        </div>
+      </div>
+      <div class="fn-body">
+        <div class="fn-prop">Route to: <span>Billing queue</span></div>
+        <div class="fn-prop">SLA: <span>4 hr response</span></div>
+      </div>
+      <div class="fn-port-in"></div>
+      <div class="fn-port-out"></div>
+    </div>
+
+    <!-- Node 5: Send Response (x=790, w=160) right=950 — within canvas -->
+    <div class="flow-node" style="left: 790px; top: 215px; width: 160px;">
+      <div class="fn-header">
+        <div class="fn-icon bi-message">💬</div>
+        <div>
+          <div class="fn-name">Send Response</div>
+          <div class="fn-type">Action · Message</div>
+        </div>
+      </div>
+      <div class="fn-body">
+        <div class="fn-prop">Template: <span>renewal_quote_v3</span></div>
+        <div class="fn-prop">Format: <span>Rich text + CTA</span></div>
+      </div>
+      <div class="fn-port-in"></div>
+    </div>
+
+  </div>
+
+  <!-- Right config panel -->
+  <div class="right-panel">
+    <div class="rp-section">
+      <div class="rp-section-title">Selected: Intent Classifier</div>
+      <div class="cfg-row">
+        <div class="cfg-label">Node label</div>
+        <input class="cfg-input" value="Intent Classifier" />
+      </div>
+      <div class="cfg-row">
+        <div class="cfg-label">LLM model</div>
+        <select class="cfg-select">
+          <option>gpt-4o-mini</option>
+          <option>gpt-4o</option>
+          <option>claude-3-haiku</option>
+        </select>
+      </div>
+      <div class="cfg-row">
+        <div class="cfg-label">Confidence threshold</div>
+        <input class="cfg-input" value="0.72" />
+      </div>
+      <div class="cfg-row">
+        <div class="cfg-label">Fallback intent</div>
+        <select class="cfg-select">
+          <option>Human Handoff</option>
+          <option>Escalate</option>
+          <option>Ask to clarify</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="rp-section">
+      <div class="rp-section-title">Channel Toggles</div>
+      <div class="channel-toggle">
+        <div class="ch-label"><div class="ch-dot" style="background:#3B8BFF"></div>Web Chat</div>
+        <div class="toggle on"><div class="toggle-knob"></div></div>
+      </div>
+      <div class="channel-toggle">
+        <div class="ch-label"><div class="ch-dot" style="background:#25D366"></div>WhatsApp</div>
+        <div class="toggle on"><div class="toggle-knob"></div></div>
+      </div>
+      <div class="channel-toggle">
+        <div class="ch-label"><div class="ch-dot" style="background:#611f69"></div>Slack</div>
+        <div class="toggle"><div class="toggle-knob"></div></div>
+      </div>
+      <div class="channel-toggle">
+        <div class="ch-label"><div class="ch-dot" style="background:#FFB400"></div>SMS</div>
+        <div class="toggle"><div class="toggle-knob"></div></div>
+      </div>
+      <div class="channel-toggle">
+        <div class="ch-label"><div class="ch-dot" style="background:#EF4444"></div>Voice / IVR</div>
+        <div class="toggle on"><div class="toggle-knob"></div></div>
+      </div>
+    </div>
+
+    <div class="rp-section">
+      <div class="rp-section-title">Agent Settings</div>
+      <div class="cfg-row">
+        <div class="cfg-label">Agent name (public)</div>
+        <input class="cfg-input" value="Renewal Assistant" />
+      </div>
+      <div class="cfg-row">
+        <div class="cfg-label">Fallback language</div>
+        <select class="cfg-select">
+          <option>English (US)</option>
+          <option>Spanish</option>
+          <option>French</option>
+        </select>
+      </div>
+      <div class="cfg-row">
+        <div class="cfg-label">Session timeout (min)</div>
+        <input class="cfg-input" value="30" />
+      </div>
+    </div>
+
+    <div class="deploy-section">
+      <button class="deploy-btn">🚀 Deploy Agent</button>
+      <div class="deploy-note">Deploy to staging first. Production deploy requires approval.</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
