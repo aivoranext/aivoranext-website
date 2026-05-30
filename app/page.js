@@ -3,7 +3,7 @@
 import React, { useState, useRef, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useInView, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import {
   ArrowRight,
   BadgeCheck,
@@ -22,7 +22,6 @@ import {
   X,
   Check,
   AlertTriangle,
-  Quote,
   Bot,
   Brain,
   Server,
