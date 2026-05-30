@@ -775,6 +775,42 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Pilot Offer Section */}
+      <section className="relative py-24 px-6">
+        <div className="max-w-5xl mx-auto">
+          <AnimatedSection className="glass-card rounded-3xl p-10 md:p-14">
+            <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+              {pilotOfferSection.caption}
+            </p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight mb-2">
+              {pilotOfferSection.title1}
+            </h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-gradient-blue leading-tight mb-6">
+              {pilotOfferSection.title2}
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mb-8">
+              {pilotOfferSection.description}
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4 mb-10">
+              {pilotOfferSection.features.map((feature) => (
+                <div key={feature} className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-[#0065F8] shrink-0 mt-0.5" />
+                  <span className="text-gray-300">{feature}</span>
+                </div>
+              ))}
+            </div>
+            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+              <Link
+                href={pilotOfferSection.cta.href}
+                className="inline-flex items-center gap-2 px-10 py-4 btn-primary text-white font-semibold rounded-none"
+              >
+                {pilotOfferSection.cta.label} <ArrowRight className="w-5 h-5" />
+              </Link>
+            </motion.div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section id="faq" className="relative py-24 px-6 section-gradient">
         <div className="max-w-7xl mx-auto">
