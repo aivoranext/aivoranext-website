@@ -33,7 +33,6 @@ import {
 import {
   siteConfig,
   heroContent,
-  heroTrustedBrands,
   heroStatsPanel,
   belowHeroStatement,
   aboutSection,
@@ -276,65 +275,6 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Trusted Brands Below Hero - Scrolling Marquee */}
-      <section className="relative py-12 md:py-16 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 mb-8">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-gray-500 text-sm text-center"
-          >
-            {heroTrustedBrands.caption}
-          </motion.p>
-        </div>
-
-        {/* Marquee Container */}
-        <div className="relative">
-          {/* Gradient Fades */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
-
-          {/* Scrolling Track */}
-          <div className="flex animate-marquee">
-            {/* First set of brands */}
-            <div className="flex shrink-0 items-center gap-16 md:gap-20 px-8">
-              {heroTrustedBrands.brands.map((brand, index) => (
-                <div
-                  key={`brand-1-${index}`}
-                  className="flex items-center justify-center h-10 opacity-50 hover:opacity-80 transition-opacity"
-                >
-                  <Image
-                    src={brand.logo}
-                    alt={brand.name}
-                    width={120}
-                    height={40}
-                    className="h-8 md:h-10 w-auto object-contain brightness-0 invert"
-                  />
-                </div>
-              ))}
-            </div>
-            {/* Duplicate for seamless loop */}
-            <div className="flex shrink-0 items-center gap-16 md:gap-20 px-8">
-              {heroTrustedBrands.brands.map((brand, index) => (
-                <div
-                  key={`brand-2-${index}`}
-                  className="flex items-center justify-center h-10 opacity-50 hover:opacity-80 transition-opacity"
-                >
-                  <Image
-                    src={brand.logo}
-                    alt={brand.name}
-                    width={120}
-                    height={40}
-                    className="h-8 md:h-10 w-auto object-contain brightness-0 invert"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Statement Section (below hero) - About Us with scroll-driven text animation */}
       <section className="relative min-h-[45vh] flex flex-col items-center justify-center py-12 md:py-16 px-6">
