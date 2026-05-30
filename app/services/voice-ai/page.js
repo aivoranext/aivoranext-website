@@ -134,7 +134,7 @@ const useCases = [
     description:
       "Patient intake, appointment reminders, and prescription refill requests.",
     features: [
-      "HIPAA-compliant calls",
+      "Built to client compliance requirements",
       "Appointment scheduling",
       "Patient follow-ups",
     ],

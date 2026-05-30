@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Services - Voice AI, Automation & Custom AI Solutions",
   description:
-    "Explore our AI services: Voice AI calling agents, workflow automation, custom AI software development, and AI engineer hiring. Solutions that deliver 85% cost reduction.",
+    "Explore our AI services: Voice AI calling agents, workflow automation, custom AI software development, and AI engineer hiring — designed, built, and operated end to end.",
   openGraph: {
     title: "AI Services | Aivoranext",
     description:

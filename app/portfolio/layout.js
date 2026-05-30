@@ -1,11 +1,11 @@
 export const metadata = {
   title: "Portfolio - AI Automation Success Stories",
   description:
-    "Explore our AI automation case studies. See how we've helped 50+ businesses deploy Voice AI agents, automate workflows, and achieve 85% cost reduction.",
+    "Explore our AI automation case studies. See how we design, build, and operate Voice AI agents, workflow automation, and custom AI systems for real businesses.",
   openGraph: {
     title: "Portfolio | Aivoranext Case Studies",
     description:
-      "Real results from Voice AI and automation projects. 500K+ calls handled, 85% cost reduction for businesses.",
+      "Real-world AI projects — Voice AI agents, workflow automation, and custom AI solutions built and operated end to end.",
   },
 };
 

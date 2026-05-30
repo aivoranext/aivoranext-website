@@ -9,7 +9,7 @@ export const metadata = {
     template: "%s | Aivoranext",
   },
   description:
-    "Deploy Voice AI agents that handle calls 24/7, automate business workflows, and build custom AI solutions. Trusted by 50+ businesses. Get 85% cost reduction with intelligent automation.",
+    "Deploy Voice AI agents that handle calls 24/7, automate business workflows, and build custom AI solutions. A founder-led AI studio — we design, build, and operate production AI systems end to end.",
   keywords: [
     "Voice AI agents",
     "AI automation",
@@ -32,7 +32,7 @@ export const metadata = {
     siteName: "Aivoranext",
     title: "Aivoranext | AI Automation Agency",
     description:
-      "Deploy Voice AI agents, automate workflows, and build custom AI solutions. 500K+ calls handled, 85% cost reduction for businesses.",
+      "Deploy Voice AI agents, automate workflows, and build custom AI solutions. Senior engineers, direct founder access, built and operated end to end.",
     images: [
       {
         url: "https://res.cloudinary.com/dn0wyo8zm/image/upload/v1765092013/Aivoranext_icon_rjohn1.png",
@@ -46,7 +46,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Aivoranext | AI Automation Agency",
     description:
-      "Deploy Voice AI agents, automate workflows, and build custom AI solutions. Trusted by 50+ businesses.",
+      "Deploy Voice AI agents, automate workflows, and build custom AI solutions. Founder-led studio with senior engineers and direct access.",
     images: ["https://res.cloudinary.com/dn0wyo8zm/image/upload/v1765092013/Aivoranext_icon_rjohn1.png"],
     creator: "@aivoranext",
   },
