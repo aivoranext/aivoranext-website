@@ -29,6 +29,7 @@ import {
   Zap,
   Mail,
   PhoneCall,
+  ShieldCheck,
 } from "lucide-react";
 import {
   siteConfig,
@@ -758,16 +759,9 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="absolute bottom-6 left-6 flex items-center gap-3 bg-black/80 backdrop-blur-xl px-5 py-3 rounded-lg border border-white/10"
               >
-                <div className="flex -space-x-2">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div
-                      key={i}
-                      className="w-8 h-8 rounded-full bg-gradient-to-br from-[#3B8BFF] to-[#0065F8] border-2 border-black flex items-center justify-center"
-                    >
-                      <Star className="w-3 h-3 text-white fill-current" />
-            </div>
-                  ))}
-            </div>
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#3B8BFF] to-[#0065F8] border-2 border-black flex items-center justify-center">
+                  <ShieldCheck className="w-4 h-4 text-white" />
+                </div>
                 <span className="text-white text-sm font-medium">{servicesSection.rating}</span>
               </motion.div>
             </AnimatedSection>

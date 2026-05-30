@@ -558,7 +558,7 @@ export default function AutomationPage() {
           </h2>
           <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
             Schedule a consultation to discover how our automation solutions can
-            transform your operations and deliver measurable ROI within weeks.
+            transform your operations and deliver results tied to a clear success metric from day one.
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
