@@ -19,7 +19,6 @@ import {
   Workflow,
   Code,
   Users,
-  X,
   Check,
   AlertTriangle,
   Bot,
@@ -525,66 +524,35 @@ export default function Home() {
             </p>
           </AnimatedSection>
 
-          {/* Two Column Layout */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-            {/* Left Column - Alternatives/Problems */}
-            <AnimatedSection delay={0.1}>
-              <div className="space-y-4">
-                <h3 className="text-xl font-medium text-white/60 mb-6">Common Alternatives & Their Problems</h3>
-                {hireUsSection.alternatives.map((alt, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex gap-4 p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-red-500/20 transition-colors group"
-                  >
-                    <div className="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0 group-hover:bg-red-500/20 transition-colors">
-                      <X className="w-5 h-5 text-red-400" />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-medium mb-1">{alt.title}</h4>
-                      <p className="text-gray-500 text-sm leading-relaxed">{alt.problem}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </AnimatedSection>
-
-            {/* Right Column - Our Services */}
-            <AnimatedSection delay={0.2}>
-              <div className="space-y-4">
-                <h3 className="text-xl font-medium text-white/60 mb-6">What We Deliver Instead</h3>
-                {hireUsSection.services.map((service, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex gap-4 p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#0065F8]/30 transition-colors group"
-                  >
-                    <div className="w-10 h-10 rounded-lg bg-[#0065F8]/10 border border-[#0065F8]/20 flex items-center justify-center shrink-0 group-hover:bg-[#0065F8]/20 transition-colors">
-                      {service.icon === "Phone" && <Phone className="w-5 h-5 text-[#0065F8]" />}
-                      {service.icon === "Workflow" && <Workflow className="w-5 h-5 text-[#0065F8]" />}
-                      {service.icon === "Code" && <Code className="w-5 h-5 text-[#0065F8]" />}
-                      {service.icon === "Users" && <Users className="w-5 h-5 text-[#0065F8]" />}
-                      {service.icon === "Bot" && <Bot className="w-5 h-5 text-[#0065F8]" />}
-                      {service.icon === "Brain" && <Brain className="w-5 h-5 text-[#0065F8]" />}
-                      {service.icon === "Server" && <Server className="w-5 h-5 text-[#0065F8]" />}
-                      {service.icon === "MessageSquare" && <MessageSquare className="w-5 h-5 text-[#0065F8]" />}
-                      {service.icon === "Zap" && <Zap className="w-5 h-5 text-[#0065F8]" />}
-                      {service.icon === "Mail" && <Mail className="w-5 h-5 text-[#0065F8]" />}
-                    </div>
-                    <div>
-                      <h4 className="text-white font-medium mb-1">{service.title}</h4>
-                      <p className="text-gray-500 text-sm leading-relaxed">{service.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </AnimatedSection>
+          {/* Differentiator Cards */}
+          <div className="grid sm:grid-cols-2 gap-6">
+            {hireUsSection.cards.map((card, index) => (
+              <motion.div
+                key={card.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.08 }}
+                viewport={{ once: true }}
+                className="glass-card rounded-2xl p-8 flex flex-col gap-4 hover:border-[#0065F8]/30 transition-colors"
+              >
+                <div className="w-12 h-12 rounded-xl bg-[#0065F8]/10 border border-[#0065F8]/20 flex items-center justify-center shrink-0">
+                  {card.icon === "Phone" && <Phone className="w-6 h-6 text-[#0065F8]" />}
+                  {card.icon === "Workflow" && <Workflow className="w-6 h-6 text-[#0065F8]" />}
+                  {card.icon === "Code" && <Code className="w-6 h-6 text-[#0065F8]" />}
+                  {card.icon === "Users" && <Users className="w-6 h-6 text-[#0065F8]" />}
+                  {card.icon === "Bot" && <Bot className="w-6 h-6 text-[#0065F8]" />}
+                  {card.icon === "Brain" && <Brain className="w-6 h-6 text-[#0065F8]" />}
+                  {card.icon === "Server" && <Server className="w-6 h-6 text-[#0065F8]" />}
+                  {card.icon === "MessageSquare" && <MessageSquare className="w-6 h-6 text-[#0065F8]" />}
+                  {card.icon === "Zap" && <Zap className="w-6 h-6 text-[#0065F8]" />}
+                  {card.icon === "Mail" && <Mail className="w-6 h-6 text-[#0065F8]" />}
+                </div>
+                <div>
+                  <h3 className="text-lg md:text-xl font-medium text-white mb-2">{card.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{card.description}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
 
           {/* CTA Button */}
