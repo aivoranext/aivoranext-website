@@ -27,7 +27,6 @@ import {
   MessageSquare,
   Zap,
   Mail,
-  PhoneCall,
   ShieldCheck,
 } from "lucide-react";
 import {
@@ -42,7 +41,7 @@ import {
   faqSection,
   ctaSection,
   footerLinks,
-  liveDemoSection,
+  portfolioPageContent,
   howWeWorkSection,
   pilotOfferSection,
 } from "@/lib/content";
@@ -290,62 +289,6 @@ export default function Home() {
             </motion.div>
           </div>
         </motion.div>
-      </section>
-
-      {/* Live Demo Section */}
-      <section id="demo" className="relative py-24 px-6 section-gradient">
-        <div className="max-w-5xl mx-auto text-center">
-          <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
-            {liveDemoSection.caption}
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight mb-2">
-            {liveDemoSection.title1}
-          </h2>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-gradient-blue leading-tight mb-6">
-            {liveDemoSection.title2}
-          </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-10">
-            {liveDemoSection.description}
-          </p>
-
-          {liveDemoSection.phoneNumber ? (
-            <div className="flex flex-col items-center gap-3 mb-12">
-              <a
-                href={`tel:${liveDemoSection.phoneNumber.replace(/[^+\d]/g, "")}`}
-                className="inline-flex items-center gap-3 px-10 py-5 btn-primary text-white text-xl font-semibold rounded-none"
-              >
-                <PhoneCall className="w-6 h-6" /> {liveDemoSection.phoneNumber}
-              </a>
-              <span className="text-gray-400 text-sm">{liveDemoSection.phoneNote}</span>
-            </div>
-          ) : (
-            <div className="flex justify-center mb-12">
-              <Link
-                href={liveDemoSection.fallbackHref}
-                className="inline-flex items-center gap-2 px-10 py-5 btn-primary text-white text-lg font-semibold rounded-none"
-              >
-                {liveDemoSection.fallbackLabel} <ArrowRight className="w-5 h-5" />
-              </Link>
-            </div>
-          )}
-
-          <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            {liveDemoSection.agents.map((agent) => (
-              <div
-                key={agent.name}
-                className="glass-card rounded-2xl p-6 text-left flex gap-4 items-start"
-              >
-                <div className="w-12 h-12 rounded-xl bg-[#0065F8]/10 border border-[#0065F8]/20 flex items-center justify-center shrink-0">
-                  <Phone className="w-5 h-5 text-[#0065F8]" />
-                </div>
-                <div>
-                  <h3 className="text-white font-medium mb-1">{agent.name}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{agent.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* Statement Section (below hero) - About Us with scroll-driven text animation */}
@@ -764,6 +707,91 @@ export default function Home() {
               </motion.div>
             </AnimatedSection>
           </div>
+        </div>
+      </section>
+
+      {/* Selected Work — real case-study teaser */}
+      <section className="relative py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <AnimatedSection className="text-center mb-12">
+            <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+              Selected Work
+            </p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight">
+              Real systems, <span className="text-gradient-blue">real outcomes</span>
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto mt-4">
+              Production AI we designed, built, and operated for a US-based commercial insurance provider.
+            </p>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {portfolioPageContent.projects.slice(0, 3).map((project, index) => (
+              <motion.div
+                key={project.slug}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.08 }}
+                viewport={{ once: true }}
+              >
+                <Link
+                  href={project.link}
+                  className="glass-card rounded-3xl overflow-hidden flex flex-col h-full group hover:border-[#0065F8]/30 transition-colors"
+                >
+                  <div className="relative w-full h-44 overflow-hidden">
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/20 to-transparent" />
+                  </div>
+                  <div className="p-6 flex flex-col flex-grow">
+                    <div className="flex flex-wrap gap-3 mb-3">
+                      {project.tags.slice(0, 2).map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-[#0065F8] text-xs font-semibold uppercase tracking-wider"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <h3 className="text-lg md:text-xl font-medium text-white mb-3 leading-tight">
+                      {project.title}
+                    </h3>
+                    {project.results && project.results[0] && (
+                      <div className="mb-4">
+                        <span className="text-2xl font-bold text-gradient-blue">
+                          {project.results[0].value}
+                        </span>
+                        <span className="text-gray-400 text-sm ml-2">
+                          {project.results[0].metric}
+                        </span>
+                      </div>
+                    )}
+                    <span className="inline-flex items-center gap-2 text-[#0065F8] text-sm font-semibold group-hover:text-white transition-colors mt-auto">
+                      View case study{" "}
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          <AnimatedSection delay={0.2} className="flex justify-center mt-12">
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link
+                href="/portfolio"
+                className="inline-flex items-center gap-2 px-10 py-4 btn-primary text-white font-semibold rounded-none"
+              >
+                View All Work <ArrowRight className="w-5 h-5" />
+              </Link>
+            </motion.div>
+          </AnimatedSection>
         </div>
       </section>
 
