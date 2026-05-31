@@ -150,14 +150,6 @@ export default function Footer() {
               <div className="space-y-2">
                 <div>
                   <a
-                    href="tel:+917046928404"
-                    className="text-white text-lg hover:text-[#3B8BFF] transition-colors"
-                  >
-                    +91 70469 28404
-                  </a>
-                </div>
-                <div>
-                  <a
                     href="tel:+917600393030"
                     className="text-white text-lg hover:text-[#3B8BFF] transition-colors"
                   >

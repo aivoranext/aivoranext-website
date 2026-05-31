@@ -225,7 +225,7 @@ export default function ContactPage() {
 
                 {/* Phone */}
                 <motion.a
-                  href={`tel:+917046928404`}
+                  href={`tel:+917600393030`}
                   className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-[#0065F8]/30 hover:bg-white/[0.07] transition-all group"
                   whileHover={{ x: 8 }}
                 >
