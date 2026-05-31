@@ -55,9 +55,15 @@ export default function Navbar({ currentPage = "Home" }) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
                 className="relative group"
-                onMouseEnter={() => setServicesOpen(true)}
-                onMouseLeave={() => setServicesOpen(false)}
-                onKeyDown={(e) => { if (e.key === "Escape") setServicesOpen(false); }}
+                onMouseEnter={item.megaMenu ? () => setServicesOpen(true) : undefined}
+                onMouseLeave={item.megaMenu ? () => setServicesOpen(false) : undefined}
+                onKeyDown={
+                  item.megaMenu
+                    ? (e) => {
+                        if (e.key === "Escape") setServicesOpen(false);
+                      }
+                    : undefined
+                }
               >
                 {item.megaMenu ? (
                   <div className="relative">
