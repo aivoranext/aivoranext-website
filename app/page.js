@@ -3,7 +3,7 @@
 import React, { useState, useRef, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useInView, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import {
   ArrowRight,
   BadgeCheck,
@@ -19,35 +19,36 @@ import {
   Workflow,
   Code,
   Users,
-  X,
   Check,
   AlertTriangle,
-  Quote,
   Bot,
   Brain,
   Server,
   MessageSquare,
   Zap,
   Mail,
+  PhoneCall,
+  ShieldCheck,
 } from "lucide-react";
 import {
   siteConfig,
   heroContent,
-  heroTrustedBrands,
   heroStatsPanel,
   belowHeroStatement,
   aboutSection,
   hireUsSection,
-  testimonialsSection,
   featureCards,
   servicesSection,
   faqSection,
   ctaSection,
   footerLinks,
+  liveDemoSection,
+  howWeWorkSection,
+  pilotOfferSection,
 } from "@/lib/content";
-import { TestimonialsSection } from "@/components/ui/testimonials-with-marquee";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import VoiceWaveform from "@/components/VoiceWaveform";
 
 // Single word that animates based on scroll progress
 function ScrollWord({ word, index, totalWords, scrollYProgress }) {
@@ -195,8 +196,14 @@ export default function Home() {
       <section
         ref={heroRef}
         id="hero"
-        className="relative min-h-screen flex flex-col items-center justify-start pt-32 md:pt-36 pb-20 md:pb-24 px-6"
+        className="relative min-h-screen flex flex-col items-center justify-start pt-32 md:pt-36 pb-20 md:pb-24 px-6 overflow-hidden"
       >
+        {/* Animated voice-waveform backdrop */}
+        <VoiceWaveform className="absolute inset-0 w-full h-full z-0 pointer-events-none" />
+        {/* Readability scrim: keep the headline crisp over the animation */}
+        <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_60%_45%_at_50%_38%,rgba(5,5,5,0.85),transparent_70%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 z-0 pointer-events-none bg-gradient-to-t from-[#050505] to-transparent" />
+
         <motion.div
           className="flex flex-col items-center text-center max-w-5xl mx-auto z-10"
         >
@@ -218,7 +225,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-medium text-white tracking-tight leading-[1.08] mb-2"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight leading-[1.08] mb-2 hyphens-none break-words"
           >
             {heroContent.titleLine1}
           </motion.h1>
@@ -226,7 +233,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-medium tracking-tight leading-[1.08] mb-8"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.08] mb-8 hyphens-none break-words"
           >
             <span className="text-white/90">{heroContent.titleLine2}</span>{" "}
             <span className="text-white/90">{heroContent.titleLine3}</span>
@@ -245,16 +252,19 @@ export default function Home() {
         </motion.div>
 
 
-        {/* Stats Panel - All in one single line with button */}
+        {/* Stats Panel + CTA — stacked & centered on mobile, single row on desktop */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 1.0, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-20 w-full max-w-6xl mx-auto mt-auto mb-0"
+          className="relative z-20 w-full max-w-6xl mx-auto mt-14 md:mt-auto mb-0"
         >
-          <div className="flex flex-row flex-wrap items-center justify-center gap-8 md:gap-14">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-14">
             {heroStatsPanel.items.map((item) => (
-              <div key={item.label} className="flex items-center gap-4 text-left">
+              <div
+                key={item.label}
+                className="flex items-center gap-4 text-left w-[220px] sm:w-auto"
+              >
                 <div className="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
                   <StatIcon name={item.icon} />
                 </div>
@@ -264,12 +274,16 @@ export default function Home() {
                 </div>
               </div>
             ))}
-            
-            {/* CTA Button inline with stats */}
-            <motion.div whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
+
+            {/* CTA Button — full width on mobile, inline on desktop */}
+            <motion.div
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              className="w-full sm:w-auto mt-2 sm:mt-0"
+            >
               <Link
                 href={heroStatsPanel.cta.href}
-                className="inline-flex items-center justify-center px-10 py-5 bg-white hover:bg-gray-100 text-gray-900 text-base font-semibold rounded-none transition-all shadow-lg hover:shadow-xl"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-100 text-gray-900 text-base font-semibold rounded-none transition-all shadow-lg hover:shadow-xl"
               >
                 {heroStatsPanel.cta.label}
               </Link>
@@ -278,62 +292,58 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Trusted Brands Below Hero - Scrolling Marquee */}
-      <section className="relative py-12 md:py-16 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 mb-8">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-gray-500 text-sm text-center"
-          >
-            {heroTrustedBrands.caption}
-          </motion.p>
-        </div>
+      {/* Live Demo Section */}
+      <section id="demo" className="relative py-24 px-6 section-gradient">
+        <div className="max-w-5xl mx-auto text-center">
+          <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+            {liveDemoSection.caption}
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight mb-2">
+            {liveDemoSection.title1}
+          </h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-gradient-blue leading-tight mb-6">
+            {liveDemoSection.title2}
+          </h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-10">
+            {liveDemoSection.description}
+          </p>
 
-        {/* Marquee Container */}
-        <div className="relative">
-          {/* Gradient Fades */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
+          {liveDemoSection.phoneNumber ? (
+            <div className="flex flex-col items-center gap-3 mb-12">
+              <a
+                href={`tel:${liveDemoSection.phoneNumber.replace(/[^+\d]/g, "")}`}
+                className="inline-flex items-center gap-3 px-10 py-5 btn-primary text-white text-xl font-semibold rounded-none"
+              >
+                <PhoneCall className="w-6 h-6" /> {liveDemoSection.phoneNumber}
+              </a>
+              <span className="text-gray-400 text-sm">{liveDemoSection.phoneNote}</span>
+            </div>
+          ) : (
+            <div className="flex justify-center mb-12">
+              <Link
+                href={liveDemoSection.fallbackHref}
+                className="inline-flex items-center gap-2 px-10 py-5 btn-primary text-white text-lg font-semibold rounded-none"
+              >
+                {liveDemoSection.fallbackLabel} <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+          )}
 
-          {/* Scrolling Track */}
-          <div className="flex animate-marquee">
-            {/* First set of brands */}
-            <div className="flex shrink-0 items-center gap-16 md:gap-20 px-8">
-              {heroTrustedBrands.brands.map((brand, index) => (
-                <div
-                  key={`brand-1-${index}`}
-                  className="flex items-center justify-center h-10 opacity-50 hover:opacity-80 transition-opacity"
-                >
-                  <Image
-                    src={brand.logo}
-                    alt={brand.name}
-                    width={120}
-                    height={40}
-                    className="h-8 md:h-10 w-auto object-contain brightness-0 invert"
-                  />
+          <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            {liveDemoSection.agents.map((agent) => (
+              <div
+                key={agent.name}
+                className="glass-card rounded-2xl p-6 text-left flex gap-4 items-start"
+              >
+                <div className="w-12 h-12 rounded-xl bg-[#0065F8]/10 border border-[#0065F8]/20 flex items-center justify-center shrink-0">
+                  <Phone className="w-5 h-5 text-[#0065F8]" />
                 </div>
-              ))}
-            </div>
-            {/* Duplicate for seamless loop */}
-            <div className="flex shrink-0 items-center gap-16 md:gap-20 px-8">
-              {heroTrustedBrands.brands.map((brand, index) => (
-                <div
-                  key={`brand-2-${index}`}
-                  className="flex items-center justify-center h-10 opacity-50 hover:opacity-80 transition-opacity"
-                >
-                  <Image
-                    src={brand.logo}
-                    alt={brand.name}
-                    width={120}
-                    height={40}
-                    className="h-8 md:h-10 w-auto object-contain brightness-0 invert"
-                  />
+                <div>
+                  <h3 className="text-white font-medium mb-1">{agent.name}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{agent.description}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -441,10 +451,56 @@ export default function Home() {
               <p className="text-gray-400 text-lg leading-relaxed">
                 {aboutSection.description}
               </p>
-              <p className="text-gray-500 leading-relaxed">
+              <p className="text-gray-400 leading-relaxed">
                 {aboutSection.subdescription}
               </p>
             </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* How We Work Section */}
+      <section id="how-we-work" className="relative py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <AnimatedSection className="text-center mb-16">
+            <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+              {howWeWorkSection.caption}
+            </p>
+            <h2 className="text-4xl md:text-5xl font-light text-white leading-tight">
+              {howWeWorkSection.title1}{" "}
+              <span className="text-gradient-blue">{howWeWorkSection.title2}</span>
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto mt-4">
+              {howWeWorkSection.description}
+            </p>
+          </AnimatedSection>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            {howWeWorkSection.steps.map((step, index) => (
+              <motion.div
+                key={step.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.08 }}
+                viewport={{ once: true }}
+                className="glass-card rounded-2xl p-6"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-[#0065F8] text-sm font-bold">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div className="w-10 h-10 rounded-lg bg-[#0065F8]/10 border border-[#0065F8]/20 flex items-center justify-center">
+                    {step.icon === "Target" && <Target className="w-5 h-5 text-[#0065F8]" />}
+                    {step.icon === "MessageSquare" && <MessageSquare className="w-5 h-5 text-[#0065F8]" />}
+                    {step.icon === "Code" && <Code className="w-5 h-5 text-[#0065F8]" />}
+                    {step.icon === "Server" && <Server className="w-5 h-5 text-[#0065F8]" />}
+                    {step.icon === "Workflow" && <Workflow className="w-5 h-5 text-[#0065F8]" />}
+                  </div>
+                </div>
+                <h3 className="text-white font-medium mb-2">{step.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{step.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -468,66 +524,35 @@ export default function Home() {
             </p>
           </AnimatedSection>
 
-          {/* Two Column Layout */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-            {/* Left Column - Alternatives/Problems */}
-            <AnimatedSection delay={0.1}>
-              <div className="space-y-4">
-                <h3 className="text-xl font-medium text-white/60 mb-6">Common Alternatives & Their Problems</h3>
-                {hireUsSection.alternatives.map((alt, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex gap-4 p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-red-500/20 transition-colors group"
-                  >
-                    <div className="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0 group-hover:bg-red-500/20 transition-colors">
-                      <X className="w-5 h-5 text-red-400" />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-medium mb-1">{alt.title}</h4>
-                      <p className="text-gray-500 text-sm leading-relaxed">{alt.problem}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </AnimatedSection>
-
-            {/* Right Column - Our Services */}
-            <AnimatedSection delay={0.2}>
-              <div className="space-y-4">
-                <h3 className="text-xl font-medium text-white/60 mb-6">What We Deliver Instead</h3>
-                {hireUsSection.services.map((service, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex gap-4 p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#0065F8]/30 transition-colors group"
-                  >
-                    <div className="w-10 h-10 rounded-lg bg-[#0065F8]/10 border border-[#0065F8]/20 flex items-center justify-center shrink-0 group-hover:bg-[#0065F8]/20 transition-colors">
-                      {service.icon === "Phone" && <Phone className="w-5 h-5 text-[#0065F8]" />}
-                      {service.icon === "Workflow" && <Workflow className="w-5 h-5 text-[#0065F8]" />}
-                      {service.icon === "Code" && <Code className="w-5 h-5 text-[#0065F8]" />}
-                      {service.icon === "Users" && <Users className="w-5 h-5 text-[#0065F8]" />}
-                      {service.icon === "Bot" && <Bot className="w-5 h-5 text-[#0065F8]" />}
-                      {service.icon === "Brain" && <Brain className="w-5 h-5 text-[#0065F8]" />}
-                      {service.icon === "Server" && <Server className="w-5 h-5 text-[#0065F8]" />}
-                      {service.icon === "MessageSquare" && <MessageSquare className="w-5 h-5 text-[#0065F8]" />}
-                      {service.icon === "Zap" && <Zap className="w-5 h-5 text-[#0065F8]" />}
-                      {service.icon === "Mail" && <Mail className="w-5 h-5 text-[#0065F8]" />}
-                    </div>
-                    <div>
-                      <h4 className="text-white font-medium mb-1">{service.title}</h4>
-                      <p className="text-gray-500 text-sm leading-relaxed">{service.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </AnimatedSection>
+          {/* Differentiator Cards */}
+          <div className="grid sm:grid-cols-2 gap-6">
+            {hireUsSection.cards.map((card, index) => (
+              <motion.div
+                key={card.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.08 }}
+                viewport={{ once: true }}
+                className="glass-card rounded-2xl p-8 flex flex-col gap-4 hover:border-[#0065F8]/30 transition-colors"
+              >
+                <div className="w-12 h-12 rounded-xl bg-[#0065F8]/10 border border-[#0065F8]/20 flex items-center justify-center shrink-0">
+                  {card.icon === "Phone" && <Phone className="w-6 h-6 text-[#0065F8]" />}
+                  {card.icon === "Workflow" && <Workflow className="w-6 h-6 text-[#0065F8]" />}
+                  {card.icon === "Code" && <Code className="w-6 h-6 text-[#0065F8]" />}
+                  {card.icon === "Users" && <Users className="w-6 h-6 text-[#0065F8]" />}
+                  {card.icon === "Bot" && <Bot className="w-6 h-6 text-[#0065F8]" />}
+                  {card.icon === "Brain" && <Brain className="w-6 h-6 text-[#0065F8]" />}
+                  {card.icon === "Server" && <Server className="w-6 h-6 text-[#0065F8]" />}
+                  {card.icon === "MessageSquare" && <MessageSquare className="w-6 h-6 text-[#0065F8]" />}
+                  {card.icon === "Zap" && <Zap className="w-6 h-6 text-[#0065F8]" />}
+                  {card.icon === "Mail" && <Mail className="w-6 h-6 text-[#0065F8]" />}
+                </div>
+                <div>
+                  <h3 className="text-lg md:text-xl font-medium text-white mb-2">{card.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{card.description}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
 
           {/* CTA Button */}
@@ -578,62 +603,69 @@ export default function Home() {
                 key={index}
                 variants={fadeInUp}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="glass-card rounded-3xl p-6 flex flex-col h-full"
+                className="glass-card rounded-3xl overflow-hidden flex flex-col h-full"
               >
-                {/* Tag */}
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-[#0065F8] text-sm font-semibold uppercase tracking-wider">
-                    {card.tag}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h3 className="text-lg md:text-xl font-medium text-white mb-3 leading-tight">
-                  {card.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">
-                  {card.description}
-                </p>
-
-                {/* Badges */}
-                {card.badges && (
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {card.badges.map((badge, badgeIndex) => (
-                      <span
-                        key={badgeIndex}
-                        className="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-gray-300 border border-white/10"
-                      >
-                        {badge}
-                      </span>
-                    ))}
+                {/* Image header */}
+                {card.image && (
+                  <div className="relative w-full h-36 overflow-hidden">
+                    <Image
+                      src={card.image}
+                      alt={card.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/20 to-transparent" />
                   </div>
                 )}
 
-                {/* CTA Button */}
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  <Link
-                    href={card.link || "/contact"}
-                    className="inline-flex items-center gap-2 text-[#0065F8] text-sm font-semibold hover:text-white transition-colors group"
-                  >
-                    {card.buttonText} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </motion.div>
+                <div className="p-6 flex flex-col flex-grow">
+                  {/* Tag */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-[#0065F8] text-sm font-semibold uppercase tracking-wider">
+                      {card.tag}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-lg md:text-xl font-medium text-white mb-3 leading-tight">
+                    {card.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">
+                    {card.description}
+                  </p>
+
+                  {/* Badges */}
+                  {card.badges && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {card.badges.map((badge, badgeIndex) => (
+                        <span
+                          key={badgeIndex}
+                          className="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-gray-300 border border-white/10"
+                        >
+                          {badge}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* CTA Button */}
+                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <Link
+                      href={card.link || "/contact"}
+                      className="inline-flex items-center gap-2 text-[#0065F8] text-sm font-semibold hover:text-white transition-colors group"
+                    >
+                      {card.buttonText} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </motion.div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
-
-      {/* Client Testimonials Section */}
-      <AnimatedSection>
-        <TestimonialsSection
-          title={testimonialsSection.title}
-          description={testimonialsSection.description}
-          testimonials={testimonialsSection.testimonials}
-        />
-      </AnimatedSection>
 
       {/* Services Section with Stats */}
       <section className="relative py-24 px-6">
@@ -685,7 +717,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="text-white font-medium mb-2">{service.title}</h4>
-                      <p className="text-gray-500 text-sm leading-relaxed">{service.description}</p>
+                      <p className="text-gray-400 text-sm leading-relaxed">{service.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -725,20 +757,49 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="absolute bottom-6 left-6 flex items-center gap-3 bg-black/80 backdrop-blur-xl px-5 py-3 rounded-lg border border-white/10"
               >
-                <div className="flex -space-x-2">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div
-                      key={i}
-                      className="w-8 h-8 rounded-full bg-gradient-to-br from-[#3B8BFF] to-[#0065F8] border-2 border-black flex items-center justify-center"
-                    >
-                      <Star className="w-3 h-3 text-white fill-current" />
-            </div>
-                  ))}
-            </div>
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#3B8BFF] to-[#0065F8] border-2 border-black flex items-center justify-center">
+                  <ShieldCheck className="w-4 h-4 text-white" />
+                </div>
                 <span className="text-white text-sm font-medium">{servicesSection.rating}</span>
               </motion.div>
             </AnimatedSection>
           </div>
+        </div>
+      </section>
+
+      {/* Pilot Offer Section */}
+      <section className="relative py-24 px-6">
+        <div className="max-w-5xl mx-auto">
+          <AnimatedSection className="glass-card rounded-3xl p-10 md:p-14">
+            <p className="text-[#0065F8] text-sm uppercase tracking-[0.2em] mb-4">
+              {pilotOfferSection.caption}
+            </p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight mb-2">
+              {pilotOfferSection.title1}
+            </h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-gradient-blue leading-tight mb-6">
+              {pilotOfferSection.title2}
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mb-8">
+              {pilotOfferSection.description}
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4 mb-10">
+              {pilotOfferSection.features.map((feature) => (
+                <div key={feature} className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-[#0065F8] shrink-0 mt-0.5" />
+                  <span className="text-gray-300">{feature}</span>
+                </div>
+              ))}
+            </div>
+            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+              <Link
+                href={pilotOfferSection.cta.href}
+                className="inline-flex items-center gap-2 px-10 py-4 btn-primary text-white font-semibold rounded-none"
+              >
+                {pilotOfferSection.cta.label} <ArrowRight className="w-5 h-5" />
+              </Link>
+            </motion.div>
+          </AnimatedSection>
         </div>
       </section>
 
@@ -760,7 +821,7 @@ export default function Home() {
               <p className="text-gray-400 leading-relaxed mb-4">
                 {faqSection.description}
               </p>
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-400 text-sm">
                 {faqSection.subdescription}
               </p>
             </AnimatedSection>
@@ -787,7 +848,7 @@ export default function Home() {
                       animate={{ rotate: openFaq === index ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <ChevronDown className={`w-5 h-5 text-gray-500 ${openFaq === index ? "text-[#0065F8]" : ""}`} />
+                      <ChevronDown className={`w-5 h-5 text-gray-400 ${openFaq === index ? "text-[#0065F8]" : ""}`} />
                     </motion.div>
                   </button>
                   <motion.div

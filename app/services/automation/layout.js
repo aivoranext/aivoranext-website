@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Workflow Automation - Eliminate Manual Work",
   description:
-    "Automate repetitive business processes with intelligent workflow automation. Document processing, CRM updates, data entry, and more. Achieve 85% cost reduction.",
+    "Automate repetitive business processes with intelligent workflow automation. Document processing, CRM updates, data entry, and more — designed, built, and operated end to end.",
   openGraph: {
     title: "Workflow Automation | Aivoranext",
     description:

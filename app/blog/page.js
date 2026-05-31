@@ -102,7 +102,7 @@ function FeaturedPostCard({ post }) {
             <p className="text-gray-400 leading-relaxed mb-6">
               {post.excerpt}
             </p>
-            <div className="flex flex-wrap items-center gap-4 text-gray-500 text-sm mb-6">
+            <div className="flex flex-wrap items-center gap-4 text-gray-400 text-sm mb-6">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4" />
                 <span>{post.date}</span>
@@ -160,7 +160,7 @@ function PostCard({ post, index }) {
             {post.excerpt}
           </p>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-gray-500 text-xs">
+            <div className="flex items-center gap-2 text-gray-400 text-xs">
               <Clock className="w-3.5 h-3.5" />
               <span>{post.readTime}</span>
             </div>
@@ -236,9 +236,9 @@ export default function BlogPage() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12"
           >
-            Expert insights on Voice AI, automation, and building AI-powered
-            solutions. Learn from real implementations and industry best
-            practices.
+            We&apos;re writing in-depth, no-fluff articles on Voice AI,
+            agentic automation, and shipping AI to production. First posts
+            are on the way.
           </motion.p>
 
           {/* Filter Tabs */}
@@ -314,7 +314,7 @@ export default function BlogPage() {
               className="text-center py-20"
             >
               <p className="text-gray-400 text-lg">
-                No articles found in this category yet.
+                Articles are coming soon. In the meantime, see our work or book a call.
               </p>
             </motion.div>
           )}

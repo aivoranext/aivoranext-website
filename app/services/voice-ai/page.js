@@ -134,7 +134,7 @@ const useCases = [
     description:
       "Patient intake, appointment reminders, and prescription refill requests.",
     features: [
-      "HIPAA-compliant calls",
+      "Built to client compliance requirements",
       "Appointment scheduling",
       "Patient follow-ups",
     ],
@@ -432,8 +432,7 @@ export default function VoiceAIPage() {
               <span className="text-gradient-blue">Every Industry</span>
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              See how businesses across industries are leveraging Voice AI to
-              transform their operations.
+              Voice AI applies across industries — here are common patterns we build. These illustrate capability, not a specific client deployment.
             </p>
           </AnimatedSection>
 
@@ -662,7 +661,7 @@ export default function VoiceAIPage() {
           </h2>
           <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
             Schedule a demo to see how our Voice AI agents can transform your
-            call operations and deliver measurable ROI within weeks.
+            call operations and deliver results tied to a clear success metric from day one.
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link

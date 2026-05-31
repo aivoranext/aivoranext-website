@@ -7,9 +7,12 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight,
   Phone,
+  Bot,
   Workflow,
+  Database,
+  Brain,
   Code,
-  Users,
+  Target,
   Check,
   Palette,
 } from "lucide-react";
@@ -60,82 +63,128 @@ function AnimatedSection({ children, className, delay = 0 }) {
   );
 }
 
-// Services data
+// Services data — mirrors the homepage "Our Services" set (unified brand-blue hover)
+const BLUE_GRADIENT = "from-[#0065F8]/15 to-[#3B8BFF]/5";
 const servicesData = [
   {
-    icon: Palette,
-    title: "UI/UX Design",
-    description: "Create beautiful, intuitive digital experiences. From research and wireframes to high-fidelity designs and prototypes.",
-    features: [
-      "UI/UX Design",
-      "UX Research",
-      "Usability Testing",
-      "Design Systems",
-      "Digital Prototyping",
-      "Digital Branding"
-    ],
-    link: "/services/ui-ux-design",
-    gradient: "from-pink-500/20 to-rose-500/10"
-  },
-  {
     icon: Phone,
-    title: "Voice AI & Calling Agents",
-    description: "Deploy AI agents that handle inbound and outbound calls 24/7. Perfect for customer support, appointment booking, lead qualification, and sales.",
+    title: "Voice AI Agents",
+    description: "Inbound and outbound voice agents that hold natural, sub-second conversations — renewals, billing, support, qualification, and scheduling.",
     features: [
-      "Inbound/outbound calls",
-      "Appointment scheduling",
+      "Inbound & outbound calls",
+      "Renewals & billing",
       "Lead qualification",
-      "Customer support",
-      "Multi-language support",
+      "Appointment scheduling",
+      "DTMF & IVR",
       "CRM integration"
     ],
     link: "/services/voice-ai",
-    gradient: "from-blue-500/20 to-cyan-500/10"
+    gradient: BLUE_GRADIENT
+  },
+  {
+    icon: Bot,
+    title: "Custom AI Agents",
+    description: "Autonomous, tool-using agents that read documents, call your APIs, and complete multi-step workflows — with humans in the loop where it matters.",
+    features: [
+      "Tool & API calling",
+      "Multi-step workflows",
+      "Document understanding",
+      "Human-in-the-loop",
+      "Memory & context",
+      "Guardrails"
+    ],
+    link: "/services/custom-software",
+    gradient: BLUE_GRADIENT
   },
   {
     icon: Workflow,
-    title: "Workflow Automation",
-    description: "Automate repetitive tasks and business processes. From document processing to data entry - we eliminate manual work and boost efficiency.",
+    title: "Automation & Agentic RPA",
+    description: "Document and email automation plus agentic operators that drive existing portals and internal tools end to end.",
     features: [
       "Document processing",
-      "Email automation",
-      "CRM updates",
-      "Report generation",
-      "Multi-system integrations",
+      "Email agents",
+      "Portal automation (RPA)",
+      "Data extraction",
+      "Multi-system sync",
       "Custom workflows"
     ],
     link: "/services/automation",
-    gradient: "from-purple-500/20 to-pink-500/10"
+    gradient: BLUE_GRADIENT
+  },
+  {
+    icon: Database,
+    title: "RAG & Knowledge Systems",
+    description: "Retrieval-augmented systems that turn your documents and data into accurate, cited answers — with re-ranking and context compression.",
+    features: [
+      "Vector search",
+      "Re-ranking",
+      "Context compression",
+      "Source citations",
+      "Hybrid memory",
+      "Knowledge base sync"
+    ],
+    link: "/services/custom-software",
+    gradient: BLUE_GRADIENT
+  },
+  {
+    icon: Brain,
+    title: "LLM Integration & Fine-Tuning",
+    description: "Integrate, prompt-engineer, and fine-tune LLMs for your domain — securely wired into your data, tools, and workflows.",
+    features: [
+      "Model selection",
+      "Prompt engineering",
+      "Fine-tuning",
+      "Secure deployment",
+      "Evaluation & testing",
+      "Cost optimization"
+    ],
+    link: "/services/custom-software",
+    gradient: BLUE_GRADIENT
   },
   {
     icon: Code,
     title: "Custom AI Software",
-    description: "Bespoke AI solutions tailored to your specific needs. From LLM integrations to RAG systems and intelligent applications.",
+    description: "AI-native SaaS and web apps, APIs, and integrations — built to production standards from day one, with AI at the core.",
     features: [
-      "Custom LLM solutions",
-      "RAG systems",
-      "AI-powered apps",
+      "AI SaaS products",
+      "Web app development",
       "API development",
-      "ML model training",
-      "AI consulting"
+      "Integrations",
+      "Cloud infrastructure",
+      "Production support"
     ],
     link: "/services/custom-software",
-    gradient: "from-green-500/20 to-emerald-500/10"
+    gradient: BLUE_GRADIENT
   },
   {
-    icon: Users,
-    title: "Staff Augmentation",
-    description: "Access top talent on-demand. Frontend, backend, AI developers, designers, and solution architects for contract or full-time roles.",
+    icon: Target,
+    title: "AI Strategy & Architecture",
+    description: "Map the workflow, choose the right models and tools, and design a production architecture that scales — before a line of code.",
     features: [
-      "Frontend Developer",
-      "Backend Developer",
-      "AI Developer",
-      "UI/UX Designer",
-      "Full Stack Developer",
-      "Solution Architect"
+      "Use-case discovery",
+      "AI roadmap",
+      "Architecture design",
+      "Model & tool selection",
+      "Feasibility & ROI",
+      "Team enablement"
     ],
-    link: "/services/staff-augmentation",
-    gradient: "from-orange-500/20 to-amber-500/10"
+    link: "/services/custom-software",
+    gradient: BLUE_GRADIENT
+  },
+  {
+    icon: Palette,
+    title: "Product & UI/UX Design",
+    description: "The interface and experience layer around your AI — research, design systems, and high-fidelity product design.",
+    features: [
+      "UX research",
+      "UI/UX design",
+      "Design systems",
+      "Prototyping",
+      "Usability testing",
+      "Digital branding"
+    ],
+    link: "/services/ui-ux-design",
+    gradient: BLUE_GRADIENT
   }
 ];
 

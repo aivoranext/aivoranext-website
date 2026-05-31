@@ -22,7 +22,7 @@ interface Logos3Props {
 }
 
 const Logos3 = ({
-    heading = "Trusted by these companies",
+    heading = "Technology partners",
     logos = [
         {
             id: "logo-1",
@@ -77,7 +77,7 @@ const Logos3 = ({
     return (
         <section className="py-16 border-t border-white/5 relative z-10">
             <div className="container flex flex-col items-center text-center">
-                <h3 className="my-6 text-sm uppercase tracking-wider text-gray-500">
+                <h3 className="my-6 text-sm uppercase tracking-wider text-gray-400">
                     {heading}
                 </h3>
             </div>

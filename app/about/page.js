@@ -81,7 +81,7 @@ const values = [
   {
     icon: Shield,
     title: "Enterprise Ready",
-    description: "Built for scale with security-first architecture. SOC2 compliant processes and enterprise-grade infrastructure."
+    description: "Security-first engineering and production-grade infrastructure built in from day one."
   },
   {
     icon: Heart,
@@ -92,10 +92,9 @@ const values = [
 
 // Team expertise - Real metrics from founder's portfolio
 const expertise = [
-  { label: "Years Experience", value: "8+" },
-  { label: "Automation Rate", value: "100%" },
-  { label: "Faster Conversions", value: "3x" },
-  { label: "Client Satisfaction", value: "98%" },
+  { label: "Years Building AI", value: "8+" },
+  { label: "Production AI Systems Shipped", value: "5" },
+  { label: "End-to-End Model", value: "Build + Operate" },
 ];
 
 export default function AboutPage() {
@@ -211,7 +210,7 @@ export default function AboutPage() {
               <p className="text-gray-400 text-lg leading-relaxed mb-6">
                 {aboutPageContent.aboutUs.description}
               </p>
-              <p className="text-gray-500 leading-relaxed mb-8">
+              <p className="text-gray-400 leading-relaxed mb-8">
                 {aboutPageContent.aboutUs.mission}
               </p>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -316,7 +315,7 @@ export default function AboutPage() {
             >
               <h4 className="text-[#0065F8] text-sm font-semibold mb-4">AI Frameworks</h4>
               <div className="flex flex-wrap gap-2">
-                {["LangGraph", "LangChain", "CrewAI", "AutoGen"].map((tech) => (
+                {["LangGraph", "LangChain", "CrewAI", "Google Agent Toolkit"].map((tech) => (
                   <span key={tech} className="px-3 py-1.5 rounded-lg bg-white/5 text-gray-300 text-sm">
                     {tech}
                   </span>
@@ -334,7 +333,7 @@ export default function AboutPage() {
             >
               <h4 className="text-[#0065F8] text-sm font-semibold mb-4">Voice AI</h4>
               <div className="flex flex-wrap gap-2">
-                {["LiveKit", "Twilio", "ElevenLabs", "Deepgram"].map((tech) => (
+                {["LiveKit", "Twilio", "BlandAI", "Retell AI", "ElevenLabs", "Cartesia", "Deepgram", "AssemblyAI"].map((tech) => (
                   <span key={tech} className="px-3 py-1.5 rounded-lg bg-white/5 text-gray-300 text-sm">
                     {tech}
                   </span>
@@ -352,7 +351,7 @@ export default function AboutPage() {
             >
               <h4 className="text-[#0065F8] text-sm font-semibold mb-4">Vector Databases</h4>
               <div className="flex flex-wrap gap-2">
-                {["Pinecone", "Weaviate", "ChromaDB"].map((tech) => (
+                {["Pinecone", "Qdrant", "ChromaDB"].map((tech) => (
                   <span key={tech} className="px-3 py-1.5 rounded-lg bg-white/5 text-gray-300 text-sm">
                     {tech}
                   </span>
@@ -378,11 +377,29 @@ export default function AboutPage() {
               </div>
             </motion.div>
 
-            {/* Languages & Frameworks */}
+            {/* Automation */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
+              viewport={{ once: true }}
+              className="glass-card rounded-2xl p-6 border border-white/5"
+            >
+              <h4 className="text-[#0065F8] text-sm font-semibold mb-4">Automation</h4>
+              <div className="flex flex-wrap gap-2">
+                {["n8n", "Make.com", "Custom APIs & Middleware"].map((tech) => (
+                  <span key={tech} className="px-3 py-1.5 rounded-lg bg-white/5 text-gray-300 text-sm">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Languages & Frameworks */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
               viewport={{ once: true }}
               className="glass-card rounded-2xl p-6 border border-white/5"
             >
@@ -400,7 +417,7 @@ export default function AboutPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.6 }}
               viewport={{ once: true }}
               className="glass-card rounded-2xl p-6 border border-white/5"
             >
@@ -456,7 +473,7 @@ export default function AboutPage() {
                     </div>
                     <div>
                       <h4 className="text-white font-semibold mb-1 group-hover:text-[#3B8BFF] transition-colors">{service.title}</h4>
-                      <p className="text-gray-500 text-sm leading-relaxed">{service.description}</p>
+                      <p className="text-gray-400 text-sm leading-relaxed">{service.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -498,16 +515,16 @@ export default function AboutPage() {
                     ))}
                   </div>
                 </div>
-                <div className="text-3xl font-bold text-white mb-2">50+ Businesses Automated</div>
-                <p className="text-gray-400 mb-6">Trusted by growing companies worldwide</p>
+                <div className="text-3xl font-bold text-white mb-2">Production AI, Built &amp; Operated</div>
+                <p className="text-gray-400 mb-6">We design, ship, and run the systems we build</p>
                 <div className="flex items-center gap-2">
                   <div className="flex">
                     {[1, 2, 3, 4, 5].map((i) => (
                       <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
                     ))}
                   </div>
-                  <span className="text-white font-medium">5.0</span>
-                  <span className="text-gray-500">Average Rating</span>
+                  <span className="text-white font-medium">Senior engineers</span>
+                  <span className="text-gray-400">no hand-off to juniors</span>
                 </div>
               </motion.div>
 
@@ -521,8 +538,8 @@ export default function AboutPage() {
                   className="glass-card rounded-2xl p-6 text-center border border-white/5"
                 >
                   <Lightbulb className="w-8 h-8 text-[#0065F8] mx-auto mb-3" />
-                  <div className="text-2xl font-bold text-white mb-1">85%</div>
-                  <div className="text-gray-500 text-sm">Avg Cost Reduction</div>
+                  <div className="text-2xl font-bold text-white mb-1">&lt;1s</div>
+                  <div className="text-gray-400 text-sm">Voice Agent Latency</div>
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -533,7 +550,7 @@ export default function AboutPage() {
                 >
                   <TrendingUp className="w-8 h-8 text-[#0065F8] mx-auto mb-3" />
                   <div className="text-2xl font-bold text-white mb-1">24/7</div>
-                  <div className="text-gray-500 text-sm">AI Availability</div>
+                  <div className="text-gray-400 text-sm">AI Availability</div>
                 </motion.div>
               </div>
             </AnimatedSection>

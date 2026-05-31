@@ -424,16 +424,16 @@ export default function UIUXDesignPage() {
                 <div className="mt-8 pt-8 border-t border-white/10">
                   <div className="grid grid-cols-3 gap-6 text-center">
                     <div>
-                      <div className="text-2xl font-bold text-gradient-blue">100+</div>
-                      <div className="text-gray-500 text-sm">Projects Delivered</div>
+                      <div className="text-2xl font-bold text-gradient-blue">End-to-End</div>
+                      <div className="text-gray-400 text-sm">Design to Dev Handoff</div>
                     </div>
                     <div>
-                      <div className="text-2xl font-bold text-gradient-blue">50+</div>
-                      <div className="text-gray-500 text-sm">Happy Clients</div>
+                      <div className="text-2xl font-bold text-gradient-blue">Direct</div>
+                      <div className="text-gray-400 text-sm">Founder Access</div>
                     </div>
                     <div>
-                      <div className="text-2xl font-bold text-gradient-blue">5.0</div>
-                      <div className="text-gray-500 text-sm">Average Rating</div>
+                      <div className="text-2xl font-bold text-gradient-blue">Senior</div>
+                      <div className="text-gray-400 text-sm">Design Engineers</div>
                     </div>
                   </div>
                 </div>

@@ -112,25 +112,25 @@ const automationCategories = [
   }
 ];
 
-// Benefits/Metrics
+// Benefits/Capabilities
 const benefitsData = [
   {
     icon: TrendingUp,
-    metric: "85%",
-    title: "Cost Reduction",
-    description: "Dramatically reduce operational costs by eliminating manual tasks."
+    metric: "Lower",
+    title: "Operational Costs",
+    description: "Eliminate manual tasks and reduce the overhead that comes with repetitive human processing."
   },
   {
     icon: Target,
-    metric: "95%",
-    title: "Accuracy Rate",
-    description: "Achieve near-perfect accuracy with automated data processing."
+    metric: "Higher",
+    title: "Accuracy",
+    description: "Automated data processing removes human error from routine, rule-based work."
   },
   {
     icon: Zap,
-    metric: "10x",
-    title: "Faster Processing",
-    description: "Process tasks 10 times faster than manual methods."
+    metric: "Faster",
+    title: "Processing Speed",
+    description: "Tasks that take hours manually execute in minutes or seconds with automation."
   },
   {
     icon: Clock,
@@ -232,7 +232,7 @@ export default function AutomationPage() {
             <span className="bg-[#0065F8] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
               Workflow Automation
             </span>
-            <span className="text-white/80 text-sm font-medium">85% Cost Reduction</span>
+            <span className="text-white/80 text-sm font-medium">Eliminate Manual Work</span>
           </motion.div>
 
           {/* Main Headline */}
@@ -254,8 +254,8 @@ export default function AutomationPage() {
             className="text-gray-400 text-lg md:text-xl leading-relaxed max-w-2xl mb-10"
           >
             Automate repetitive tasks, data entry, and document processing.
-            Our intelligent automation solutions reduce costs by up to 85% while
-            improving accuracy and freeing your team to focus on what matters.
+            Our intelligent automation solutions eliminate manual work, improve
+            accuracy, and free your team to focus on what matters.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -558,7 +558,7 @@ export default function AutomationPage() {
           </h2>
           <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
             Schedule a consultation to discover how our automation solutions can
-            transform your operations and deliver measurable ROI within weeks.
+            transform your operations and deliver results tied to a clear success metric from day one.
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link

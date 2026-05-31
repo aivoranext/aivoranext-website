@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Voice AI Agents - 24/7 AI Calling Solutions",
   description:
-    "Deploy Voice AI agents that handle inbound and outbound calls 24/7. Perfect for customer support, appointment booking, lead qualification, and sales. 500K+ calls handled.",
+    "Deploy Voice AI agents that handle inbound and outbound calls 24/7. Perfect for customer support, appointment booking, lead qualification, and sales — designed, built, and operated end to end.",
   openGraph: {
     title: "Voice AI Agents | Aivoranext",
     description:

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>Voice Renewal</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+    background: #050505;
+    color: #fff;
+    width: 1440px;
+    height: 900px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Topbar */
+  .topbar {
+    height: 52px;
+    background: #0a0a0a;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex; align-items: center; padding: 0 24px; gap: 16px;
+    flex-shrink: 0;
+  }
+  .logo { font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .logo-box { width: 22px; height: 22px; background: #0065F8; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+  .topbar-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.1); }
+  .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.35); display: flex; align-items: center; gap: 6px; }
+  .breadcrumb span { color: #fff; }
+  .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+  .live-call-badge { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: #10B981; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); border-radius: 20px; padding: 4px 12px; }
+  .live-dot { width: 7px; height: 7px; background: #10B981; border-radius: 50%; animation: blink 1s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .timer { font-size: 13px; font-weight: 600; color: #fff; font-variant-numeric: tabular-nums; }
+  .btn-end { font-size: 12px; padding: 6px 14px; border-radius: 7px; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.25); color: #EF4444; cursor: pointer; font-family: inherit; font-weight: 600; }
+
+  /* Main layout */
+  .main { flex: 1; display: flex; overflow: hidden; }
+
+  /* Center call panel */
+  .call-panel {
+    flex: 1;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Call header */
+  .call-header {
+    background: #0a0a0a;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 16px 24px;
+    display: flex; align-items: center; gap: 20px;
+    flex-shrink: 0;
+  }
+  .caller-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; flex-shrink: 0;
+  }
+  .caller-info { flex: 1; }
+  .caller-name { font-size: 15px; font-weight: 600; color: #fff; }
+  .caller-sub { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+  .call-stats { display: flex; gap: 24px; }
+  .cs-item { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+  .cs-label { font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 0.05em; text-transform: uppercase; }
+  .cs-value { font-size: 13px; font-weight: 600; color: #fff; }
+
+  /* Waveform */
+  .waveform-section {
+    background: #0a0a0a;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 16px 24px;
+    flex-shrink: 0;
+  }
+  .waveform-label { font-size: 10.5px; color: rgba(255,255,255,0.3); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .waveform-container {
+    display: flex; align-items: center; gap: 2px; height: 48px;
+  }
+  .wave-bar {
+    width: 3px;
+    border-radius: 2px;
+    background: #0065F8;
+    opacity: 0.7;
+    flex-shrink: 0;
+  }
+  .wave-bar.past { background: rgba(255,255,255,0.15); opacity: 1; }
+  .wave-bar.cursor { background: #fff; opacity: 1; width: 2px; }
+
+  /* Transcript */
+  .transcript-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .turn {
+    display: flex; gap: 12px; align-items: flex-start;
+    max-width: 820px;
+  }
+  .turn.agent { }
+  .turn.customer { align-self: flex-end; flex-direction: row-reverse; }
+  .turn-avatar {
+    width: 30px; height: 30px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 2px;
+  }
+  .turn.agent .turn-avatar { background: rgba(0,101,248,0.2); color: #3B8BFF; }
+  .turn.customer .turn-avatar { background: rgba(139,92,246,0.2); color: #A78BFA; }
+  .turn-body { }
+  .turn-meta { font-size: 10px; color: rgba(255,255,255,0.25); margin-bottom: 4px; display: flex; gap: 6px; }
+  .turn.customer .turn-meta { text-align: right; justify-content: flex-end; }
+  .turn-bubble {
+    padding: 10px 14px; border-radius: 10px;
+    font-size: 13px; line-height: 1.55; color: rgba(255,255,255,0.85);
+  }
+  .turn.agent .turn-bubble { background: rgba(0,101,248,0.12); border: 1px solid rgba(0,101,248,0.18); border-top-left-radius: 2px; }
+  .turn.customer .turn-bubble { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-top-right-radius: 2px; text-align: left; }
+  .turn-bubble .highlight { color: #3B8BFF; font-weight: 600; }
+
+  /* Current speaking indicator */
+  .speaking-now {
+    display: flex; align-items: center; gap: 8px;
+    padding: 0 24px 12px;
+    flex-shrink: 0;
+  }
+  .speaking-dots {
+    display: flex; gap: 3px; align-items: center;
+  }
+  .sd { width: 5px; height: 5px; border-radius: 50%; background: #3B8BFF; }
+  .sd:nth-child(1) { animation: bounce 1s 0s infinite; }
+  .sd:nth-child(2) { animation: bounce 1s 0.2s infinite; }
+  .sd:nth-child(3) { animation: bounce 1s 0.4s infinite; }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+  .speaking-label { font-size: 11.5px; color: rgba(255,255,255,0.4); }
+
+  /* DTMF keypad */
+  .dtmf-panel {
+    background: #0a0a0a;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 14px 24px;
+    display: flex; align-items: center; gap: 20px;
+    flex-shrink: 0;
+  }
+  .dtmf-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+  }
+  .dtmf-key {
+    width: 38px; height: 36px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7);
+  }
+  .dtmf-controls { display: flex; flex-direction: column; gap: 6px; margin-left: 8px; }
+  .ctrl-btn {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11.5px; color: rgba(255,255,255,0.45);
+    padding: 6px 12px; border-radius: 6px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+    cursor: pointer;
+  }
+  .ctrl-btn.mute { }
+  .call-actions { margin-left: auto; display: flex; flex-direction: column; gap: 8px; }
+  .ca-btn { font-size: 12px; padding: 8px 16px; border-radius: 7px; cursor: pointer; font-family: inherit; text-align: center; }
+  .ca-btn.transfer { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+  .ca-btn.end { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.25); color: #EF4444; font-weight: 600; }
+
+  /* Right — audit log */
+  .audit-panel {
+    width: 340px;
+    background: #0a0a0a;
+    border-left: 1px solid rgba(255,255,255,0.08);
+    display: flex; flex-direction: column;
+    flex-shrink: 0;
+  }
+  .ap-header {
+    padding: 14px 16px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.35);
+    letter-spacing: 0.07em; text-transform: uppercase;
+  }
+  .audit-list { flex: 1; overflow-y: auto; padding: 8px 0; }
+  .audit-item {
+    padding: 9px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .ai-header { display: flex; align-items: center; gap: 7px; }
+  .ai-icon { width: 18px; height: 18px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; }
+  .ai-icon.action { background: rgba(0,101,248,0.12); color: #3B8BFF; }
+  .ai-icon.system { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.35); }
+  .ai-icon.flag { background: rgba(255,180,0,0.1); color: #FFB400; }
+  .ai-type { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); flex: 1; }
+  .ai-time { font-size: 10px; color: rgba(255,255,255,0.2); }
+  .ai-desc { font-size: 11px; color: rgba(255,255,255,0.35); line-height: 1.4; padding-left: 25px; }
+
+  .policy-card {
+    margin: 12px 16px 0;
+    background: rgba(0,101,248,0.07);
+    border: 1px solid rgba(0,101,248,0.15);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .pc-title { font-size: 10.5px; font-weight: 600; color: #3B8BFF; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .pc-row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 11.5px; }
+  .pc-row:last-child { border: none; }
+  .pc-key { color: rgba(255,255,255,0.35); }
+  .pc-val { color: #fff; font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">
+    <div class="logo-box">IP</div>
+    Insurance Portal
+  </div>
+  <div class="topbar-sep"></div>
+  <div class="breadcrumb">Voice Console › <span>Call #VC-20481 · Policy Renewal</span></div>
+  <div class="topbar-right">
+    <div class="live-call-badge"><div class="live-dot"></div> Live Call</div>
+    <span class="timer">07:42</span>
+    <button class="btn-end">End Call</button>
+  </div>
+</div>
+
+<div class="main">
+  <div class="call-panel">
+
+    <div class="call-header">
+      <div class="caller-avatar">PH</div>
+      <div class="caller-info">
+        <div class="caller-name">Policyholder #PH-8841</div>
+        <div class="caller-sub">+1 (614) 555-0192 · Policy GL-2024-00472 · Renewing Jul 1, 2026</div>
+      </div>
+      <div class="call-stats">
+        <div class="cs-item">
+          <span class="cs-label">Duration</span>
+          <span class="cs-value">07:42</span>
+        </div>
+        <div class="cs-item">
+          <span class="cs-label">Sentiment</span>
+          <span class="cs-value" style="color:#10B981">Positive</span>
+        </div>
+        <div class="cs-item">
+          <span class="cs-label">Intent</span>
+          <span class="cs-value" style="color:#3B8BFF">Renewal</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="waveform-section">
+      <div class="waveform-label">
+        <span>Audio Waveform</span>
+        <span style="color:#10B981; font-size:10px;">● Recording</span>
+      </div>
+      <div class="waveform-container">
+        <!-- Past bars (gray) -->
+        <div class="wave-bar past" style="height:12px"></div>
+        <div class="wave-bar past" style="height:18px"></div>
+        <div class="wave-bar past" style="height:30px"></div>
+        <div class="wave-bar past" style="height:22px"></div>
+        <div class="wave-bar past" style="height:38px"></div>
+        <div class="wave-bar past" style="height:26px"></div>
+        <div class="wave-bar past" style="height:14px"></div>
+        <div class="wave-bar past" style="height:34px"></div>
+        <div class="wave-bar past" style="height:42px"></div>
+        <div class="wave-bar past" style="height:20px"></div>
+        <div class="wave-bar past" style="height:16px"></div>
+        <div class="wave-bar past" style="height:28px"></div>
+        <div class="wave-bar past" style="height:36px"></div>
+        <div class="wave-bar past" style="height:24px"></div>
+        <div class="wave-bar past" style="height:40px"></div>
+        <div class="wave-bar past" style="height:18px"></div>
+        <div class="wave-bar past" style="height:32px"></div>
+        <div class="wave-bar past" style="height:44px"></div>
+        <div class="wave-bar past" style="height:20px"></div>
+        <div class="wave-bar past" style="height:28px"></div>
+        <div class="wave-bar past" style="height:16px"></div>
+        <div class="wave-bar past" style="height:36px"></div>
+        <div class="wave-bar past" style="height:24px"></div>
+        <div class="wave-bar past" style="height:40px"></div>
+        <div class="wave-bar past" style="height:14px"></div>
+        <div class="wave-bar past" style="height:32px"></div>
+        <div class="wave-bar past" style="height:20px"></div>
+        <div class="wave-bar past" style="height:38px"></div>
+        <div class="wave-bar past" style="height:26px"></div>
+        <div class="wave-bar past" style="height:18px"></div>
+        <div class="wave-bar past" style="height:46px"></div>
+        <div class="wave-bar past" style="height:28px"></div>
+        <div class="wave-bar past" style="height:34px"></div>
+        <div class="wave-bar past" style="height:16px"></div>
+        <div class="wave-bar past" style="height:22px"></div>
+        <div class="wave-bar past" style="height:42px"></div>
+        <div class="wave-bar past" style="height:30px"></div>
+        <div class="wave-bar past" style="height:20px"></div>
+        <div class="wave-bar past" style="height:36px"></div>
+        <div class="wave-bar past" style="height:14px"></div>
+        <!-- Cursor -->
+        <div class="wave-bar cursor" style="height:48px"></div>
+        <!-- Live bars (blue) -->
+        <div class="wave-bar" style="height:32px; opacity:0.9"></div>
+        <div class="wave-bar" style="height:20px; opacity:0.7"></div>
+        <div class="wave-bar" style="height:40px; opacity:0.85"></div>
+        <div class="wave-bar" style="height:28px; opacity:0.8"></div>
+        <div class="wave-bar" style="height:16px; opacity:0.6"></div>
+        <div class="wave-bar" style="height:36px; opacity:0.9"></div>
+        <div class="wave-bar" style="height:24px; opacity:0.75"></div>
+        <div class="wave-bar" style="height:44px; opacity:0.95"></div>
+        <div class="wave-bar" style="height:18px; opacity:0.6"></div>
+        <div class="wave-bar" style="height:30px; opacity:0.8"></div>
+        <div class="wave-bar" style="height:38px; opacity:0.85"></div>
+        <div class="wave-bar" style="height:22px; opacity:0.7"></div>
+        <div class="wave-bar" style="height:26px; opacity:0.75"></div>
+        <div class="wave-bar" style="height:14px; opacity:0.5"></div>
+        <div class="wave-bar" style="height:34px; opacity:0.8"></div>
+        <div class="wave-bar" style="height:20px; opacity:0.65"></div>
+        <div class="wave-bar" style="height:42px; opacity:0.9"></div>
+        <div class="wave-bar" style="height:28px; opacity:0.75"></div>
+        <div class="wave-bar" style="height:16px; opacity:0.55"></div>
+        <div class="wave-bar" style="height:36px; opacity:0.8"></div>
+        <div class="wave-bar" style="height:12px; opacity:0.45"></div>
+        <div class="wave-bar" style="height:24px; opacity:0.7"></div>
+      </div>
+    </div>
+
+    <div class="transcript-area">
+      <div class="turn agent">
+        <div class="turn-avatar">AI</div>
+        <div class="turn-body">
+          <div class="turn-meta"><span>AI Agent</span><span>07:06</span></div>
+          <div class="turn-bubble">Hello, thank you for calling. I'm the automated renewal assistant. I can see your <span class="highlight">General Liability policy GL-2024-00472</span> is up for renewal on July 1st. Are you calling to renew today, or do you have questions about your coverage?</div>
+        </div>
+      </div>
+
+      <div class="turn customer">
+        <div class="turn-avatar">PH</div>
+        <div class="turn-body">
+          <div class="turn-meta"><span>07:19</span><span>Policyholder</span></div>
+          <div class="turn-bubble">Yes, I want to renew. But I also wanted to ask about my billing — I was charged twice last month and I haven't gotten a refund yet.</div>
+        </div>
+      </div>
+
+      <div class="turn agent">
+        <div class="turn-avatar">AI</div>
+        <div class="turn-body">
+          <div class="turn-meta"><span>AI Agent</span><span>07:28</span></div>
+          <div class="turn-bubble">I'm sorry to hear about the duplicate charge. I've flagged that for our billing team — you should see a <span class="highlight">credit of $142.00</span> within 3–5 business days. Now, regarding your renewal: your current premium is <span class="highlight">$3,840 annually</span>. There's a small <span class="highlight">4.2% rate adjustment</span> this term, bringing the new premium to <span class="highlight">$3,991</span>. Would you like to proceed with renewal at that rate?</div>
+        </div>
+      </div>
+
+      <div class="turn customer">
+        <div class="turn-avatar">PH</div>
+        <div class="turn-body">
+          <div class="turn-meta"><span>07:39</span><span>Policyholder</span></div>
+          <div class="turn-bubble">That rate increase seems a bit high. Can you explain why it went up? And yes, let's go ahead and renew if the explanation makes sense.</div>
+        </div>
+      </div>
+
+      <div class="turn agent">
+        <div class="turn-avatar">AI</div>
+        <div class="turn-body">
+          <div class="turn-meta"><span>AI Agent</span><span>07:42</span></div>
+          <div class="turn-bubble">Of course. The adjustment reflects updated loss cost trends in the <span class="highlight">wholesale distribution</span> class, plus a modest increase in limits of liability in your state. Your account has no claims in the past 3 years, so you're also receiving a <span class="highlight">claims-free discount of 8%</span>. Without it, the increase would have been higher. Shall I confirm the renewal?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="speaking-now">
+      <div class="speaking-dots">
+        <div class="sd"></div><div class="sd"></div><div class="sd"></div>
+      </div>
+      <span class="speaking-label">AI Agent is speaking…</span>
+    </div>
+
+    <div class="dtmf-panel">
+      <div class="dtmf-grid">
+        <div class="dtmf-key">1</div><div class="dtmf-key">2</div><div class="dtmf-key">3</div>
+        <div class="dtmf-key">4</div><div class="dtmf-key">5</div><div class="dtmf-key">6</div>
+        <div class="dtmf-key">7</div><div class="dtmf-key">8</div><div class="dtmf-key">9</div>
+        <div class="dtmf-key">*</div><div class="dtmf-key">0</div><div class="dtmf-key">#</div>
+      </div>
+      <div class="dtmf-controls">
+        <div class="ctrl-btn mute">🔇 Mute</div>
+        <div class="ctrl-btn">⏸ Hold</div>
+        <div class="ctrl-btn">🎙 Record</div>
+      </div>
+      <div class="call-actions">
+        <button class="ca-btn transfer">Transfer to Agent</button>
+        <button class="ca-btn end">End Call</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audit log -->
+  <div class="audit-panel">
+    <div class="ap-header">Audit Log</div>
+    <div class="policy-card">
+      <div class="pc-title">Active Policy</div>
+      <div class="pc-row"><span class="pc-key">Policy #</span><span class="pc-val">GL-2024-00472</span></div>
+      <div class="pc-row"><span class="pc-key">Type</span><span class="pc-val">General Liability</span></div>
+      <div class="pc-row"><span class="pc-key">Expiry</span><span class="pc-val">Jul 1, 2026</span></div>
+      <div class="pc-row"><span class="pc-key">Premium</span><span class="pc-val">$3,840 / yr</span></div>
+      <div class="pc-row"><span class="pc-key">Status</span><span class="pc-val" style="color:#FFB400">Pending Renewal</span></div>
+    </div>
+    <div class="audit-list">
+      <div class="audit-item">
+        <div class="ai-header">
+          <div class="ai-icon system">→</div>
+          <span class="ai-type">Call initiated</span>
+          <span class="ai-time">07:01</span>
+        </div>
+        <div class="ai-desc">Inbound from +1 (614) 555-0192 · IVR routed to renewal flow</div>
+      </div>
+      <div class="audit-item">
+        <div class="ai-header">
+          <div class="ai-icon action">✓</div>
+          <span class="ai-type">Identity verified</span>
+          <span class="ai-time">07:03</span>
+        </div>
+        <div class="ai-desc">Caller matched on DOB + policy number · confidence 99%</div>
+      </div>
+      <div class="audit-item">
+        <div class="ai-header">
+          <div class="ai-icon action">↗</div>
+          <span class="ai-type">Policy loaded</span>
+          <span class="ai-time">07:04</span>
+        </div>
+        <div class="ai-desc">GL-2024-00472 retrieved · renewal quote pre-generated</div>
+      </div>
+      <div class="audit-item">
+        <div class="ai-header">
+          <div class="ai-icon flag">⚑</div>
+          <span class="ai-type">Billing issue flagged</span>
+          <span class="ai-time">07:24</span>
+        </div>
+        <div class="ai-desc">Duplicate charge of $142.00 detected · refund ticket #BT-9921 created</div>
+      </div>
+      <div class="audit-item">
+        <div class="ai-header">
+          <div class="ai-icon action">$</div>
+          <span class="ai-type">Renewal quote presented</span>
+          <span class="ai-time">07:30</span>
+        </div>
+        <div class="ai-desc">New premium $3,991 · +4.2% rate adj · 8% claims-free discount applied</div>
+      </div>
+      <div class="audit-item">
+        <div class="ai-header">
+          <div class="ai-icon system">ℹ</div>
+          <span class="ai-type">Rate explanation delivered</span>
+          <span class="ai-time">07:42</span>
+        </div>
+        <div class="ai-desc">Loss cost trend + limits adj explained · awaiting policyholder confirmation</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
