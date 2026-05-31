@@ -603,48 +603,64 @@ export default function Home() {
                 key={index}
                 variants={fadeInUp}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="glass-card rounded-3xl p-6 flex flex-col h-full"
+                className="glass-card rounded-3xl overflow-hidden flex flex-col h-full"
               >
-                {/* Tag */}
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-[#0065F8] text-sm font-semibold uppercase tracking-wider">
-                    {card.tag}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h3 className="text-lg md:text-xl font-medium text-white mb-3 leading-tight">
-                  {card.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">
-                  {card.description}
-                </p>
-
-                {/* Badges */}
-                {card.badges && (
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {card.badges.map((badge, badgeIndex) => (
-                      <span
-                        key={badgeIndex}
-                        className="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-gray-300 border border-white/10"
-                      >
-                        {badge}
-                      </span>
-                    ))}
+                {/* Image header */}
+                {card.image && (
+                  <div className="relative w-full h-36 overflow-hidden">
+                    <Image
+                      src={card.image}
+                      alt={card.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/20 to-transparent" />
                   </div>
                 )}
 
-                {/* CTA Button */}
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  <Link
-                    href={card.link || "/contact"}
-                    className="inline-flex items-center gap-2 text-[#0065F8] text-sm font-semibold hover:text-white transition-colors group"
-                  >
-                    {card.buttonText} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </motion.div>
+                <div className="p-6 flex flex-col flex-grow">
+                  {/* Tag */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-[#0065F8] text-sm font-semibold uppercase tracking-wider">
+                      {card.tag}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-lg md:text-xl font-medium text-white mb-3 leading-tight">
+                    {card.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">
+                    {card.description}
+                  </p>
+
+                  {/* Badges */}
+                  {card.badges && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {card.badges.map((badge, badgeIndex) => (
+                        <span
+                          key={badgeIndex}
+                          className="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-gray-300 border border-white/10"
+                        >
+                          {badge}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* CTA Button */}
+                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <Link
+                      href={card.link || "/contact"}
+                      className="inline-flex items-center gap-2 text-[#0065F8] text-sm font-semibold hover:text-white transition-colors group"
+                    >
+                      {card.buttonText} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </motion.div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
