@@ -96,7 +96,7 @@ export default function NotFound() {
                         <h3 className="text-base font-semibold text-white">
                           {item.title}
                         </h3>
-                        <ArrowRight className="h-4 w-4 text-gray-500 group-hover:text-[#3B8BFF] transition-colors" />
+                        <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-[#3B8BFF] transition-colors" />
                       </div>
                       <p className="mt-1 text-sm text-gray-400">
                         {item.description}

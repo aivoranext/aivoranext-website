@@ -102,7 +102,7 @@ function FeaturedPostCard({ post }) {
             <p className="text-gray-400 leading-relaxed mb-6">
               {post.excerpt}
             </p>
-            <div className="flex flex-wrap items-center gap-4 text-gray-500 text-sm mb-6">
+            <div className="flex flex-wrap items-center gap-4 text-gray-400 text-sm mb-6">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4" />
                 <span>{post.date}</span>
@@ -160,7 +160,7 @@ function PostCard({ post, index }) {
             {post.excerpt}
           </p>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-gray-500 text-xs">
+            <div className="flex items-center gap-2 text-gray-400 text-xs">
               <Clock className="w-3.5 h-3.5" />
               <span>{post.readTime}</span>
             </div>

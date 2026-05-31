@@ -316,7 +316,7 @@ export default function Home() {
               >
                 <PhoneCall className="w-6 h-6" /> {liveDemoSection.phoneNumber}
               </a>
-              <span className="text-gray-500 text-sm">{liveDemoSection.phoneNote}</span>
+              <span className="text-gray-400 text-sm">{liveDemoSection.phoneNote}</span>
             </div>
           ) : (
             <div className="flex justify-center mb-12">
@@ -340,7 +340,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="text-white font-medium mb-1">{agent.name}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{agent.description}</p>
+                  <p className="text-gray-400 text-sm leading-relaxed">{agent.description}</p>
                 </div>
               </div>
             ))}
@@ -451,7 +451,7 @@ export default function Home() {
               <p className="text-gray-400 text-lg leading-relaxed">
                 {aboutSection.description}
               </p>
-              <p className="text-gray-500 leading-relaxed">
+              <p className="text-gray-400 leading-relaxed">
                 {aboutSection.subdescription}
               </p>
             </AnimatedSection>
@@ -498,7 +498,7 @@ export default function Home() {
                   </div>
                 </div>
                 <h3 className="text-white font-medium mb-2">{step.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{step.description}</p>
+                <p className="text-gray-400 text-sm leading-relaxed">{step.description}</p>
               </motion.div>
             ))}
           </div>
@@ -717,7 +717,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="text-white font-medium mb-2">{service.title}</h4>
-                      <p className="text-gray-500 text-sm leading-relaxed">{service.description}</p>
+                      <p className="text-gray-400 text-sm leading-relaxed">{service.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -821,7 +821,7 @@ export default function Home() {
               <p className="text-gray-400 leading-relaxed mb-4">
                 {faqSection.description}
               </p>
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-400 text-sm">
                 {faqSection.subdescription}
               </p>
             </AnimatedSection>
@@ -848,7 +848,7 @@ export default function Home() {
                       animate={{ rotate: openFaq === index ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <ChevronDown className={`w-5 h-5 text-gray-500 ${openFaq === index ? "text-[#0065F8]" : ""}`} />
+                      <ChevronDown className={`w-5 h-5 text-gray-400 ${openFaq === index ? "text-[#0065F8]" : ""}`} />
                     </motion.div>
                   </button>
                   <motion.div

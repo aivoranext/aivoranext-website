@@ -175,7 +175,7 @@ export default function CaseStudyPage() {
                 <Building2 className="w-5 h-5 text-[#0065F8]" />
               </div>
               <div>
-                <p className="text-gray-500 text-sm">Client</p>
+                <p className="text-gray-400 text-sm">Client</p>
                 <p className="text-white font-medium">{project.client}</p>
               </div>
             </div>
@@ -184,7 +184,7 @@ export default function CaseStudyPage() {
                 <Calendar className="w-5 h-5 text-[#0065F8]" />
               </div>
               <div>
-                <p className="text-gray-500 text-sm">Industry</p>
+                <p className="text-gray-400 text-sm">Industry</p>
                 <p className="text-white font-medium">{project.industry}</p>
               </div>
             </div>
@@ -193,7 +193,7 @@ export default function CaseStudyPage() {
                 <Clock className="w-5 h-5 text-[#0065F8]" />
               </div>
               <div>
-                <p className="text-gray-500 text-sm">Duration</p>
+                <p className="text-gray-400 text-sm">Duration</p>
                 <p className="text-white font-medium">{project.duration}</p>
               </div>
             </div>
@@ -293,7 +293,7 @@ export default function CaseStudyPage() {
                   <div className="text-white font-medium text-sm mb-1">
                     {result.metric}
                   </div>
-                  <div className="text-gray-500 text-xs">
+                  <div className="text-gray-400 text-xs">
                     {result.improvement}
                   </div>
                 </div>
@@ -321,7 +321,7 @@ export default function CaseStudyPage() {
                     <p className="text-white font-medium">
                       {project.testimonial.author}
                     </p>
-                    <p className="text-gray-500 text-sm">
+                    <p className="text-gray-400 text-sm">
                       {project.testimonial.role}
                     </p>
                   </div>
@@ -376,7 +376,7 @@ export default function CaseStudyPage() {
                   href={`/portfolio/${prevProject.slug}`}
                   className="group glass-card rounded-2xl p-5 border border-white/5 hover:border-[#0065F8]/30 transition-all flex-1 max-w-md"
                 >
-                  <div className="flex items-center gap-2 text-gray-500 text-sm mb-1">
+                  <div className="flex items-center gap-2 text-gray-400 text-sm mb-1">
                     <ArrowLeft className="w-4 h-4" />
                     <span>Previous Case Study</span>
                   </div>
@@ -392,7 +392,7 @@ export default function CaseStudyPage() {
                   href={`/portfolio/${nextProject.slug}`}
                   className="group glass-card rounded-2xl p-5 border border-white/5 hover:border-[#0065F8]/30 transition-all text-right flex-1 max-w-md"
                 >
-                  <div className="flex items-center justify-end gap-2 text-gray-500 text-sm mb-1">
+                  <div className="flex items-center justify-end gap-2 text-gray-400 text-sm mb-1">
                     <span>Next Case Study</span>
                     <ArrowRight className="w-4 h-4" />
                   </div>

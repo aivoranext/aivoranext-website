@@ -216,7 +216,7 @@ export default function ContactPage() {
                     <Mail className="w-5 h-5 text-[#0065F8]" />
                   </div>
                   <div>
-                    <p className="text-gray-500 text-sm">Email us at</p>
+                    <p className="text-gray-400 text-sm">Email us at</p>
                     <p className="text-white font-medium group-hover:text-[#3B8BFF] transition-colors">
                       {contactPageContent.info.email}
                     </p>
@@ -233,7 +233,7 @@ export default function ContactPage() {
                     <Phone className="w-5 h-5 text-[#0065F8]" />
                   </div>
                   <div>
-                    <p className="text-gray-500 text-sm">Call us at</p>
+                    <p className="text-gray-400 text-sm">Call us at</p>
                     <p className="text-white font-medium group-hover:text-[#3B8BFF] transition-colors">
                       {contactPageContent.info.phone}
                     </p>
@@ -248,7 +248,7 @@ export default function ContactPage() {
                     <MapPin className="w-5 h-5 text-[#0065F8]" />
                   </div>
                   <div>
-                    <p className="text-gray-500 text-sm">Our office</p>
+                    <p className="text-gray-400 text-sm">Our office</p>
                     <p className="text-white font-medium leading-relaxed">
                       {contactPageContent.info.address}
                     </p>
@@ -263,7 +263,7 @@ export default function ContactPage() {
                     <Clock className="w-5 h-5 text-[#0065F8]" />
                   </div>
                   <div>
-                    <p className="text-gray-500 text-sm">Working hours</p>
+                    <p className="text-gray-400 text-sm">Working hours</p>
                     <p className="text-white font-medium">Mon - Fri, 10AM - 7PM IST</p>
                   </div>
                 </motion.div>
@@ -296,31 +296,33 @@ export default function ContactPage() {
                       {/* Name Fields */}
                       <div className="grid md:grid-cols-2 gap-5">
                         <div>
-                          <label className="block text-gray-400 text-sm mb-2">
+                          <label htmlFor="firstName" className="block text-gray-400 text-sm mb-2">
                             {contactPageContent.form.fields.firstName.label}
                           </label>
                           <input
                             type="text"
+                            id="firstName"
                             name="firstName"
                             value={formData.firstName}
                             onChange={handleChange}
                             required
                             placeholder={contactPageContent.form.fields.firstName.placeholder}
-                            className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
+                            className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-500"
                           />
                         </div>
                         <div>
-                          <label className="block text-gray-400 text-sm mb-2">
+                          <label htmlFor="lastName" className="block text-gray-400 text-sm mb-2">
                             {contactPageContent.form.fields.lastName.label}
                           </label>
                           <input
                             type="text"
+                            id="lastName"
                             name="lastName"
                             value={formData.lastName}
                             onChange={handleChange}
                             required
                             placeholder={contactPageContent.form.fields.lastName.placeholder}
-                            className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
+                            className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-500"
                           />
                         </div>
                       </div>
@@ -328,55 +330,59 @@ export default function ContactPage() {
                       {/* Email & Phone */}
                       <div className="grid md:grid-cols-2 gap-5">
                         <div>
-                          <label className="block text-gray-400 text-sm mb-2">
+                          <label htmlFor="email" className="block text-gray-400 text-sm mb-2">
                             {contactPageContent.form.fields.email.label}
                           </label>
                           <input
                             type="email"
+                            id="email"
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
                             required
                             placeholder={contactPageContent.form.fields.email.placeholder}
-                            className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
+                            className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-500"
                           />
                         </div>
                         <div>
-                          <label className="block text-gray-400 text-sm mb-2">
+                          <label htmlFor="phone" className="block text-gray-400 text-sm mb-2">
                             {contactPageContent.form.fields.phone.label}
                           </label>
                           <input
                             type="tel"
+                            id="phone"
                             name="phone"
                             value={formData.phone}
                             onChange={handleChange}
                             placeholder={contactPageContent.form.fields.phone.placeholder}
-                            className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
+                            className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-500"
                           />
                         </div>
                       </div>
 
                       {/* Company Name */}
                       <div>
-                        <label className="block text-gray-400 text-sm mb-2">
+                        <label htmlFor="company" className="block text-gray-400 text-sm mb-2">
                           {contactPageContent.form.fields.company.label}
                         </label>
                         <input
                           type="text"
+                          id="company"
                           name="company"
                           value={formData.company}
                           onChange={handleChange}
                           placeholder={contactPageContent.form.fields.company.placeholder}
-                          className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600"
+                          className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-500"
                         />
                       </div>
 
                       {/* Service Interest */}
                       <div>
-                        <label className="block text-gray-400 text-sm mb-2">
+                        <label htmlFor="serviceInterest" className="block text-gray-400 text-sm mb-2">
                           {contactPageContent.form.fields.serviceInterest.label}
                         </label>
                         <select
+                          id="serviceInterest"
                           name="serviceInterest"
                           value={formData.serviceInterest}
                           onChange={handleChange}
@@ -408,10 +414,11 @@ export default function ContactPage() {
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.3 }}
                         >
-                          <label className="block text-gray-400 text-sm mb-2">
+                          <label htmlFor="callVolume" className="block text-gray-400 text-sm mb-2">
                             {contactPageContent.form.fields.callVolume.label}
                           </label>
                           <select
+                            id="callVolume"
                             name="callVolume"
                             value={formData.callVolume}
                             onChange={handleChange}
@@ -437,23 +444,26 @@ export default function ContactPage() {
 
                       {/* Message */}
                       <div>
-                        <label className="block text-gray-400 text-sm mb-2">
+                        <label htmlFor="message" className="block text-gray-400 text-sm mb-2">
                           {contactPageContent.form.fields.message.label}
                         </label>
                         <textarea
+                          id="message"
                           name="message"
                           value={formData.message}
                           onChange={handleChange}
                           required
                           placeholder={contactPageContent.form.fields.message.placeholder}
                           rows={4}
-                          className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-600 resize-none"
+                          className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-4 text-sm outline-none focus:border-[#0065F8] transition-all focus:ring-2 focus:ring-[#0065F8]/20 placeholder:text-gray-500 resize-none"
                         />
                       </div>
 
                       {/* Error Message */}
                       {error && (
                         <motion.div
+                          role="alert"
+                          aria-live="assertive"
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                           className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm"

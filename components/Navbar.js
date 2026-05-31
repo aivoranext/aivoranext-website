@@ -11,6 +11,7 @@ export default function Navbar({ currentPage = "Home" }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState(0);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
   // Mobile services menu data
   const mobileServices = [
@@ -54,6 +55,9 @@ export default function Navbar({ currentPage = "Home" }) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
                 className="relative group"
+                onMouseEnter={() => setServicesOpen(true)}
+                onMouseLeave={() => setServicesOpen(false)}
+                onKeyDown={(e) => { if (e.key === "Escape") setServicesOpen(false); }}
               >
                 {item.megaMenu ? (
                   <div className="relative">
@@ -61,13 +65,15 @@ export default function Navbar({ currentPage = "Home" }) {
                       className="text-gray-400 hover:text-white transition-colors text-sm font-medium nav-link flex items-center gap-1"
                       aria-label={`${item.name} menu`}
                       aria-haspopup="true"
+                      aria-expanded={servicesOpen}
+                      onClick={() => setServicesOpen((v) => !v)}
                     >
                       {item.name}
                       <ChevronDown className="w-4 h-4 group-hover:rotate-180 transition-transform duration-200" />
                     </button>
 
                     {/* Mega Menu */}
-                    <div className="fixed left-0 right-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                    <div className={`fixed left-0 right-0 top-full pt-2 transition-all duration-300 ${servicesOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}>
                       <div className="max-w-7xl mx-auto px-6">
                         <div className="bg-[#0a0a0a] border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
                           <div className="grid grid-cols-12 min-h-[400px]">

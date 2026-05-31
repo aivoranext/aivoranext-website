@@ -140,7 +140,7 @@ export default function Footer() {
                 >
                   info@aivoranext.com
                 </a>
-                <p className="text-gray-500 text-sm">(For Inquiries)</p>
+                <p className="text-gray-400 text-sm">(For Inquiries)</p>
               </div>
             </div>
 
@@ -181,8 +181,8 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Copyright & Legal */}
           <div className="flex flex-wrap items-center gap-4 text-sm">
-            <span className="text-gray-500">{siteConfig.copyright}</span>
-            <span className="text-gray-600 hidden md:inline">/</span>
+            <span className="text-gray-400">{siteConfig.copyright}</span>
+            <span className="text-gray-400 hidden md:inline">/</span>
             {footerLinks.legal.map((link, index) => (
               <span key={link.name} className="flex items-center gap-4">
                 <Link
@@ -192,7 +192,7 @@ export default function Footer() {
                   {link.name}
                 </Link>
                 {index < footerLinks.legal.length - 1 && (
-                  <span className="text-gray-600 hidden md:inline">/</span>
+                  <span className="text-gray-400 hidden md:inline">/</span>
                 )}
               </span>
             ))}

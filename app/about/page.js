@@ -210,7 +210,7 @@ export default function AboutPage() {
               <p className="text-gray-400 text-lg leading-relaxed mb-6">
                 {aboutPageContent.aboutUs.description}
               </p>
-              <p className="text-gray-500 leading-relaxed mb-8">
+              <p className="text-gray-400 leading-relaxed mb-8">
                 {aboutPageContent.aboutUs.mission}
               </p>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -473,7 +473,7 @@ export default function AboutPage() {
                     </div>
                     <div>
                       <h4 className="text-white font-semibold mb-1 group-hover:text-[#3B8BFF] transition-colors">{service.title}</h4>
-                      <p className="text-gray-500 text-sm leading-relaxed">{service.description}</p>
+                      <p className="text-gray-400 text-sm leading-relaxed">{service.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -524,7 +524,7 @@ export default function AboutPage() {
                     ))}
                   </div>
                   <span className="text-white font-medium">Senior engineers</span>
-                  <span className="text-gray-500">no hand-off to juniors</span>
+                  <span className="text-gray-400">no hand-off to juniors</span>
                 </div>
               </motion.div>
 
@@ -539,7 +539,7 @@ export default function AboutPage() {
                 >
                   <Lightbulb className="w-8 h-8 text-[#0065F8] mx-auto mb-3" />
                   <div className="text-2xl font-bold text-white mb-1">&lt;1s</div>
-                  <div className="text-gray-500 text-sm">Voice Agent Latency</div>
+                  <div className="text-gray-400 text-sm">Voice Agent Latency</div>
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -550,7 +550,7 @@ export default function AboutPage() {
                 >
                   <TrendingUp className="w-8 h-8 text-[#0065F8] mx-auto mb-3" />
                   <div className="text-2xl font-bold text-white mb-1">24/7</div>
-                  <div className="text-gray-500 text-sm">AI Availability</div>
+                  <div className="text-gray-400 text-sm">AI Availability</div>
                 </motion.div>
               </div>
             </AnimatedSection>

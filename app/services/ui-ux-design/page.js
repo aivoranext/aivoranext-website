@@ -425,15 +425,15 @@ export default function UIUXDesignPage() {
                   <div className="grid grid-cols-3 gap-6 text-center">
                     <div>
                       <div className="text-2xl font-bold text-gradient-blue">End-to-End</div>
-                      <div className="text-gray-500 text-sm">Design to Dev Handoff</div>
+                      <div className="text-gray-400 text-sm">Design to Dev Handoff</div>
                     </div>
                     <div>
                       <div className="text-2xl font-bold text-gradient-blue">Direct</div>
-                      <div className="text-gray-500 text-sm">Founder Access</div>
+                      <div className="text-gray-400 text-sm">Founder Access</div>
                     </div>
                     <div>
                       <div className="text-2xl font-bold text-gradient-blue">Senior</div>
-                      <div className="text-gray-500 text-sm">Design Engineers</div>
+                      <div className="text-gray-400 text-sm">Design Engineers</div>
                     </div>
                   </div>
                 </div>

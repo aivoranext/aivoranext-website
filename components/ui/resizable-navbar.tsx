@@ -150,7 +150,7 @@ const MegaMenu = ({ active, onClose }: { active: string | null; onClose: () => v
                 <IconChevronRight
                   className={cn(
                     "w-4 h-4 transition-all",
-                    activeCategory === category ? "text-blue-400 opacity-100" : "text-gray-600 group-hover:text-blue-400 opacity-0 group-hover:opacity-100"
+                    activeCategory === category ? "text-blue-400 opacity-100" : "text-gray-400 group-hover:text-blue-400 opacity-0 group-hover:opacity-100"
                   )}
                 />
               </div>
